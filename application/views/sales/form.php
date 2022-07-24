@@ -50,7 +50,7 @@
 							<span class="input-group-addon input-sm"><b><?php echo $this->config->item('currency_symbol'); ?></b></span>
 						<?php endif; ?>
 						<?php echo form_input(array('name'=>'payment_amount_new', 'value'=>$payment_amount_new, 'id'=>'payment_amount_new', 'class'=>'form-control input-sm'));?>
-						<?php if(currency_side()): ?>
+						<?php if (currency_side()): ?>
 							<span class="input-group-addon input-sm"><b><?php echo $this->config->item('currency_symbol'); ?></b></span>
 						<?php endif; ?>
 					</div>
@@ -68,13 +68,13 @@
 			<div class="form-group form-group-sm">
 				<?php echo form_label($this->lang->line('sales_payment'), 'payment_'.$i, array('class'=>'control-label col-xs-3')); ?>
 				<div class='col-xs-4'>
-					<?php // no editing of Gift Card payments as it's a complex change ?>
-					<?php echo form_hidden('payment_id_'.$i, $row->payment_id); ?>
-					<?php if( !empty(strstr($row->payment_type, $this->lang->line('sales_giftcard'))) ): ?>
-						<?php echo form_input(array('name'=>'payment_type_'.$i, 'value'=>$row->payment_type, 'id'=>'payment_type_'.$i, 'class'=>'form-control input-sm', 'readonly'=>'true'));?>
-					<?php else: ?>
-						<?php echo form_dropdown('payment_type_'.$i, $payment_options, $row->payment_type, array('id'=>'payment_types_'.$i, 'class'=>'form-control')); ?>
-					<?php endif; ?>
+						<?php // no editing of Gift Card payments as it's a complex change ?>
+						<?php echo form_hidden('payment_id_'.$i, $row->payment_id); ?>
+						<?php if( !empty(strstr($row->payment_type, $this->lang->line('sales_giftcard'))) ): ?>
+							<?php echo form_input(array('name'=>'payment_type_'.$i, 'value'=>$row->payment_type, 'id'=>'payment_type_'.$i, 'class'=>'form-control input-sm', 'readonly'=>'true'));?>
+						<?php else: ?>
+							<?php echo form_dropdown('payment_type_'.$i, $payment_options, $row->payment_type, array('id'=>'payment_types_'.$i, 'class'=>'form-control')); ?>
+						<?php endif; ?>
 				</div>
 				<div class='col-xs-4'>
 					<div class="input-group input-group-sm">
@@ -82,30 +82,7 @@
 							<span class="input-group-addon input-sm"><b><?php echo $this->config->item('currency_symbol'); ?></b></span>
 						<?php endif; ?>
 						<?php echo form_input(array('name'=>'payment_amount_'.$i, 'value'=>$row->payment_amount, 'id'=>'payment_amount_'.$i, 'class'=>'form-control input-sm', 'readonly'=>'true'));?>
-						<?php if(currency_side()): ?>
-							<span class="input-group-addon input-sm"><b><?php echo $this->config->item('currency_symbol'); ?></b></span>
-						<?php endif; ?>
-					</div>
-				</div>
-			</div>
-
-			<div class="form-group form-group-sm">
-				<?php echo form_label($this->lang->line('sales_refund'), 'refund_'.$i, array('class'=>'control-label col-xs-3')); ?>
-				<div class='col-xs-4'>
-					<?php // no editing of Gift Card payments as it's a complex change ?>
-					<?php if( !empty(strstr($row->payment_type, $this->lang->line('sales_giftcard'))) ): ?>
-						<?php echo form_input(array('name'=>'refund_type_'.$i, 'value'=>$this->lang->line('sales_cash'), 'id'=>'refund_type_'.$i, 'class'=>'form-control input-sm', 'readonly'=>'true'));?>
-					<?php else: ?>
-						<?php echo form_dropdown('refund_type_'.$i, $payment_options, $this->lang->line('sales_cash'), array('id'=>'refund_types_'.$i, 'class'=>'form-control')); ?>
-					<?php endif; ?>
-				</div>
-				<div class='col-xs-4'>
-					<div class="input-group input-group-sm">
-						<?php if(!currency_side()): ?>
-							<span class="input-group-addon input-sm"><b><?php echo $this->config->item('currency_symbol'); ?></b></span>
-						<?php endif; ?>
-						<?php echo form_input(array('name'=>'refund_amount_'.$i, 'value'=>$row->cash_refund, 'id'=>'refund_amount_'.$i, 'class'=>'form-control input-sm', 'readonly'=>'true'));?>
-						<?php if(currency_side()): ?>
+						<?php if (currency_side()): ?>
 							<span class="input-group-addon input-sm"><b><?php echo $this->config->item('currency_symbol'); ?></b></span>
 						<?php endif; ?>
 					</div>
@@ -124,12 +101,11 @@
 				<?php echo form_hidden('customer_id', $selected_customer_id);?>
 			</div>
 		</div>
-
+		
 		<div class="form-group form-group-sm">
 			<?php echo form_label($this->lang->line('sales_employee'), 'employee', array('class'=>'control-label col-xs-3')); ?>
 			<div class='col-xs-8'>
-				<?php echo form_input(array('name'=>'employee_name', 'value'=>$selected_employee_name, 'id'=>'employee_name', 'class'=>'form-control input-sm'));?>
-				<?php echo form_hidden('employee_id', $selected_employee_id);?>
+				<?php echo form_dropdown('employee_id', $employees, $sale_info['employee_id'], 'id="employee_id" class="form-control"');?>
 			</div>
 		</div>
 		
@@ -150,8 +126,9 @@ $(document).ready(function()
 			if (confirm("<?php echo $this->lang->line('sales_invoice_confirm') . ' ' . $sale_info['email'] ?>")) {
 				$.get("<?php echo site_url($controller_name . '/send_pdf/' . $sale_info['sale_id']); ?>",
 					function(response) {
-						BootstrapDialog.closeAll();
-						$.notify( { message: response.message }, { type: response.success ? 'success' : 'danger'} )
+						dialog_support.hide();
+						table_support.handle_submit("<?php echo site_url('sales'); ?>", response);
+						$.notify(response.message, { type: response.success ? 'success' : 'danger'} );
 					}, 'json'
 				);	
 			}
@@ -160,36 +137,21 @@ $(document).ready(function()
 	
 	<?php $this->load->view('partial/datepicker_locale'); ?>
 
-	var fill_value_customer = function(event, ui) {
+	var fill_value =  function(event, ui) {
 		event.preventDefault();
 		$("input[name='customer_id']").val(ui.item.value);
 		$("input[name='customer_name']").val(ui.item.label);
 	};
 
-	$('#customer_name').autocomplete( {
+	$('#customer_name').autocomplete(
+	{
 		source: "<?php echo site_url('customers/suggest'); ?>",
 		minChars: 0,
 		delay: 15, 
 		cacheLength: 1,
 		appendTo: '.modal-content',
-		select: fill_value_customer,
-		focus: fill_value_customer
-	});
-
-	var fill_value_employee = function(event, ui) {
-		event.preventDefault();
-		$("input[name='employee_id']").val(ui.item.value);
-		$("input[name='employee_name']").val(ui.item.label);
-	};
-
-	$('#employee_name').autocomplete( {
-		source: "<?php echo site_url('employees/suggest'); ?>",
-		minChars: 0,
-		delay: 15, 
-		cacheLength: 1,
-		appendTo: '.modal-content',
-		select: fill_value_employee,
-		focus: fill_value_employee
+		select: fill_value,
+		focus: fill_value
 	});
 
 	$('button#delete').click(function() {
@@ -202,18 +164,14 @@ $(document).ready(function()
 		table_support.do_restore("<?php echo site_url($controller_name); ?>", <?php echo $sale_info['sale_id']; ?>);
 	});
 
-	$('#sales_edit_form').validate($.extend( {
+	$('#sales_edit_form').validate($.extend(
+	{
 		submitHandler: function(form) {
 			$(form).ajaxSubmit({
 				success: function(response)
 				{
 					dialog_support.hide();
 					table_support.handle_submit("<?php echo site_url($controller_name); ?>", response);
-
-					const params = $.param(table_support.query_params());
-					$.get("<?php echo site_url($controller_name); ?>/search?" + params, function(response) {
-						$("#payment_summary").html(response.payment_summary);
-					}, 'json');
 				},
 				dataType: 'json'
 			});

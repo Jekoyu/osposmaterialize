@@ -114,7 +114,6 @@
      * @param {Object} [options={}] Options that will override the default ones
      */
     API.autoTable = function (headers, data, options) {
-        validateInput(headers, data, options);
         doc = this;
         settings = initOptions(options || {});
         pageCount = 1;
@@ -172,35 +171,31 @@
     /**
      * Parses an html table
      *
-     * @param tableElem Html table element
-     * @param includeHiddenRows Defaults to false
+     * @param table Html table element
      * @returns Object Object with two properties, columns and rows
      */
-    API.autoTableHtmlToJson = function (tableElem, includeHiddenRows) {
-        includeHiddenRows = includeHiddenRows || false;
+    API.autoTableHtmlToJson = function (table) {
+        var data = [],
+            headers = [],
+            header = table.rows[0],
+            tableRow,
+            rowData,
+            i,
+            j;
 
-        var header = tableElem.rows[0];
-        var result = {columns: [], rows: []};
-
-        for (var k = 0; k < header.cells.length; k++) {
-            var cell = header.cells[k];
-            result.columns.push(typeof cell !== 'undefined' ? cell.textContent : '');
+        for (i = 0; i < header.cells.length; i++) {
+            headers.push(typeof header.cells[i] !== 'undefined' ? header.cells[i].textContent : '');
         }
 
-        for (var i = 1; i < tableElem.rows.length; i++) {
-            var tableRow = tableElem.rows[i];
-            var style = window.getComputedStyle(tableRow);
-            if (includeHiddenRows || style.display !== 'none') {
-                var rowData = [];
-                for (var j = 0; j < header.cells.length; j++) {
-                    rowData.push(typeof tableRow.cells[j] !== 'undefined' ? tableRow.cells[j].textContent : '');
-                }
-                result.rows.push(rowData);
+        for (i = 1; i < table.rows.length; i++) {
+            tableRow = table.rows[i];
+            rowData = [];
+            for (j = 0; j < header.cells.length; j++) {
+                rowData.push(typeof tableRow.cells[j] !== 'undefined' ? tableRow.cells[j].textContent : '');
             }
+            data.push(rowData);
         }
-
-        result.data = result.rows; // Deprecated
-        return result;
+        return {columns: headers, data: data, rows: data};
     };
 
     /**
@@ -251,26 +246,6 @@
         doc.text(text, x, y);
         return doc;
     };
-
-    function validateInput(headers, data, options) {
-        if (!headers || typeof headers !== 'object') {
-            console.error("The headers should be an object or array, is: " + typeof headers);
-        }
-
-        if (!data || typeof data !== 'object') {
-            console.error("The data should be an object or array, is: " + typeof data);
-        }
-
-        if (!!options && typeof options !== 'object') {
-            console.error("The data should be an object or array, is: " + typeof data);
-        }
-
-        if (!Array.prototype.forEach) {
-            console.error("The current browser does not support Array.prototype.forEach which is required for " +
-                "jsPDF-AutoTable. You can try polyfilling it by including this script " +
-                "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/forEach#Polyfill");
-        }
-    }
 
     function initOptions(userOptions) {
         var settings = extend(defaultOptions(), userOptions);
@@ -354,7 +329,7 @@
 
             var cell = new Cell();
             cell.raw = typeof rawColumn === 'object' ? rawColumn.title : rawColumn;
-            cell.styles = extend(headerRow.styles);
+            cell.styles = headerRow.styles;
             cell.text = '' + cell.raw;
             cell.contentWidth = cell.styles.cellPadding * 2 + getStringWidth(cell.text, cell.styles);
             cell.text = cell.text.split(splitRegex);

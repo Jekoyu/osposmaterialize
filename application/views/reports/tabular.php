@@ -14,20 +14,25 @@
 
 <div id="report_summary">
 	<?php
+	$exclude_summary = array();
+	if(isset($grants_labarugi) && $grants_labarugi < 1) $exclude_summary = array('cost','profit');
 	foreach($summary_data as $name => $value)
 	{ 
-		if($name == "total_quantity")
-		{
-	?>
-			<div class="summary_row"><?php echo $this->lang->line('reports_'.$name) . ': ' .$value; ?></div>
-	<?php
+		if(!in_array($name, $exclude_summary)){
+			if($name == "total_quantity")
+			{
+				?>
+				<div class="summary_row"><?php echo $this->lang->line('reports_'.$name) . ': ' .$value; ?></div>
+				<?php
+			}
+			else
+			{
+				?>
+				<div class="summary_row"><?php echo $this->lang->line('reports_'.$name) . ': ' . to_currency($value); ?></div>
+				<?php
+			}
 		}
-		else
-		{
-	?>
-			<div class="summary_row"><?php echo $this->lang->line('reports_'.$name) . ': ' . to_currency($value); ?></div>
-	<?php
-		}
+
 	}
 	?>
 </div>
@@ -37,27 +42,22 @@
 	{
 		<?php $this->load->view('partial/bootstrap_tables_locale'); ?>
 
-		$('#table')
-			.addClass("table-striped")
-			.addClass("table-bordered")
-			.bootstrapTable({
-				columns: <?php echo transform_headers($headers, TRUE, FALSE); ?>,
-				stickyHeader: true,
-				stickyHeaderOffsetLeft: $('#table').offset().left + 'px',
-				stickyHeaderOffsetRight: $('#table').offset().right + 'px',
-				pageSize: <?php echo $this->config->item('lines_per_page'); ?>,
-				sortable: true,
-				showExport: true,
-				exportDataType: 'all',
-				exportTypes: ['json', 'xml', 'csv', 'txt', 'sql', 'excel', 'pdf'],
-				pagination: true,
-				showColumns: true,
-				data: <?php echo json_encode($data); ?>,
-				iconSize: 'sm',
-				paginationVAlign: 'bottom',
-				escape: false
+		$('#table').bootstrapTable({
+			columns: <?php echo transform_headers($headers, TRUE, FALSE); ?>,
+			stickyHeader: true,
+			pageSize: <?php echo $this->config->item('lines_per_page'); ?>,
+			striped: true,
+			sortable: true,
+			showExport: true,
+			exportDataType: 'all',
+			exportTypes: ['json', 'xml', 'csv', 'txt', 'sql', 'excel', 'pdf'],
+			pagination: true,
+			showColumns: true,
+			data: <?php echo json_encode($data); ?>,
+			iconSize: 'sm',
+			paginationVAlign: 'bottom',
+			escape: false
 		});
-
 
 	});
 </script>

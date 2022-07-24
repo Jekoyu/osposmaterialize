@@ -71,13 +71,12 @@ class Stock_location extends CI_Model
 		return ($this->db->get()->num_rows() == 1);
 	}
 
-	public function get_default_location_id($module_id = 'items')
+	public function get_default_location_id()
 	{
 		$this->db->from('stock_locations');
 		$this->db->join('permissions AS permissions', 'permissions.location_id = stock_locations.location_id');
 		$this->db->join('grants AS grants', 'grants.permission_id = permissions.permission_id');
 		$this->db->where('person_id', $this->session->userdata('person_id'));
-		$this->db->like('permissions.permission_id', $module_id, 'after');
 		$this->db->where('deleted', 0);
 		$this->db->limit(1);
 
@@ -111,7 +110,7 @@ class Stock_location extends CI_Model
 			$this->db->trans_start();
 
 			$this->db->insert('stock_locations', $location_data_to_save);
- 			$location_id = $this->db->insert_id();
+			$location_id = $this->db->insert_id();
 
 			$this->_insert_new_permission('items', $location_id, $location_name);
 			$this->_insert_new_permission('sales', $location_id, $location_name);

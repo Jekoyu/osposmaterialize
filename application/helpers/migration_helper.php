@@ -9,7 +9,7 @@ function execute_script($path)
 	$CI =& get_instance();
 
 	$version = preg_replace("/(.*_)?(.*).sql/", "$2", $path);
-	error_log("Migrating to $version (file: $path)");
+	error_log("Migrating to $version");
 
 	$sql = file_get_contents($path);
 

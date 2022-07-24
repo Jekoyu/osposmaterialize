@@ -1,6 +1,4 @@
-<?php 
-
-$lang["receivings_amount_due"] = "";
+<?php
 $lang["receivings_cancel_receiving"] = "İptal";
 $lang["receivings_cannot_be_deleted"] = "Alma (lar) silinemedi.";
 $lang["receivings_comments"] = "Yorumlar";
@@ -8,9 +6,7 @@ $lang["receivings_complete_receiving"] = "Tamamla";
 $lang["receivings_confirm_cancel_receiving"] = "Bu alımı iptal etmek istiyor musunuz? Tüm ürünler çıkarılacak.";
 $lang["receivings_confirm_delete"] = "Bu alıcıyı silmek istediğinize emin misiniz? Bu işlem geri alınamaz.";
 $lang["receivings_confirm_finish_receiving"] = "Alımı tamamlamak istediğinize emin misiniz? İşlem geri alınamaz.";
-$lang["receivings_confirm_restore"] = "";
 $lang["receivings_cost"] = "Ücret";
-$lang["receivings_daily"] = "";
 $lang["receivings_date"] = "Alma tarihi";
 $lang["receivings_date_required"] = "Doğru bir tarih girilmelidir.";
 $lang["receivings_date_type"] = "Tarih zorunlu bir alandır.";
@@ -22,7 +18,7 @@ $lang["receivings_employee"] = "Personel";
 $lang["receivings_error_editing_item"] = "Ürün düzenleme hatası.";
 $lang["receivings_error_requisition"] = "Ürün aynı yere taşınamaz.";
 $lang["receivings_find_or_scan_item"] = "Ürün Bul/Oku";
-$lang["receivings_find_or_scan_item_or_receipt"] = "Ürün yada Fiş Bul/Oku";
+$lang["receivings_find_or_scan_item_or_receipt"] = "Ürün yada Fatura Bul/Oku";
 $lang["receivings_id"] = "Alım No";
 $lang["receivings_item_name"] = "Ürün Adı";
 $lang["receivings_mode"] = "Alım Türü";
@@ -30,7 +26,7 @@ $lang["receivings_new_supplier"] = "Yeni Sağlayıcı";
 $lang["receivings_one_or_multiple"] = "alıcı (lar)";
 $lang["receivings_print_after_sale"] = "Satıştan sonra yazdır";
 $lang["receivings_quantity"] = "Adet";
-$lang["receivings_receipt"] = "Alım Fişi";
+$lang["receivings_receipt"] = "Alım Faturası";
 $lang["receivings_receipt_number"] = "Kabul, alma #";
 $lang["receivings_receiving"] = "Alım";
 $lang["receivings_reference"] = "Referans";

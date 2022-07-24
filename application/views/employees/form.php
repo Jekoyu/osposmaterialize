@@ -105,8 +105,10 @@
 
 				<ul id="permission_list">
 					<?php
+					// print_r($all_modules);
 					foreach($all_modules as $module)
 					{
+						// cek($module);
 					?>
 						<li>	
 							<?php echo form_checkbox("grant_".$module->module_id, $module->module_id, $module->grant, "class='module'"); ?>
@@ -120,7 +122,10 @@
 							<?php
 								foreach($all_subpermissions as $permission)
 								{
+									// cek($all_subpermissions);
+									// cek($permission);
 									$exploded_permission = explode('_', $permission->permission_id, 2);
+									// cek($exploded_permission);
 									if($permission->module_id == $module->module_id)
 									{
 										$lang_key = $module->module_id.'_'.$exploded_permission[1];
@@ -143,6 +148,7 @@
 							?>
 						</li>
 					<?php
+					// if($module->id == 'reports')
 					}
 					?>
 				</ul>
@@ -209,10 +215,8 @@ $(document).ready(function()
 			last_name: 'required',
 			username:
 			{
-
 				required: true,
-				minlength: 5,
-				remote: '<?php echo site_url("$controller_name/check_username/$employee_id")?>'
+				minlength: 5
 			},
 			password:
 			{
@@ -240,9 +244,8 @@ $(document).ready(function()
 			username:
 			{
 				required: "<?php echo $this->lang->line('employees_username_required'); ?>",
-				minlength: "<?php echo $this->lang->line('employees_username_minlength'); ?>",
-				remote: "<?php echo $this->lang->line('employees_username_duplicate'); ?>"
-            },
+				minlength: "<?php echo $this->lang->line('employees_username_minlength'); ?>"
+			},
 			password:
 			{
 				<?php

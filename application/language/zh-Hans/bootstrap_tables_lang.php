@@ -1,5 +1,4 @@
-<?php 
-
+<?php
 $lang["tables_all"] = "所有";
 $lang["tables_columns"] = "列";
 $lang["tables_hide_show_pagination"] = "隐藏/显示分页";

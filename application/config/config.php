@@ -8,7 +8,7 @@
 | 
 | 
 */ 
-$config['application_version'] = '3.3.6';
+$config['application_version'] = '3.3.1';
 
 /* 
 |-------------------------------------------------------------------------- 
@@ -19,7 +19,7 @@ $config['application_version'] = '3.3.6';
 | 
 | 
 */ 
-$config['commit_sha1'] = 'f3e41a';
+$config['commit_sha1'] = 'c786d4';
  
 /* 
 |-------------------------------------------------------------------------- 
@@ -65,9 +65,8 @@ $config['db_log_enabled'] = FALSE;
 | a PHP script and you can easily do that on your own.
 |
 */
-$config['https_on'] = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] == 'on') || (isset($_ENV['FORCE_HTTPS']) && $_ENV['FORCE_HTTPS'] == 'true');
-$config['base_url'] = $config['https_on'] ? 'https' : 'http';
-$config['base_url'] .= '://' . ((isset($_SERVER['HTTP_HOST'])) ? $_SERVER['HTTP_HOST'] : 'localhost') ;
+$config['base_url'] = ((isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] == 'on') || (isset($_ENV['FORCE_HTTPS']) && $_ENV['FORCE_HTTPS'] == 'true')) ? 'https' : 'http';
+$config['base_url'] .= '://' . $_SERVER['HTTP_HOST'];
 $config['base_url'] .= str_replace(basename($_SERVER['SCRIPT_NAME']), '', $_SERVER['SCRIPT_NAME']);
 
 /*
@@ -359,7 +358,7 @@ $config['cache_query_string'] = FALSE;
 | https://codeigniter.com/user_guide/libraries/encryption.html
 |
 */
-$config['encryption_key'] = getenv('ENCRYPTION_KEY') ? getenv('ENCRYPTION_KEY') : 'STjr6kNDvBVrbmIb2UjcdmvnvOYluNvA';
+$config['encryption_key'] = getenv('ENCRYPTION_KEY') ? getenv('ENCRYPTION_KEY') : '3587e9bacc8d16808cfb2a8616142b27e4fec0dc477feac8794fed2bbf7b109c';
 
 /*
 |--------------------------------------------------------------------------
@@ -438,8 +437,8 @@ $config['sess_regenerate_destroy'] = FALSE;
 $config['cookie_prefix'] = '';
 $config['cookie_domain'] = '';
 $config['cookie_path'] = '/';
-$config['cookie_secure'] = $config['https_on'];
-$config['cookie_httponly'] = TRUE;
+$config['cookie_secure'] = FALSE;
+$config['cookie_httponly'] = FALSE;
 
 /*
 |--------------------------------------------------------------------------

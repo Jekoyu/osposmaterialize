@@ -16,7 +16,7 @@ class Specific_discount extends Report
 			'summary' => array(
 				array('id' => $this->lang->line('reports_sale_id')),
 				array('type_code' => $this->lang->line('reports_code_type')),
-				array('sale_time' => $this->lang->line('reports_date'), 'sortable' => FALSE),
+				array('sale_date' => $this->lang->line('reports_date'), 'sortable' => FALSE),
 				array('quantity' => $this->lang->line('reports_quantity')),
 				array('employee_name' => $this->lang->line('reports_sold_by')),
 				array('customer_name' => $this->lang->line('reports_sold_to')),
@@ -30,7 +30,7 @@ class Specific_discount extends Report
 			'details' => array(
 				$this->lang->line('reports_name'),
 				$this->lang->line('reports_category'),
-				$this->lang->line('reports_item_number'),
+				$this->lang->line('reports_serial_number'),
 				$this->lang->line('reports_description'),
 				$this->lang->line('reports_quantity'),
 				$this->lang->line('reports_subtotal'),
@@ -58,7 +58,7 @@ class Specific_discount extends Report
 			ELSE \'\'
 			END) AS type_code,
 			MAX(sale_status) as sale_status,
-			MAX(sale_time) AS sale_time,
+			MAX(sale_date) AS sale_date,
 			SUM(quantity_purchased) AS items_purchased,
 			MAX(employee_name) AS employee_name,
 			MAX(customer_name) AS customer_name,
@@ -70,7 +70,7 @@ class Specific_discount extends Report
 			MAX(payment_type) AS payment_type,
 			MAX(comment) AS comment');
 		$this->db->from('sales_items_temp');
-
+		
 		$this->db->where('discount >=', $inputs['discount']);
 		$this->db->where('discount_type', $inputs['discount_type']);
 
@@ -112,7 +112,7 @@ class Specific_discount extends Report
 		}
 
 		$this->db->group_by('sale_id');
-		$this->db->order_by('MAX(sale_time)');
+		$this->db->order_by('MAX(sale_date)');
 
 		$data = array();
 		$data['summary'] = $this->db->get()->result_array();
@@ -121,7 +121,7 @@ class Specific_discount extends Report
 
 		foreach($data['summary'] as $key=>$value)
 		{
-			$this->db->select('name, category, item_number, description, quantity_purchased, subtotal, tax, total, cost, profit, discount, discount_type');
+			$this->db->select('name, category, serialnumber, description, quantity_purchased, subtotal, tax, total, cost, profit, discount, discount_type');
 			$this->db->from('sales_items_temp');
 			$this->db->where('sale_id', $value['sale_id']);
 			$data['details'][$key] = $this->db->get()->result_array();
@@ -138,7 +138,7 @@ class Specific_discount extends Report
 	{
 		$this->db->select('SUM(subtotal) AS subtotal, SUM(tax) AS tax, SUM(total) AS total, SUM(cost) AS cost, SUM(profit) AS profit');
 		$this->db->from('sales_items_temp');
-
+		
 		$this->db->where('discount >=', $inputs['discount']);
 		$this->db->where('discount_type', $inputs['discount_type']);
 

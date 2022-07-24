@@ -84,6 +84,19 @@ if(isset($error))
 	?>
 
 	<?php
+	if(!empty($employees_filter) && $employees_filter == 1){
+		?>
+		<div class="form-group form-group-sm">
+			<?php echo form_label($this->lang->line('sales_employee'), 'employee', array('class'=>'control-label col-xs-2')); ?>
+			<div class='col-xs-3'>
+				<?php echo form_dropdown('employee_id', $employees, 'all', 'id="employee_id" class="form-control"');?>
+			</div>
+		</div>
+		<?php
+	}
+	?>
+
+	<?php
 	echo form_button(array(
 		'name'=>'generate_report',
 		'id'=>'generate_report',
@@ -101,8 +114,9 @@ $(document).ready(function()
 	<?php $this->load->view('partial/daterangepicker'); ?>
 
 	$("#generate_report").click(function()
-	{		
-		window.location = [window.location, start_date, end_date, $("#input_type").val() || 0, $("#location_id").val() || 'all', $("#discount_type_id").val() || 0 ].join("/");
+	{	
+		if($('#employee_id').length > 0) window.location = [window.location, start_date, end_date, $("#input_type").val() || 0, $("#location_id").val() || 'all', $("#discount_type_id").val() || 0, $('#employee_id').val() ].join("/");
+		else window.location = [window.location, start_date, end_date, $("#input_type").val() || 0, $("#location_id").val() || 'all', $("#discount_type_id").val() || 0 ].join("/");
 	});
 });
 </script>

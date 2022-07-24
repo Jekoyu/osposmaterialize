@@ -18,15 +18,6 @@ class Employee extends Person
 		return ($this->db->get()->num_rows() == 1);
 	}
 
-	public function username_exists($employee_id, $username)
-	{
-		$this->db->from('employees');
-		$this->db->where('employees.username', $username);
-		$this->db->where('employees.person_id <>', $employee_id);
-
-		return ($this->db->get()->num_rows() == 1);
-	}
-
 	/*
 	Gets total of rows
 	*/
@@ -204,7 +195,7 @@ class Employee extends Person
 	/*
 	Get search suggestions to find employees
 	*/
-	public function get_search_suggestions($search, $include_deleted = FALSE, $limit = 5)
+	public function get_search_suggestions($search, $limit = 5)
 	{
 		$suggestions = array();
 
@@ -215,10 +206,7 @@ class Employee extends Person
 			$this->db->or_like('last_name', $search);
 			$this->db->or_like('CONCAT(first_name, " ", last_name)', $search);
 		$this->db->group_end();
-		if($include_deleted == FALSE)
-		{
-			$this->db->where('deleted', 0);
-		}
+		$this->db->where('deleted', 0);
 		$this->db->order_by('last_name', 'asc');
 		foreach($this->db->get()->result() as $row)
 		{
@@ -227,10 +215,7 @@ class Employee extends Person
 
 		$this->db->from('employees');
 		$this->db->join('people', 'employees.person_id = people.person_id');
-		if($include_deleted == FALSE)
-		{
-			$this->db->where('deleted', 0);
-		}
+		$this->db->where('deleted', 0);
 		$this->db->like('email', $search);
 		$this->db->order_by('email', 'asc');
 		foreach($this->db->get()->result() as $row)
@@ -240,10 +225,7 @@ class Employee extends Person
 
 		$this->db->from('employees');
 		$this->db->join('people', 'employees.person_id = people.person_id');
-		if($include_deleted == FALSE)
-		{
-			$this->db->where('deleted', 0);
-		}
+		$this->db->where('deleted', 0);
 		$this->db->like('username', $search);
 		$this->db->order_by('username', 'asc');
 		foreach($this->db->get()->result() as $row)
@@ -253,10 +235,7 @@ class Employee extends Person
 
 		$this->db->from('employees');
 		$this->db->join('people', 'employees.person_id = people.person_id');
-		if($include_deleted == FALSE)
-		{
-			$this->db->where('deleted', 0);
-		}
+		$this->db->where('deleted', 0);
 		$this->db->like('phone_number', $search);
 		$this->db->order_by('phone_number', 'asc');
 		foreach($this->db->get()->result() as $row)
@@ -327,12 +306,12 @@ class Employee extends Person
 	{
 		$query = $this->db->get_where('employees', array('username' => $username, 'deleted' => 0), 1);
 
-		if($query->num_rows() === 1)
+		if($query->num_rows() == 1)
 		{
 			$row = $query->row();
 
 			// compare passwords depending on the hash version
-			if($row->hash_version === '1' && $row->password === md5($password))
+			if($row->hash_version == 1 && $row->password == md5($password))
 			{
 				$this->db->where('person_id', $row->person_id);
 				$this->session->set_userdata('person_id', $row->person_id);
@@ -340,7 +319,7 @@ class Employee extends Person
 
 				return $this->db->update('employees', array('hash_version' => 2, 'password' => $password_hash));
 			}
-			elseif($row->hash_version === '2' && password_verify($password, $row->password))
+			elseif($row->hash_version == 2 && password_verify($password, $row->password))
 			{
 				$this->session->set_userdata('person_id', $row->person_id);
 
@@ -460,6 +439,16 @@ class Employee extends Person
 		$this->db->where('person_id', $person_id);
 
 		return $this->db->get()->result_array();
+	}
+
+	public function get_employee_grants_labarugi($person_id)
+	{
+		$this->db->from('grants');
+		$this->db->select('count(permission_id) count');
+		$this->db->where('person_id', $person_id);
+		$this->db->where('permission_id', 'reports_labarugi');
+
+		return $this->db->get()->row()->count;
 	}
 
 	/*

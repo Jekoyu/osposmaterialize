@@ -1,5 +1,4 @@
-<?php 
-
+<?php
 $lang["attributes_attribute_value_invalid_chars"] = "ຄ່າແອດທິບິວບໍ່ສາມາດມີ ':' ຫລື '|'";
 $lang["attributes_confirm_delete"] = "ແນ່ໃຈຫຼືບໍທີ່ຈະລືບລາຍການທີ່ເລືອກ";
 $lang["attributes_confirm_restore"] = "ແນ່ໃຈຫຼືບໍທີ່ຈະຄືນຄ່າແອັດທິບິ້ວດັ່ງກ່າວ";

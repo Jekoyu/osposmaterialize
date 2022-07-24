@@ -19,8 +19,10 @@ if(isset($error))
 			</div>
 			<div class="list-group">
 				<?php
+				// cek($grants);
 				foreach($grants as $grant) 
 				{
+					if($grant['permission_id'] !== 'reports_labarugi')
 					if (preg_match('/reports_/', $grant['permission_id']) && !preg_match('/(inventory|receivings)/', $grant['permission_id']))
 					{
 						show_report('graphical_summary', $grant['permission_id']);
@@ -40,6 +42,7 @@ if(isset($error))
 				<?php 
 				foreach($grants as $grant) 
 				{
+					if($grant['permission_id'] !== 'reports_labarugi')
 					if (preg_match('/reports_/', $grant['permission_id']) && !preg_match('/(inventory|receivings)/', $grant['permission_id']))
 					{
 						show_report('summary', $grant['permission_id']);
@@ -63,7 +66,6 @@ if(isset($error))
 				show_report_if_allowed('specific', 'customer', $person_id, 'reports_customers');
 				show_report_if_allowed('specific', 'discount', $person_id, 'reports_discounts');
 				show_report_if_allowed('specific', 'employee', $person_id, 'reports_employees');
-				show_report_if_allowed('specific', 'supplier', $person_id, 'reports_suppliers');
 				?>
 			 </div>
 		</div>

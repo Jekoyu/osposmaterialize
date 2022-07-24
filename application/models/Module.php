@@ -54,6 +54,7 @@ class Module extends CI_Model
 		$this->db->where('modules.module_id != ', 'permission_id', FALSE);
 
 		return $this->db->get();
+
 	}
 
 	public function get_all_modules()

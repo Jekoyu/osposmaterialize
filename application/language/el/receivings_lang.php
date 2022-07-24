@@ -1,6 +1,4 @@
-<?php 
-
-$lang["receivings_amount_due"] = "";
+<?php
 $lang["receivings_cancel_receiving"] = "Ακύρωση";
 $lang["receivings_cannot_be_deleted"] = "Αποτυχία διαγραφής Παραλαβής/ων.";
 $lang["receivings_comments"] = "Σχόλια";
@@ -8,9 +6,7 @@ $lang["receivings_complete_receiving"] = "Ολοκλήρωση";
 $lang["receivings_confirm_cancel_receiving"] = "Είστε σίγουροι πως θέλετε να διαγράψετε την παραλαβή? Όλα τα είδη θα διαγραφούν.";
 $lang["receivings_confirm_delete"] = "Είστε σίγουροι πως θέλετε να διαγράψετε την παραλαβή? Η ενέργεια αυτή δεν μπορεί να ανακληθεί.";
 $lang["receivings_confirm_finish_receiving"] = "Είστε σίγουροι πως θέλετε να υποβάλετε την παραλαβή? Αυτό δεν μπορεί να ανακαλεστεί.";
-$lang["receivings_confirm_restore"] = "";
 $lang["receivings_cost"] = "Κόστος";
-$lang["receivings_daily"] = "";
 $lang["receivings_date"] = "Ημερομηνία Παραλαβής";
 $lang["receivings_date_required"] = "Πρέπει να εισαχθεί μια έγκυρη ημερομηνία.";
 $lang["receivings_date_type"] = "Η Ημερομηνία είναι απαραίτητο πεδίο.";

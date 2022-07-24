@@ -1,5 +1,4 @@
-<?php 
-
+<?php
 $lang["taxes_add_exception"] = "Tambah pengecualian";
 $lang["taxes_cascade"] = "Menurunkan";
 $lang["taxes_cascade_sequence"] = "Urutan Penurunan";
@@ -14,7 +13,6 @@ $lang["taxes_group_seq"] = "Urutan grup";
 $lang["taxes_jurisdiction_name"] = "Nama Yuridiksi";
 $lang["taxes_name"] = "Nama";
 $lang["taxes_new"] = "Pajak baru";
-$lang["taxes_no_taxes"] = "";
 $lang["taxes_no_taxes_to_display"] = "Tidak ada Kode Pajak yang dapat ditampilkan";
 $lang["taxes_reporting_authority"] = "Otoritas Pelaporan";
 $lang["taxes_round_half_down"] = "Turun setengah";
@@ -55,7 +53,6 @@ $lang["taxes_tax_codes_saved_successfully"] = "Perubahan Kode Pajak berhasil dis
 $lang["taxes_tax_codes_saved_unsuccessfully"] = "Perubahan Kode Pajak tidak tersimpan";
 $lang["taxes_tax_excluded"] = "Pengecualian Pajak";
 $lang["taxes_tax_group"] = "Grup Pajak";
-$lang["taxes_tax_group_not_unique"] = "Grup Pajak %1 tidak unik";
 $lang["taxes_tax_group_sequence"] = "Urutan Grup Pajak";
 $lang["taxes_tax_included"] = "Termasuk pajak";
 $lang["taxes_tax_jurisdiction"] = "Yuridiksi Pajak";

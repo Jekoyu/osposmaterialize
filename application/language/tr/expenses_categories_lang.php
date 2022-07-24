@@ -1,5 +1,4 @@
-<?php 
-
+<?php
 $lang["category_name_required"] = "Gider Kategorisi adı gerekli";
 $lang["expenses_categories_add_item"] = "Kategori ekleyin";
 $lang["expenses_categories_cannot_be_deleted"] = "Gider kategorisi silinemez";

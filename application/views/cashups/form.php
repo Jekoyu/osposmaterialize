@@ -42,6 +42,7 @@
 							'name'=>'open_amount_cash',
 							'id'=>'open_amount_cash',
 							'class'=>'form-control input-sm',
+							'onkeyup'=>'currencyFormat(this);',
 							'value'=>to_currency_no_money($cash_ups_info->open_amount_cash))
 							);?>
 					<?php if (currency_side()): ?>
@@ -62,6 +63,7 @@
 							'name'=>'transfer_amount_cash',
 							'id'=>'transfer_amount_cash',
 							'class'=>'form-control input-sm',
+							'onkeyup'=>'currencyFormat(this);',
 							'value'=>to_currency_no_money($cash_ups_info->transfer_amount_cash))
 							);?>
 					<?php if (currency_side()): ?>
@@ -104,6 +106,7 @@
 							'name'=>'closed_amount_cash',
 							'id'=>'closed_amount_cash',
 							'class'=>'form-control input-sm',
+							'onkeyup'=>'currencyFormat(this);',
 							'value'=>to_currency_no_money($cash_ups_info->closed_amount_cash))
 							);?>
 					<?php if (currency_side()): ?>
@@ -136,6 +139,7 @@
 							'name'=>'closed_amount_due',
 							'id'=>'closed_amount_due',
 							'class'=>'form-control input-sm',
+							'onkeyup'=>'currencyFormat(this);',
 							'value'=>to_currency_no_money($cash_ups_info->closed_amount_due))
 							);?>
 					<?php if (currency_side()): ?>
@@ -156,6 +160,7 @@
 							'name'=>'closed_amount_card',
 							'id'=>'closed_amount_card',
 							'class'=>'form-control input-sm',
+							'onkeyup'=>'currencyFormat(this);',
 							'value'=>to_currency_no_money($cash_ups_info->closed_amount_card))
 							);?>
 					<?php if (currency_side()): ?>
@@ -176,6 +181,7 @@
 							'name'=>'closed_amount_check',
 							'id'=>'closed_amount_check',
 							'class'=>'form-control input-sm',
+							'onkeyup'=>'currencyFormat(this);',
 							'value'=>to_currency_no_money($cash_ups_info->closed_amount_check))
 							);?>
 					<?php if (currency_side()): ?>
@@ -197,6 +203,7 @@
 							'id'=>'closed_amount_total',
 							'readonly'=>'true',
 							'class'=>'form-control input-sm',
+							'onkeyup'=>'currencyFormat(this);',
 							'value'=>to_currency_no_money($cash_ups_info->closed_amount_total)
 							));?>
 					<?php if (currency_side()): ?>

@@ -1,8 +1,5 @@
-<?php 
-
-$lang["module_admin_cashups"] = "";
-$lang["module_admin_cashups_desc"] = "";
-$lang["module_attributes"] = "Öznitelikler";
+<?php
+$lang["module_attributes"] = "Öznitellikler";
 $lang["module_attributes_desc"] = "Ekleme, Güncelleme, Silme ve Arama özellikleri.";
 $lang["module_both"] = "Her ikisi de";
 $lang["module_cashups"] = "Cash ups";
@@ -41,7 +38,3 @@ $lang["module_suppliers"] = "Sağlayıcılar";
 $lang["module_suppliers_desc"] = "Ekleme, değiştirme, silme ve arama.";
 $lang["module_taxes"] = "Vergiler";
 $lang["module_taxes_desc"] = "Vergileri düzenle.";
-$lang["module_timeclocks"] = "";
-$lang["module_timeclocks_categories"] = "";
-$lang["module_timeclocks_categories_desc"] = "";
-$lang["module_timeclocks_desc"] = "";

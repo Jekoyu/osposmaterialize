@@ -1,313 +1,226 @@
 /**
  * @author: Yura Knoxville
- * @version: v1.1.0
+ * @version: v1.0.0
  */
 
-let initBodyCaller
+!function ($) {
 
-const groupBy = (array, f) => {
-  const tmpGroups = {}
+    'use strict';
 
-  array.forEach(o => {
-    const groups = f(o)
+    var initBodyCaller,
+        tableGroups;
 
-    tmpGroups[groups] = tmpGroups[groups] || []
-    tmpGroups[groups].push(o)
-  })
+    // it only does '%s', and return '' when arguments are undefined
+    var sprintf = function (str) {
+        var args = arguments,
+            flag = true,
+            i = 1;
 
-  return tmpGroups
-}
+        str = str.replace(/%s/g, function () {
+            var arg = args[i++];
 
-$.extend($.fn.bootstrapTable.defaults.icons, {
-  collapseGroup: {
-    bootstrap3: 'glyphicon-chevron-up',
-    materialize: 'arrow_drop_down'
-  }[$.fn.bootstrapTable.theme] || 'fa-angle-up',
-  expandGroup: {
-    bootstrap3: 'glyphicon-chevron-down',
-    materialize: 'arrow_drop_up'
-  }[$.fn.bootstrapTable.theme] || 'fa-angle-down'
-})
+            if (typeof arg === 'undefined') {
+                flag = false;
+                return '';
+            }
+            return arg;
+        });
+        return flag ? str : '';
+    };
 
-$.extend($.fn.bootstrapTable.defaults, {
-  groupBy: false,
-  groupByField: '',
-  groupByFormatter: undefined,
-  groupByToggle: false,
-  groupByShowToggleIcon: false,
-  groupByCollapsedGroups: []
-})
+    var groupBy = function (array , f) {
+        var groups = {};
+        array.forEach(function(o) {
+            var group = f(o);
+            groups[group] = groups[group] || [];
+            groups[group].push(o);
+        });
 
-const Utils = $.fn.bootstrapTable.utils
-const BootstrapTable = $.fn.bootstrapTable.Constructor
-const _initSort = BootstrapTable.prototype.initSort
-const _initBody = BootstrapTable.prototype.initBody
-const _updateSelected = BootstrapTable.prototype.updateSelected
+        return groups;
+    };
 
-BootstrapTable.prototype.initSort = function (...args) {
-  _initSort.apply(this, Array.prototype.slice.apply(args))
+    $.extend($.fn.bootstrapTable.defaults, {
+        groupBy: false,
+        groupByField: ''
+    });
 
-  const that = this
+    var BootstrapTable = $.fn.bootstrapTable.Constructor,
+        _initSort = BootstrapTable.prototype.initSort,
+        _initBody = BootstrapTable.prototype.initBody,
+        _updateSelected = BootstrapTable.prototype.updateSelected;
 
-  this.tableGroups = []
+    BootstrapTable.prototype.initSort = function () {
+        _initSort.apply(this, Array.prototype.slice.apply(arguments));
 
-  if ((this.options.groupBy) && (this.options.groupByField !== '')) {
-    if ((this.options.sortName !== this.options.groupByField)) {
-      if (this.options.customSort) {
-        Utils.calculateObjectValue(this.options, this.options.customSort, [
-          this.options.sortName,
-          this.options.sortOrder,
-          this.data
-        ])
-      } else {
-        this.options.data.sort((a, b) => {
-          const groupByFields = this.getGroupByFields()
-          const fieldValuesA = []
-          const fieldValuesB = []
+        var that = this;
+        tableGroups = [];
 
-          $.each(groupByFields, (i, field) => {
-            fieldValuesA.push(a[field])
-            fieldValuesB.push(b[field])
-          })
+        if ((this.options.groupBy) && (this.options.groupByField !== '')) {
 
-          a = fieldValuesA.join()
-          b = fieldValuesB.join()
-          return a.localeCompare(b, undefined, { numeric: true })
-        })
-      }
+            if ((this.options.sortName != this.options.groupByField)) {
+                this.data.sort(function(a, b) {
+                    return a[that.options.groupByField].localeCompare(b[that.options.groupByField]);
+                });
+            }
+
+            var that = this;
+            var groups = groupBy(that.data, function (item) {
+                return [item[that.options.groupByField]];
+            });
+
+            var index = 0;
+            $.each(groups, function(key, value) {
+                tableGroups.push({
+                    id: index,
+                    name: key
+                });
+
+                value.forEach(function(item) {
+                    if (!item._data) {
+                        item._data = {};
+                    }
+
+                    item._data['parent-index'] = index;
+                });
+
+                index++;
+            });
+        }
     }
 
-    const groups = groupBy(that.data, item => {
-      const groupByFields = this.getGroupByFields()
-      const groupValues = []
+    BootstrapTable.prototype.initBody = function () {
+        initBodyCaller = true;
 
-      $.each(groupByFields, (i, field) => {
-        groupValues.push(item[field])
-      })
+        _initBody.apply(this, Array.prototype.slice.apply(arguments));
 
-      return groupValues.join(', ')
-    })
+        if ((this.options.groupBy) && (this.options.groupByField !== '')) {
+            var that = this,
+                checkBox = false,
+                visibleColumns = 0;
 
-    let index = 0
+            this.columns.forEach(function(column) {
+                if (column.checkbox) {
+                    checkBox = true;
+                } else {
+                    if (column.visible) {
+                        visibleColumns += 1;
+                    }
+                }
+            });
 
-    $.each(groups, (key, value) => {
-      this.tableGroups.push({
-        id: index,
-        name: key,
-        data: value
-      })
+            if (this.options.detailView && !this.options.cardView) {
+                visibleColumns += 1;
+            }
 
-      value.forEach(item => {
-        if (!item._data) {
-          item._data = {}
+            tableGroups.forEach(function(item){
+                var html = [];
+
+                html.push(sprintf('<tr class="info groupBy expanded" data-group-index="%s">', item.id));
+
+                if (that.options.detailView && !that.options.cardView) {
+                    html.push('<td class="detail"></td>');
+                }
+
+                if (checkBox) {
+                    html.push('<td class="bs-checkbox">',
+                        '<input name="btSelectGroup" type="checkbox" />',
+                        '</td>'
+                    );
+                }
+
+                html.push('<td',
+                    sprintf(' colspan="%s"', visibleColumns),
+                    '>', item.name, '</td>'
+                );
+
+                html.push('</tr>');
+
+                that.$body.find('tr[data-parent-index='+item.id+']:first').before($(html.join('')));
+            });
+
+            this.$selectGroup = [];
+            this.$body.find('[name="btSelectGroup"]').each(function() {
+                var self = $(this);
+
+                that.$selectGroup.push({
+                    group: self,
+                    item: that.$selectItem.filter(function () {
+                        return ($(this).closest('tr').data('parent-index') ===
+                        self.closest('tr').data('group-index'));
+                    })
+                });
+            });
+
+            this.$container.off('click', '.groupBy')
+                .on('click', '.groupBy', function() {
+                    $(this).toggleClass('expanded');
+                    that.$body.find('tr[data-parent-index='+$(this).closest('tr').data('group-index')+']').toggleClass('hidden');
+                });
+
+            this.$container.off('click', '[name="btSelectGroup"]')
+                .on('click', '[name="btSelectGroup"]', function (event) {
+                    event.stopImmediatePropagation();
+
+                    var self = $(this);
+                    var checked = self.prop('checked');
+                    that[checked ? 'checkGroup' : 'uncheckGroup']($(this).closest('tr').data('group-index'));
+                });
         }
 
-        if (this.isCollapsed(key, value)) {
-          item._class = 'hidden'
+        initBodyCaller = false;
+        this.updateSelected();
+    };
+
+    BootstrapTable.prototype.updateSelected = function () {
+        if (!initBodyCaller) {
+            _updateSelected.apply(this, Array.prototype.slice.apply(arguments));
+
+            if ((this.options.groupBy) && (this.options.groupByField !== '')) {
+                this.$selectGroup.forEach(function (item) {
+                    var checkGroup = item.item.filter(':enabled').length ===
+                        item.item.filter(':enabled').filter(':checked').length;
+
+                    item.group.prop('checked', checkGroup);
+                });
+            }
+        }
+    };
+
+    BootstrapTable.prototype.getGroupSelections = function (index) {
+        var that = this;
+
+        return $.grep(this.data, function (row) {
+            return (row[that.header.stateField] && (row._data['parent-index'] === index));
+        });
+    };
+
+    BootstrapTable.prototype.checkGroup = function (index) {
+        this.checkGroup_(index, true);
+    };
+
+    BootstrapTable.prototype.uncheckGroup = function (index) {
+        this.checkGroup_(index, false);
+    };
+
+    BootstrapTable.prototype.checkGroup_ = function (index, checked) {
+        var rows;
+        var filter = function() {
+            return ($(this).closest('tr').data('parent-index') === index);
+        };
+
+        if (!checked) {
+            rows = this.getGroupSelections(index);
         }
 
-        item._data['parent-index'] = index
-      })
+        this.$selectItem.filter(filter).prop('checked', checked);
 
-      index++
-    })
-  }
-}
 
-BootstrapTable.prototype.initBody = function (...args) {
-  initBodyCaller = true
-  _initBody.apply(this, Array.prototype.slice.apply(args))
+        this.updateRows();
+        this.updateSelected();
+        if (checked) {
+            rows = this.getGroupSelections(index);
+        }
+        this.trigger(checked ? 'check-all' : 'uncheck-all', rows);
+    };
 
-  if ((this.options.groupBy) && (this.options.groupByField !== '')) {
-    const that = this
-    let checkBox = false
-    let visibleColumns = 0
-
-    this.columns.forEach(column => {
-      if (column.checkbox) {
-        checkBox = true
-      } else if (column.visible) {
-        visibleColumns += 1
-      }
-    })
-
-    if (this.options.detailView && !this.options.cardView) {
-      visibleColumns += 1
-    }
-
-    this.tableGroups.forEach(item => {
-      const html = []
-
-      html.push(Utils.sprintf('<tr class="info groupBy %s" data-group-index="%s">', this.options.groupByToggle ? 'expanded' : '', item.id))
-      if (that.options.detailView && !that.options.cardView) {
-        html.push('<td class="detail"></td>')
-      }
-
-      if (checkBox) {
-        html.push('<td class="bs-checkbox">',
-          '<input name="btSelectGroup" type="checkbox" />',
-          '</td>'
-        )
-      }
-
-      let formattedValue = item.name
-
-      if (that.options.groupByFormatter !== undefined) {
-        formattedValue = Utils.calculateObjectValue(that.options, that.options.groupByFormatter, [item.name, item.id, item.data])
-      }
-      html.push('<td',
-        Utils.sprintf(' colspan="%s"', visibleColumns),
-        '>', formattedValue
-      )
-
-      let icon = this.options.icons.collapseGroup
-
-      if (this.isCollapsed(item.name, item.data)) {
-        icon = this.options.icons.expandGroup
-      }
-
-      if (this.options.groupByToggle && this.options.groupByShowToggleIcon) {
-        html.push(`<span class="float-right ${this.options.iconsPrefix} ${icon}"></span>`)
-      }
-
-      html.push('</td></tr>')
-      that.$body.find(`tr[data-parent-index=${item.id}]:first`).before($(html.join('')))
-    })
-
-    this.$selectGroup = []
-    this.$body.find('[name="btSelectGroup"]').each(function () {
-      const self = $(this)
-
-      that.$selectGroup.push({
-        group: self,
-        item: that.$selectItem.filter(function () {
-          return ($(this).closest('tr').data('parent-index') ===
-            self.closest('tr').data('group-index'))
-        })
-      })
-    })
-
-    if (this.options.groupByToggle) {
-      this.$container.off('click', '.groupBy')
-        .on('click', '.groupBy', function () {
-          const $this = $(this)
-          const groupIndex = $this.closest('tr').data('group-index')
-          const $groupRows = that.$body.find(`tr[data-parent-index=${groupIndex}]`)
-
-          $this.toggleClass('expanded collapsed')
-          $this.find('span').toggleClass(`${that.options.icons.collapseGroup} ${that.options.icons.expandGroup}`)
-          $groupRows.toggleClass('hidden')
-          $groupRows.each((i, element) => that.collapseRow($(element).data('index')))
-        })
-    }
-
-    this.$container.off('click', '[name="btSelectGroup"]')
-      .on('click', '[name="btSelectGroup"]', function (event) {
-        event.stopImmediatePropagation()
-
-        const self = $(this)
-        const checked = self.prop('checked')
-
-        that[checked ? 'checkGroup' : 'uncheckGroup']($(this).closest('tr').data('group-index'))
-      })
-  }
-
-  initBodyCaller = false
-  this.updateSelected()
-}
-
-BootstrapTable.prototype.updateSelected = function (...args) {
-  if (!initBodyCaller) {
-    _updateSelected.apply(this, Array.prototype.slice.apply(args))
-
-    if ((this.options.groupBy) && (this.options.groupByField !== '')) {
-      this.$selectGroup.forEach(item => {
-        const checkGroup = item.item.filter(':enabled').length ===
-          item.item.filter(':enabled').filter(':checked').length
-
-        item.group.prop('checked', checkGroup)
-      })
-    }
-  }
-}
-
-BootstrapTable.prototype.checkGroup = function (index) {
-  this.checkGroup_(index, true)
-}
-
-BootstrapTable.prototype.uncheckGroup = function (index) {
-  this.checkGroup_(index, false)
-}
-
-BootstrapTable.prototype.isCollapsed = function (groupKey, items) {
-  if (this.options.groupByCollapsedGroups) {
-    const collapsedGroups = Utils.calculateObjectValue(this, this.options.groupByCollapsedGroups, [groupKey, items], true)
-
-    if ($.inArray(groupKey, collapsedGroups) > -1) {
-      return true
-    }
-  }
-
-  return false
-}
-
-BootstrapTable.prototype.checkGroup_ = function (index, checked) {
-  const rowsBefore = this.getSelections()
-  const filter = function () {
-    return ($(this).closest('tr').data('parent-index') === index)
-  }
-
-  this.$selectItem.filter(filter).prop('checked', checked)
-
-  this.updateRows()
-  this.updateSelected()
-  const rowsAfter = this.getSelections()
-
-  if (checked) {
-    this.trigger('check-all', rowsAfter, rowsBefore)
-    return
-  }
-
-  this.trigger('uncheck-all', rowsAfter, rowsBefore)
-}
-
-BootstrapTable.prototype.getGroupByFields = function () {
-  let groupByFields = this.options.groupByField
-
-  if (!$.isArray(this.options.groupByField)) {
-    groupByFields = [this.options.groupByField]
-  }
-
-  return groupByFields
-}
-
-$.BootstrapTable = class extends $.BootstrapTable {
-  scrollTo (params) {
-    if (this.options.groupBy) {
-      let options = { unit: 'px', value: 0 }
-
-      if (typeof params === 'object') {
-        options = Object.assign(options, params)
-      }
-
-      if (options.unit === 'rows') {
-        let scrollTo = 0
-
-        this.$body.find(`> tr:not(.groupBy):lt(${options.value})`).each((i, el) => {
-          scrollTo += $(el).outerHeight(true)
-        })
-
-        const $targetColumn = this.$body.find(`> tr:not(.groupBy):eq(${options.value})`)
-
-        $targetColumn.prevAll('.groupBy').each((i, el) => {
-          scrollTo += $(el).outerHeight(true)
-        })
-
-        this.$tableBody.scrollTop(scrollTo)
-        return
-      }
-    }
-
-    super.scrollTo(params)
-  }
-}
+}(jQuery);

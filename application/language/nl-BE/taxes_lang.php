@@ -1,10 +1,10 @@
 <?php 
 
 $lang["taxes_add_exception"] = "Voeg uitzondering toe";
-$lang["taxes_cascade"] = "Cascade";
-$lang["taxes_cascade_sequence"] = "Cascade Sequentie";
-$lang["taxes_city"] = "Stad";
-$lang["taxes_code"] = "Code";
+$lang["taxes_cascade"] = "";
+$lang["taxes_cascade_sequence"] = "";
+$lang["taxes_city"] = "";
+$lang["taxes_code"] = "";
 $lang["taxes_confirm_delete"] = "Bent u zeker dat u deze code wil verwijderen? Dit kan niet ongedaan gemaakt worden.";
 $lang["taxes_confirm_restore"] = "";
 $lang["taxes_default_tax_category"] = "Standaard Tax Categorie";
@@ -14,7 +14,6 @@ $lang["taxes_group_seq"] = "";
 $lang["taxes_jurisdiction_name"] = "";
 $lang["taxes_name"] = "";
 $lang["taxes_new"] = "";
-$lang["taxes_no_taxes"] = "";
 $lang["taxes_no_taxes_to_display"] = "";
 $lang["taxes_reporting_authority"] = "";
 $lang["taxes_round_half_down"] = "";
@@ -55,7 +54,6 @@ $lang["taxes_tax_codes_saved_successfully"] = "";
 $lang["taxes_tax_codes_saved_unsuccessfully"] = "";
 $lang["taxes_tax_excluded"] = "";
 $lang["taxes_tax_group"] = "";
-$lang["taxes_tax_group_not_unique"] = "";
 $lang["taxes_tax_group_sequence"] = "";
 $lang["taxes_tax_included"] = "";
 $lang["taxes_tax_jurisdiction"] = "";

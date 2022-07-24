@@ -69,6 +69,7 @@
 							'name'=>'amount',
 							'id'=>'amount',
 							'class'=>'form-control input-sm',
+							'onkeyup'=>'currencyFormat(this);',
 							'value'=>to_currency_no_money($expenses_info->amount))
 							);?>
 					<?php if (currency_side()): ?>
@@ -89,6 +90,7 @@
 							'name'=>'tax_amount',
 							'id'=>'tax_amount',
 							'class'=>'form-control input-sm',
+							'onkeyup'=>'currencyFormat(this);',
 							'value'=>to_currency_no_money($expenses_info->tax_amount))
 							);?>
 					<?php if (currency_side()): ?>

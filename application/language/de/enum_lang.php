@@ -1,5 +1,4 @@
-<?php 
-
+<?php
 $lang["enum_half_down"] = "Halbe abrunden";
 $lang["enum_half_even"] = "Halbe symmetrisch gerade runden";
 $lang["enum_half_five"] = "";

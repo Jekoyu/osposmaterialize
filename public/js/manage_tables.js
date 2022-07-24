@@ -3,7 +3,7 @@
 	var btn_id, dialog_ref;
 
 	var hide = function() {
-		dialog_ref && dialog_ref.close();
+		dialog_ref.close();
 	};
 
 	var clicked_id = function() {
@@ -12,17 +12,10 @@
 
 	var submit = function(button_id) {
 		return function(dlog_ref) {
-			const form = $('form', dlog_ref.$modalBody).first();
-			const validator = form.data('validator');
-			const submitted = validator && validator.formSubmitted;
-
 			btn_id = button_id;
 			dialog_ref = dlog_ref;
-
-			if (button_id == 'submit' && (!submitted && btn_id != "btnNew")) {
-				form.submit();
-
-				validator.valid() && $('#submit').prop('disabled', true).css('opacity', 0.5);
+			if (button_id == 'submit') {
+				$('form', dlog_ref.$modalBody).first().submit();
 			}
 			return false;
 		}
@@ -57,7 +50,7 @@
 						id: btn_name,
 						label: value,
 						cssClass: button_class[btn_name],
-						hotkey: is_enter ? 13 : undefined, // Enter.
+						hotkey: is_submit ? 13 : undefined, // Enter.
 						action: submit(btn_name)
 					});
 				}
@@ -208,24 +201,19 @@
 		options = _options;
 		enable_actions = enable_actions(options.enableActions);
 		load_success = load_success(options.onLoadSuccess);
-		$('#table')
-			.addClass("table-striped")
-			.addClass("table-bordered")
-			.bootstrapTable($.extend(options, {
+		$('#table').bootstrapTable($.extend(options, {
 			columns: options.headers,
 			stickyHeader: true,
-			stickyHeaderOffsetLeft: $('#table').offset().right + 'px',
-			stickyHeaderOffsetRight: $('#table').offset().right + 'px',
 			url: options.resource + '/search',
 			sidePagination: 'server',
-			selectItemName: 'btSelectItem',
 			pageSize: options.pageSize,
+			striped: true,
 			pagination: true,
 			search: options.resource || false,
 			showColumns: true,
 			clickToSelect: true,
 			showExport: true,
-			exportDataType: 'basic',
+			exportDataType: 'all',
 			exportTypes: ['json', 'xml', 'csv', 'txt', 'sql', 'excel', 'pdf'],
 			exportOptions: {
 				fileName: options.resource.replace(/.*\/(.*?)$/g, '$1')

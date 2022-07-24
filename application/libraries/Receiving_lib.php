@@ -79,7 +79,7 @@ class Receiving_lib
 	{
 		if(!$this->CI->session->userdata('recv_stock_source'))
 		{
-			$this->set_stock_source($this->CI->Stock_location->get_default_location_id('receivings'));
+			$this->set_stock_source($this->CI->Stock_location->get_default_location_id());
 		}
 
 		return $this->CI->session->userdata('recv_stock_source');
@@ -143,7 +143,7 @@ class Receiving_lib
 	{
 		if(!$this->CI->session->userdata('recv_stock_destination'))
 		{
-			$this->set_stock_destination($this->CI->Stock_location->get_default_location_id('receivings'));
+			$this->set_stock_destination($this->CI->Stock_location->get_default_location_id());
 		}
 
 		return $this->CI->session->userdata('recv_stock_destination');
@@ -323,7 +323,7 @@ class Receiving_lib
 
 		foreach($this->CI->Receiving->get_receiving_items($receiving_id)->result() as $row)
 		{
-			$this->add_item($row->item_id, -$row->quantity_purchased, $row->item_location, $row->discount, $row->discount_type, $row->item_unit_price, $row->description, $row->serialnumber, $row->receiving_quantity, $receiving_id, TRUE);
+			$this->add_item($row->item_id, -$row->quantity_purchased, $row->item_location, $row->discount, $row->discount_type, $row->item_unit_price, $row->description, $row->serialnumber, $receiving_id, $row->receiving_quantity, TRUE);
 		}
 
 		$this->set_supplier($this->CI->Receiving->get_supplier($receiving_id)->person_id);
@@ -333,7 +333,7 @@ class Receiving_lib
 	{
 		//KIT #
 		$pieces = explode(' ',$external_item_kit_id);
-		$item_kit_id = count($pieces) > 1 ? $pieces[1] : $external_item_kit_id;
+		$item_kit_id = $pieces[1];
 		
 		foreach($this->CI->Item_kit_items->get_info($item_kit_id) as $item_kit_item)
 		{

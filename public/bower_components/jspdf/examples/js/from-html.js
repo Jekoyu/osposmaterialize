@@ -4,9 +4,6 @@ var doc = new jsPDF();
 var specialElementHandlers = {
 	'#editor': function(element, renderer){
 		return true;
-	},
-	'.controls': function(element, renderer){
-		return true;
 	}
 };
 

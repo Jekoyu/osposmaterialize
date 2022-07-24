@@ -1,7 +1,8 @@
-<?php
+<?php 
+
 $lang["giftcards_add_minus"] = "";
-$lang["giftcards_allow_alt_description"] = "Zezwól na alternatywny opis";
-$lang["giftcards_bulk_edit"] = "Edycja zbiorcza";
+$lang["giftcards_allow_alt_description"] = "";
+$lang["giftcards_bulk_edit"] = "";
 $lang["giftcards_cannot_be_deleted"] = "";
 $lang["giftcards_cannot_find_giftcard"] = "";
 $lang["giftcards_cannot_use"] = "";
@@ -16,7 +17,6 @@ $lang["giftcards_confirm_delete"] = "";
 $lang["giftcards_confirm_restore"] = "";
 $lang["giftcards_cost_price"] = "";
 $lang["giftcards_count"] = "";
-$lang["giftcards_csv_import_failed"] = "";
 $lang["giftcards_current_quantity"] = "";
 $lang["giftcards_description"] = "";
 $lang["giftcards_details_count"] = "";
@@ -25,6 +25,7 @@ $lang["giftcards_edit_fields_you_want_to_update"] = "";
 $lang["giftcards_edit_multiple_giftcards"] = "";
 $lang["giftcards_error_adding_updating"] = "";
 $lang["giftcards_error_updating_multiple"] = "";
+$lang["giftcards_csv_import_failed"] = "";
 $lang["giftcards_generate_barcodes"] = "";
 $lang["giftcards_giftcard"] = "";
 $lang["giftcards_giftcard_number"] = "";

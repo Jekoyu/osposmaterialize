@@ -34,19 +34,11 @@ class Page extends AbstractFrameReflower
      */
     private $_canvas;
 
-    /**
-     * Page constructor.
-     * @param PageFrameDecorator $frame
-     */
     function __construct(PageFrameDecorator $frame)
     {
         parent::__construct($frame);
     }
 
-    /**
-     * @param Frame $frame
-     * @param $page_number
-     */
     function apply_page_style(Frame $frame, $page_number)
     {
         $style = $frame->get_style();
@@ -85,15 +77,15 @@ class Page extends AbstractFrameReflower
         }
     }
 
+    //........................................................................
+
     /**
      * Paged layout:
      * http://www.w3.org/TR/CSS21/page.html
-     *
-     * @param BlockFrameDecorator|null $block
      */
     function reflow(BlockFrameDecorator $block = null)
     {
-        $fixed_children = [];
+        $fixed_children = array();
         $prev_child = null;
         $child = $this->_frame->get_first_child();
         $current_page = 0;
@@ -105,10 +97,10 @@ class Page extends AbstractFrameReflower
 
             // Pages are only concerned with margins
             $cb = $this->_frame->get_containing_block();
-            $left = (float)$style->length_in_pt($style->margin_left, $cb["w"]);
-            $right = (float)$style->length_in_pt($style->margin_right, $cb["w"]);
-            $top = (float)$style->length_in_pt($style->margin_top, $cb["h"]);
-            $bottom = (float)$style->length_in_pt($style->margin_bottom, $cb["h"]);
+            $left = $style->length_in_pt($style->margin_left, $cb["w"]);
+            $right = $style->length_in_pt($style->margin_right, $cb["w"]);
+            $top = $style->length_in_pt($style->margin_top, $cb["h"]);
+            $bottom = $style->length_in_pt($style->margin_bottom, $cb["h"]);
 
             $content_x = $cb["x"] + $left;
             $content_y = $cb["y"] + $top;
@@ -170,6 +162,8 @@ class Page extends AbstractFrameReflower
         }
     }
 
+    //........................................................................
+
     /**
      * Check for callbacks that need to be performed when a given event
      * gets triggered on a page
@@ -186,10 +180,10 @@ class Page extends AbstractFrameReflower
         }
 
         if (is_array($this->_callbacks) && isset($this->_callbacks[$event])) {
-            $info = [
+            $info = array(
                 0 => $this->_canvas, "canvas" => $this->_canvas,
                 1 => $frame,         "frame"  => $frame,
-            ];
+            );
             $fs = $this->_callbacks[$event];
             foreach ($fs as $f) {
                 if (is_callable($f)) {

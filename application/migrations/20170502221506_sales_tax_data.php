@@ -1,5 +1,4 @@
 <?php if (!defined('BASEPATH')) exit('No direct script access allowed');
-
 class Migration_Sales_Tax_Data extends CI_Migration
 {
 	const ROUND_UP = 5;
@@ -18,7 +17,7 @@ class Migration_Sales_Tax_Data extends CI_Migration
 	public function up()
 	{
 		$number_of_unmigrated = $this->get_count_of_unmigrated();
-		error_log('Migrating sales tax history. The number of sales that will be migrated is ' . $number_of_unmigrated);
+		error_log('Migrating sales tax history.  The number of sales that will be migrated is '.$number_of_unmigrated);
 		if($number_of_unmigrated > 0)
 		{
 			$unmigrated_invoices = $this->get_unmigrated($number_of_unmigrated)->result_array();
@@ -27,13 +26,11 @@ class Migration_Sales_Tax_Data extends CI_Migration
 				$this->upgrade_tax_history_for_sale($unmigrated_invoice['sale_id']);
 			}
 		}
-		error_log('Migrating sales tax history. The number of sales that will be migrated is finished.');
+		error_log('Migrating sales tax history.  The number of sales that will be migrated is finished.');
 	}
-
 	public function down()
 	{
 	}
-
 	private function upgrade_tax_history_for_sale($sale_id)
 	{
 		$CI =& get_instance();
@@ -77,7 +74,6 @@ class Migration_Sales_Tax_Data extends CI_Migration
 		$this->round_sales_taxes($sales_taxes);
 		$this->save_sales_tax($sales_taxes);
 	}
-
 	private function get_unmigrated($block_count)
 	{
 		$this->db->select('SIT.sale_id');
@@ -91,7 +87,6 @@ class Migration_Sales_Tax_Data extends CI_Migration
 		$this->db->limit($block_count);
 		return $this->db->get();
 	}
-
 	private function get_sale_items_for_migration($sale_id)
 	{
 		$this->db->select('sales_items.sale_id as sale_id');
@@ -106,7 +101,6 @@ class Migration_Sales_Tax_Data extends CI_Migration
 		$this->db->where('sales_items.sale_id', $sale_id);
 		return $this->db->get();
 	}
-
 	private function get_count_of_unmigrated()
 	{
 		$result = $this->db->query('SELECT COUNT(*) FROM(SELECT SIT.sale_id, ST.sale_id as sales_taxes_sale_id FROM '
@@ -117,7 +111,6 @@ class Migration_Sales_Tax_Data extends CI_Migration
 			. ' ORDER BY SIT.sale_id) as US')->result_array();
 		return $result[0]['COUNT(*)'];
 	}
-
 	private function update_sales_items_taxes_amount($sale_id, $line, $name, $percent, $tax_type, $item_tax_amount)
 	{
 		$this->db->where('sale_id', $sale_id);
@@ -126,7 +119,6 @@ class Migration_Sales_Tax_Data extends CI_Migration
 		$this->db->where('percent', $percent);
 		$this->db->update('sales_items_taxes', array('tax_type' => $tax_type, 'item_tax_amount' => $item_tax_amount));
 	}
-
 	private function save_sales_tax(&$sales_taxes)
 	{
 		foreach($sales_taxes as $line=>$sales_tax)
@@ -150,7 +142,7 @@ class Migration_Sales_Tax_Data extends CI_Migration
 	{
 		$total = bcmul($quantity, $price);
 		$discount_fraction = bcdiv($discount, 100);
-		$discount = bcmul($total, $discount_fraction);
+		$discount=bcmul($total,$discount_fraction);
 
 		return round($discount, totals_decimals(), PHP_ROUND_HALF_UP);
 	}
@@ -198,7 +190,7 @@ class Migration_Sales_Tax_Data extends CI_Migration
 		}
 		else
 		{
-			$rounded_total = round($amount, $decimals, $rounding_mode);
+			$rounded_total = round ( $amount, $decimals, $rounding_mode);
 		}
 
 		return $rounded_total;

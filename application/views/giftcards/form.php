@@ -47,6 +47,7 @@
 							'name'=>'giftcard_amount',
 							'id'=>'giftcard_amount',
 							'class'=>'form-control input-sm',
+							'onkeyup'=>'currencyFormat(this);',
 							'value'=>to_currency_no_money($giftcard_value))
 							);?>
 					<?php if (currency_side()): ?>

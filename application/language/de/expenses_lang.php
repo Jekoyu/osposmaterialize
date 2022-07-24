@@ -1,5 +1,4 @@
-<?php 
-
+<?php
 $lang["expenses_add_item"] = "Kosten Hinzufügen";
 $lang["expenses_amount"] = "Betrag";
 $lang["expenses_amount_number"] = "Betrag muss eine Zahl sein";
@@ -29,11 +28,9 @@ $lang["expenses_error_adding_updating"] = "Fehler beim hinzufügen/aktualisieren
 $lang["expenses_expense_id"] = "Id";
 $lang["expenses_expenses_employee"] = "Mitarbeiter";
 $lang["expenses_info"] = "Ausgaben Info";
-$lang["expenses_ip_address"] = "";
 $lang["expenses_is_deleted"] = "Gelöscht";
 $lang["expenses_name_required"] = "Ausgaben Name erforderlich";
 $lang["expenses_new"] = "Neue Ausgabe";
-$lang["expenses_new_supplier"] = "";
 $lang["expenses_no_expenses_to_display"] = "Es gibt keine Ausgaben zum anzeigen";
 $lang["expenses_none_selected"] = "Sie haben keine Ausgaben ausgewählt";
 $lang["expenses_one_or_multiple"] = "Ausgaben";
@@ -45,5 +42,4 @@ $lang["expenses_successful_updating"] = "Ausgabe erfolgreich aktualisiert";
 $lang["expenses_supplier_name"] = "Zulieferer";
 $lang["expenses_supplier_tax_code"] = "Steuer Art";
 $lang["expenses_tax_amount"] = "Steuer";
-$lang["expenses_tax_amount_number"] = "";
 $lang["expenses_update"] = "Ausgabe Aktualisieren";

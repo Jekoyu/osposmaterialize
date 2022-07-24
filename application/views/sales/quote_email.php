@@ -33,20 +33,18 @@
 		</tr>
 		<tr>
 			<td id="company-title">
-				<div id="company">
-					<?php echo $this->config->item('company'); ?>
-					<?php echo nl2br($company_info); ?>
-				</div>
+				<pre><?php echo $this->config->item('company'); ?></pre>
+				<pre><?php echo $company_info; ?></pre>
 			</td>
 			<td id="meta">
-				<table id="meta-content"  align="right">
+				<table align="right">
 					<tr>
 						<td class="meta-head"><?php echo $this->lang->line('sales_quote_number');?> </td>
-						<td><?php echo $quote_number; ?></td>
+						<td><div><?php echo $quote_number; ?></div></td>
 					</tr>
 					<tr>
 						<td class="meta-head"><?php echo $this->lang->line('common_date'); ?></td>
-						<td><?php echo $transaction_date; ?></td>
+						<td><div><?php echo $transaction_date; ?></div></td>
 					</tr>
 					<?php
 					if($amount_due > 0)
@@ -54,7 +52,7 @@
 					?>
 						<tr>
 							<td class="meta-head"><?php echo $this->lang->line('sales_amount_due'); ?></td>
-							<td class="due"><?php echo to_currency($total); ?></td>
+							<td><div class="due"><?php echo to_currency($total); ?></div></td>
 						</tr>
 					<?php
 					}
@@ -95,7 +93,7 @@
 					<td class="item-name"><?php echo $item['name']; ?></td>
 					<td><?php echo to_quantity_decimals($item['quantity']); ?></td>
 					<td><?php echo to_currency($item['price']); ?></td>
-					<td><?php echo ($item['discount_type']==FIXED)?to_currency($item['discount']):to_decimals($item['discount']) . '%';?></td>
+					<td><?php echo ($item['discount_type']==FIXED)?to_currency($item['discount']):$item['discount'] . '%';?></td>
 					<?php if($discount > 0): ?>
 						<td><?php echo to_currency($item['discounted_total'] / $item['quantity']); ?></td>
 					<?php endif; ?>
@@ -137,10 +135,11 @@
 	</table>
 
 	<div id="terms">
-		<div id="sale_return_policy">
+		<textarea id="sale_return_policy">
 			<h5>
-				<div><?php echo nl2br($this->config->item('payment_message')); ?></div>
-				<div><?php echo $this->lang->line('sales_comments') . ': ' . (empty($comments) ? $this->config->item('quote_default_comments') : $comments); ?></div>
+				<textarea rows="5" cols="6"><?php echo nl2br($this->config->item('payment_message')); ?></textarea>
+				<textarea rows="5" cols="6"><?php echo empty($comments) ? '' : $this->lang->line('sales_comments') . ': ' . $comments; ?></textarea>
+				<textarea rows="5" cols="6"><?php echo $this->config->item('quote_default_comments'); ?></textarea>
 			</h5>
 			<?php echo nl2br($this->config->item('return_policy')); ?>
 		</div>

@@ -1,9 +1,7 @@
-<?php 
-
+<?php
 $lang["customers_account_number"] = "Account #";
 $lang["customers_account_number_duplicate"] = "Account Number is already present in the database.";
 $lang["customers_available_points"] = "Available Points";
-$lang["customers_available_points_value"] = "";
 $lang["customers_average"] = "Average spent";
 $lang["customers_avg_discount"] = "Average discount";
 $lang["customers_basic_information"] = "Information";
@@ -13,10 +11,6 @@ $lang["customers_confirm_delete"] = "Are you sure you want to delete the selecte
 $lang["customers_confirm_restore"] = "Are you sure you want to restore selected Supplier(s)?";
 $lang["customers_consent"] = "Registration consent";
 $lang["customers_consent_required"] = "Registration consent is a required field.";
-$lang["customers_csv_import_failed"] = "CSV import failed";
-$lang["customers_csv_import_nodata_wrongformat"] = "The uploaded file has no data or is incorrectly formatted.";
-$lang["customers_csv_import_partially_failed"] = "Customer import successful with some failures:";
-$lang["customers_csv_import_success"] = "Customer import successful.";
 $lang["customers_customer"] = "Customer";
 $lang["customers_date"] = "Date";
 $lang["customers_discount"] = "Discount";
@@ -26,6 +20,10 @@ $lang["customers_discount_type"] = "Discount Type";
 $lang["customers_email_duplicate"] = "Email Address is already present in the database.";
 $lang["customers_employee"] = "Employee";
 $lang["customers_error_adding_updating"] = "Employee add or update failed.";
+$lang["customers_csv_import_failed"] = "CSV import failed";
+$lang["customers_csv_import_nodata_wrongformat"] = "The uploaded file has no data or is incorrectly formatted.";
+$lang["customers_csv_import_partially_failed"] = "Customer import successful with some failures:";
+$lang["customers_csv_import_success"] = "Customer import successful.";
 $lang["customers_import_items_csv"] = "Customer Import from CSV";
 $lang["customers_mailchimp_activity_click"] = "Email click";
 $lang["customers_mailchimp_activity_lastopen"] = "Last open email";

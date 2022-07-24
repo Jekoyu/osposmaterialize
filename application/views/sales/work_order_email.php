@@ -41,11 +41,11 @@
 				<table align="right">
 					<tr>
 						<td class="meta-head"><?php echo $this->lang->line('sales_work_order_number');?> </td>
-						<td><?php echo $work_order_number; ?></td>
+						<td><div><?php echo $work_order_number; ?></div></td>
 					</tr>
 					<tr>
 						<td class="meta-head"><?php echo $this->lang->line('common_date'); ?></td>
-						<td><?php echo $transaction_date; ?></td>
+						<td><div><?php echo $transaction_date; ?></div></td>
 					</tr>
 					<?php
 					if($amount_due > 0)
@@ -53,7 +53,7 @@
 					?>
 						<tr>
 							<td class="meta-head"><?php echo $this->lang->line('sales_amount_due'); ?></td>
-							<td class="due"><?php echo to_currency($total); ?></td>
+							<td><div class="due"><?php echo to_currency($total); ?></div></td>
 						</tr>
 					<?php
 					}
@@ -84,7 +84,7 @@
 					<td class="item-name"><?php echo $item['name']; ?></td>
 					<td><?php echo to_quantity_decimals($item['quantity']); ?></td>
 					<td><?php echo to_currency($item['price']); ?></td>
-					<td><?php echo ($item['discount_type']==FIXED)?to_currency($item['discount']):to_decimals($item['discount']) . '%';?></td>
+					<td><?php echo ($item['discount_type']==FIXED)?to_currency($item['discount']):$item['discount'] . '%';?></td>
 					<td class="total-line"><?php echo to_currency($item['discounted_total']); ?></td>
 				</tr>
 			<?php
@@ -125,7 +125,7 @@
 	<div id="terms">
 		<div id="sale_return_policy">
 			<h5>
-				<div style='padding:4%;'><?php echo empty($comments) ? '' : $this->lang->line('sales_comments') . ': ' . $comments; ?></div>
+				<textarea rows="5" cols="6"><?php echo empty($comments) ? '' : $this->lang->line('sales_comments') . ': ' . $comments; ?></textarea>
 			</h5>
 		</div>
 	</div>

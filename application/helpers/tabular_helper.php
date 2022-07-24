@@ -4,7 +4,14 @@
  * Tabular views helper
  */
 
+function cek($params){
+	echo "<pre>";
+	print_r($params);
+	echo "</pre>";
+}
+
 /*
+
 Basic tabular headers function
 */
 function transform_headers_readonly($array)
@@ -63,7 +70,7 @@ function get_sales_manage_table_headers()
 		array('sale_id' => $CI->lang->line('common_id')),
 		array('sale_time' => $CI->lang->line('sales_sale_time')),
 		array('customer_name' => $CI->lang->line('customers_customer')),
-		array('amount_due' => $CI->lang->line('sales_amount_due')),
+		array('amount_due' => $CI->lang->line('sales_total')),
 		array('amount_tendered' => $CI->lang->line('sales_amount_tendered')),
 		array('change_due' => $CI->lang->line('sales_change_due')),
 		array('payment_type' => $CI->lang->line('sales_payment_type'))
@@ -96,7 +103,7 @@ function get_sale_data_row($sale)
 		'amount_due' => to_currency($sale->amount_due),
 		'amount_tendered' => to_currency($sale->amount_tendered),
 		'change_due' => to_currency($sale->change_due),
-		'payment_type' => $sale->payment_type
+		'payment_type' => $sale->payment_type.' ('.to_currency($sale->payment_nominal).')'
 	);
 
 	if($CI->config->item('invoice_enable'))
@@ -147,20 +154,27 @@ function get_sale_data_last_row($sales)
 /*
 Get the sales payments summary
 */
-function get_sales_manage_payments_summary($payments)
+function get_sales_manage_payments_summary($payments, $sales)
 {
 	$CI =& get_instance();
 
 	$table = '<div id="report_summary">';
-	$total = 0;
 
 	foreach($payments as $key=>$payment)
 	{
 		$amount = $payment['payment_amount'];
-		$total = bcadd($total, $amount);
+
+		// WARNING: the strong assumption here is that if a change is due it was a cash transaction always
+		// therefore we remove from the total cash amount any change due
+		if($payment['payment_type'] == $CI->lang->line('sales_cash'))
+		{
+			foreach($sales->result_array() as $key=>$sale)
+			{
+				$amount -= $sale['change_due'];
+			}
+		}
 		$table .= '<div class="summary_row">' . $payment['payment_type'] . ': ' . to_currency($amount) . '</div>';
 	}
-	$table .= '<div class="summary_row">' . $CI->lang->line('sales_total') . ': ' . to_currency($total) . '</div>';
 	$table .= '</div>';
 
 	return $table;
@@ -347,7 +361,7 @@ function get_items_manage_table_headers()
 
 	foreach($definition_names as $definition_id => $definition_name)
 	{
-		$headers[] = array($definition_id => $definition_name, 'sortable' => FALSE);
+		$headers[] = array($definition_id => $definition_name);
 	}
 
 	$headers[] = array('inventory' => '');
@@ -496,7 +510,6 @@ function get_item_kits_manage_table_headers()
 
 	$headers = array(
 		array('item_kit_id' => $CI->lang->line('item_kits_kit')),
-		array('item_kit_number' => $CI->lang->line('item_kits_item_kit_number')),
 		array('name' => $CI->lang->line('item_kits_name')),
 		array('description' => $CI->lang->line('item_kits_description')),
 		array('total_cost_price' => $CI->lang->line('items_cost_price'), 'sortable' => FALSE),
@@ -517,7 +530,6 @@ function get_item_kit_data_row($item_kit)
 
 	return array (
 		'item_kit_id' => $item_kit->item_kit_id,
-		'item_kit_number' => $item_kit->item_kit_number,
 		'name' => $item_kit->name,
 		'description' => $item_kit->description,
 		'total_cost_price' => to_currency($item_kit->total_cost_price),

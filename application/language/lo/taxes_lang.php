@@ -1,5 +1,4 @@
-<?php 
-
+<?php
 $lang["taxes_add_exception"] = "ເພີ່ມຂໍ້ຜິດພາດ";
 $lang["taxes_cascade"] = "Cascade";
 $lang["taxes_cascade_sequence"] = "";
@@ -14,7 +13,6 @@ $lang["taxes_group_seq"] = "ກຸ່ມ";
 $lang["taxes_jurisdiction_name"] = "ຊື່ເຂດອຳນາດສານ";
 $lang["taxes_name"] = "ຊື່";
 $lang["taxes_new"] = "ພາສີໃໝ່";
-$lang["taxes_no_taxes"] = "";
 $lang["taxes_no_taxes_to_display"] = "ບໍມີລະຫັດພາສີທີ່ຈະສະແດງ";
 $lang["taxes_reporting_authority"] = "ລາຍງານສິດທິ";
 $lang["taxes_round_half_down"] = "ເຄິ່ງໜຶ່ງ";
@@ -55,7 +53,6 @@ $lang["taxes_tax_codes_saved_successfully"] = "";
 $lang["taxes_tax_codes_saved_unsuccessfully"] = "";
 $lang["taxes_tax_excluded"] = "";
 $lang["taxes_tax_group"] = "";
-$lang["taxes_tax_group_not_unique"] = "";
 $lang["taxes_tax_group_sequence"] = "";
 $lang["taxes_tax_included"] = "";
 $lang["taxes_tax_jurisdiction"] = "";

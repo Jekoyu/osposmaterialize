@@ -30,7 +30,7 @@ $(document).ready(function()
 				success: function(response)
 				{
 					dialog_support.hide();
-					table_support.handle_submit('<?php echo site_url('customers'); ?>', response);
+					$.notify(response.message, { type: response.success ? 'success' : 'danger'} );
 				},
 				dataType: 'json'
 			});

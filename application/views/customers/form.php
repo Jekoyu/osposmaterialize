@@ -73,7 +73,6 @@
 									'name'=>'discount',
 									'id'=>'discount',
 									'class'=>'form-control input-sm',
-									'onClick'=>'this.select();',
 									'value'=>$person_info->discount)
 									); ?>
 						</div>
@@ -218,6 +217,7 @@
 										'name'=>'total',
 										'id'=>'total',
 										'class'=>'form-control input-sm',
+										'onkeyup'=>'currencyFormat(this);',
 										'value'=>to_currency_no_money($stats->total),
 										'disabled'=>'')
 										); ?>
@@ -239,6 +239,7 @@
 										'name'=>'max',
 										'id'=>'max',
 										'class'=>'form-control input-sm',
+										'onkeyup'=>'currencyFormat(this);',
 										'value'=>to_currency_no_money($stats->max),
 										'disabled'=>'')
 										); ?>
@@ -260,6 +261,7 @@
 										'name'=>'min',
 										'id'=>'min',
 										'class'=>'form-control input-sm',
+										'onkeyup'=>'currencyFormat(this);',
 										'value'=>to_currency_no_money($stats->min),
 										'disabled'=>'')
 										); ?>
@@ -281,6 +283,7 @@
 										'name'=>'average',
 										'id'=>'average',
 										'class'=>'form-control input-sm',
+										'onkeyup'=>'currencyFormat(this);',
 										'value'=>to_currency_no_money($stats->average),
 										'disabled'=>'')
 										); ?>

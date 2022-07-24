@@ -1,102 +1,118 @@
 /**
  * @author: Dennis Hernández
  * @webSite: http://djhvscf.github.io/Blog
- * @update zhixin wen <wenzhixin2010@gmail.com>
+ * @version: v1.0.1
  */
 
-const rowAttr = (row, index) => ({
-  id: `customId_${index}`
-})
+(function ($) {
 
-$.extend($.fn.bootstrapTable.defaults, {
-  reorderableRows: false,
-  onDragStyle: null,
-  onDropStyle: null,
-  onDragClass: 'reorder_rows_onDragClass',
-  dragHandle: '>tbody>tr>td',
-  useRowAttrFunc: false,
-  // eslint-disable-next-line no-unused-vars
-  onReorderRowsDrag (row) {
-    return false
-  },
-  // eslint-disable-next-line no-unused-vars
-  onReorderRowsDrop (row) {
-    return false
-  },
-  // eslint-disable-next-line no-unused-vars
-  onReorderRow (newData) {
-    return false
-  }
-})
+    'use strict';
 
-$.extend($.fn.bootstrapTable.Constructor.EVENTS, {
-  'reorder-row.bs.table': 'onReorderRow'
-})
+    var isSearch = false;
 
-$.BootstrapTable = class extends $.BootstrapTable {
-  init (...args) {
-    if (!this.options.reorderableRows) {
-      super.init(...args)
-      return
-    }
+    var rowAttr = function (row, index) {
+        return {
+            id: 'customId_' + index
+        };
+    };
 
-    if (this.options.useRowAttrFunc) {
-      this.options.rowAttributes = rowAttr
-    }
+    $.extend($.fn.bootstrapTable.defaults, {
+        reorderableRows: false,
+        onDragStyle: null,
+        onDropStyle: null,
+        onDragClass: "reorder_rows_onDragClass",
+        dragHandle: null,
+        useRowAttrFunc: false,
+        onReorderRowsDrag: function (table, row) {
+            return false;
+        },
+        onReorderRowsDrop: function (table, row) {
+            return false;
+        },
+        onReorderRow: function (newData) {
+             return false;
+        }
+    });
 
-    const onPostBody = this.options.onPostBody
+    $.extend($.fn.bootstrapTable.Constructor.EVENTS, {
+        'reorder-row.bs.table': 'onReorderRow'
+    });
 
-    this.options.onPostBody = () => {
-      setTimeout(() => {
-        this.makeRowsReorderable()
-        onPostBody.call(this.options, this.options.data)
-      }, 1)
-    }
+    var BootstrapTable = $.fn.bootstrapTable.Constructor,
+        _init = BootstrapTable.prototype.init,
+        _initSearch = BootstrapTable.prototype.initSearch;
 
-    super.init(...args)
-  }
+    BootstrapTable.prototype.init = function () {
 
-  makeRowsReorderable () {
-    this.$el.tableDnD({
-      onDragStyle: this.options.onDragStyle,
-      onDropStyle: this.options.onDropStyle,
-      onDragClass: this.options.onDragClass,
-      onDragStart: (table, droppedRow) => this.onDropStart(table, droppedRow),
-      onDrop: (table, droppedRow) => this.onDrop(table, droppedRow),
-      dragHandle: this.options.dragHandle
-    })
-  }
+        if (!this.options.reorderableRows) {
+            _init.apply(this, Array.prototype.slice.apply(arguments));
+            return;
+        }
 
-  onDropStart (table, draggingTd) {
-    this.$draggingTd = $(draggingTd).css('cursor', 'move')
-    this.draggingIndex = $(this.$draggingTd.parent()).data('index')
-    // Call the user defined function
-    this.options.onReorderRowsDrag(this.data[this.draggingIndex])
-  }
+        var that = this;
+        if (this.options.useRowAttrFunc) {
+            this.options.rowAttributes = rowAttr;
+        }
 
-  onDrop (table) {
-    this.$draggingTd.css('cursor', '')
-    const newData = []
+        var onPostBody = this.options.onPostBody;
+        this.options.onPostBody = function () {
+            setTimeout(function () {
+                that.makeRowsReorderable();
+                onPostBody.apply();
+            }, 1);
+        };
 
-    for (let i = 0; i < table.tBodies[0].rows.length; i++) {
-      const $tr = $(table.tBodies[0].rows[i])
+        _init.apply(this, Array.prototype.slice.apply(arguments));
+    };
 
-      newData.push(this.data[$tr.data('index')])
-      $tr.data('index', i)
-    }
+    BootstrapTable.prototype.initSearch = function () {
+        _initSearch.apply(this, Array.prototype.slice.apply(arguments));
 
-    const draggingRow = this.data[this.draggingIndex]
-    const droppedIndex = newData.indexOf(this.data[this.draggingIndex])
-    const droppedRow = this.data[droppedIndex]
-    const index = this.options.data.indexOf(this.data[droppedIndex])
+        if (!this.options.reorderableRows) {
+            return;
+        }
 
-    this.options.data.splice(this.options.data.indexOf(draggingRow), 1)
-    this.options.data.splice(index, 0, draggingRow)
+        //Known issue after search if you reorder the rows the data is not display properly
+        //isSearch = true;
+    };
 
-    // Call the user defined function
-    this.options.onReorderRowsDrop(droppedRow)
+    BootstrapTable.prototype.makeRowsReorderable = function () {
+        if (this.options.cardView) {
+            return;
+        }
 
-    // Call the event reorder-row
-    this.trigger('reorder-row', newData, draggingRow, droppedRow)
-  }
-}
+        var that = this;
+        this.$el.tableDnD({
+            onDragStyle: that.options.onDragStyle,
+            onDropStyle: that.options.onDropStyle,
+            onDragClass: that.options.onDragClass,
+            onDrop: that.onDrop,
+            onDragStart: that.options.onReorderRowsDrag,
+            dragHandle: that.options.dragHandle
+        });
+    };
+
+    BootstrapTable.prototype.onDrop = function (table, droppedRow) {
+        var tableBs = $(table),
+            tableBsData = tableBs.data('bootstrap.table'),
+            tableBsOptions = tableBs.data('bootstrap.table').options,
+            row = null,
+            newData = [];
+
+        for (var i = 0; i < table.tBodies[0].rows.length; i++) {
+            row = $(table.tBodies[0].rows[i]);
+            newData.push(tableBsOptions.data[row.data('index')]);
+            row.data('index', i).attr('data-index', i);
+        }
+
+        tableBsOptions.data = tableBsOptions.data.slice(0, tableBsData.pageFrom - 1)
+            .concat(newData)
+            .concat(tableBsOptions.data.slice(tableBsData.pageTo));
+
+        //Call the user defined function
+        tableBsOptions.onReorderRowsDrop.apply(table, [table, droppedRow]);
+
+        //Call the event reorder-row
+        tableBsData.trigger('reorder-row', newData);
+    };
+})(jQuery);

@@ -1,7 +1,5 @@
 <?php 
 
-$lang["module_admin_cashups"] = "";
-$lang["module_admin_cashups_desc"] = "";
 $lang["module_attributes"] = "Atributlar";
 $lang["module_attributes_desc"] = "Atributları əlavə et, yenilə, sil və ya axtar.";
 $lang["module_both"] = "Hər ikizi";
@@ -10,7 +8,7 @@ $lang["module_cashups_desc"] = "Əlavə et, Yenilə, Sil və Qazancları axtar."
 $lang["module_config"] = "Konfiqursiya";
 $lang["module_config_desc"] = "ALSAN Konfiqurasiyasını dəyiş.";
 $lang["module_customers"] = "Müştərilər";
-$lang["module_customers_desc"] = "Əlavə et, Yenilə, Sil və Müştəriləri axtar.";
+$lang["module_customers_desc"] = "Əlavə et,Yenilə,Sil və Müştəriləri axtar.";
 $lang["module_employees"] = "Əməkdaşlar";
 $lang["module_employees_desc"] = "Əlavə et,Yenilə,Sil və Əməkdaşları axtar.";
 $lang["module_expenses"] = "Xərclər";
@@ -37,11 +35,7 @@ $lang["module_reports"] = "Hesabatlar";
 $lang["module_reports_desc"] = "Hesabatları Yarat və Göstər.";
 $lang["module_sales"] = "Satışlar";
 $lang["module_sales_desc"] = "Satış prosesləri və Qaytarılanlar.";
-$lang["module_suppliers"] = "Təchizatçılar";
-$lang["module_suppliers_desc"] = "Əlavə et, Yenilə, Sil və Təchizatçıları Axtar.";
+$lang["module_suppliers"] = "Təchizatcılar";
+$lang["module_suppliers_desc"] = "Əlavə et,Yenilə,Sil və Təchizatçıları Axtar.";
 $lang["module_taxes"] = "Vergi";
 $lang["module_taxes_desc"] = "Satış üçün Vergiləri Ayarla.";
-$lang["module_timeclocks"] = "";
-$lang["module_timeclocks_categories"] = "";
-$lang["module_timeclocks_categories_desc"] = "";
-$lang["module_timeclocks_desc"] = "";
