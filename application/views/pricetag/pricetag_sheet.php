@@ -13,7 +13,7 @@
 			-webkit-border-radius: 3px 4px 4px 3px;
 			-moz-border-radius: 3px 4px 4px 3px;
 			border-radius: 3px 4px 4px 3px;
-/*			border-left: 1px solid #000;*/
+			border-left: 3px solid #000;
 
 			/* This makes room for the triangle */
 			margin-left: 19px;
