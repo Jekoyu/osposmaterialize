@@ -13,8 +13,9 @@
 
 <body>
 	<div id="logo" align="center">
-		<h5>User Panel</h5>
-		<h3>Aplikasi Point Of Sale</h3>
+		<h5>Toko</h5>
+		<h3>AB MART</h3>
+		<img data-src="holder.js/100%x100%" alt="<?php echo $this->lang->line('config_company_logo'); ?>" src="<?php if($logo_exists) echo base_url('uploads/' . $this->config->item('company_logo')); else echo ''; ?>" style="max-height: 100%; max-width: 100%;width: 100px;">
 	</div>
 
 	<div id="login">

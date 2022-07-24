@@ -4,6 +4,7 @@ class Login extends CI_Controller
 {
 	public function index()
 	{
+		$data['logo_exists'] = $this->config->item('company_logo') != '';
 		$this->load->library('migration');
 		if($this->Employee->is_logged_in())
 		{
@@ -23,7 +24,7 @@ class Login extends CI_Controller
 
 			if($this->form_validation->run() == FALSE)
 			{
-				$this->load->view('login');
+				$this->load->view('login',$data);
 			}
 			else
 			{
