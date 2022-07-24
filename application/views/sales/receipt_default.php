@@ -214,18 +214,14 @@ $total_items = 0;
 		
 	</table>
 	
+	<div id="footnote">
+		<p>JUMLAH ITEM <?php echo $total_items; ?></p>
+	</div>
 	<div id="sale_return_policy">
 		<?php echo nl2br($this->config->item('return_policy')); ?>
 	</div>
 	
-	
-
-	<!-- <div id="footnote">
-		<p>JUMLAH ITEM <?php echo $total_items; ?></p>
-		<p>BARANG KENA PAJAK, HARGA SUDAH TERMASUK PPN10%.</p>
-		<p>BARANG YANG SUDAH DIBELI TIDAK DAPAT DIKEMBALIKAN/DITUKAR.</p>
-		<p>TERIMA KASIH</p>
-	</div> -->
+		
 	<!-- <div id="barcode">
 		<img src='data:image/png;base64,<?php echo $barcode; ?>' /><br>
 		<?php echo $sale_id; ?>
