@@ -37,7 +37,7 @@ $total_items = 0;
 			<th style="width:20%;text-align:right"><?php echo $employee; ?></th>
 		</tr>
 		<tr>
-			<th colspan="2" style='text-align:right;border-top:2px dotted #808080;'></th>
+			<th colspan="2" style='text-align:right;border-top:2px solid #808080;'></th>
 			<?php
 			if($this->config->item('receipt_show_tax_ind'))
 			{
@@ -113,8 +113,8 @@ $total_items = 0;
 		{
 		?>
 			<tr>
-				<td style='text-align:right;border-top:2px dotted #808080;'><?php echo $this->lang->line('sales_sub_total'); ?></td>
-				<td style='text-align:right;border-top:2px dotted #808080;'><?php echo to_currency($prediscount_subtotal); ?></td>
+				<td style='text-align:right;border-top:2px solid #808080;'><?php echo $this->lang->line('sales_sub_total'); ?></td>
+				<td style='text-align:right;border-top:2px solid #808080;'><?php echo to_currency($prediscount_subtotal); ?></td>
 			</tr>
 			<tr>
 				<td class="total-value"><?php echo $this->lang->line('sales_customer_discount'); ?>:</td>
@@ -129,8 +129,8 @@ $total_items = 0;
 		{
 		?>
 			<tr>
-				<td style='text-align:left;border-top:2px dotted #808080;'><?php echo $this->lang->line('sales_sub_total'); ?></td>
-				<td style='text-align:right;border-top:2px dotted #808080;'><?php echo to_currency($subtotal); ?></td>
+				<td style='text-align:left;border-top:2px solid #808080;'><?php echo $this->lang->line('sales_sub_total'); ?></td>
+				<td style='text-align:right;border-top:2px solid #808080;'><?php echo to_currency($subtotal); ?></td>
 			</tr>
 			<!--
 			<?php
@@ -154,8 +154,8 @@ $total_items = 0;
 
 		<?php $border = (!$this->config->item('receipt_show_taxes') && !($this->config->item('receipt_show_total_discount') && $discount > 0)); ?>
 		<tr>
-			<td style="text-align:left;<?php echo $border? 'border-top: 2px dotted grey;' : 'border-top: 2px dotted grey;'; ?>"><?php echo $this->lang->line('sales_total'); ?></td>
-			<td style="text-align:right;<?php echo $border? 'border-top: 2px dotted grey;' : 'border-top: 2px dotted grey;'; ?>"><?php echo to_currency($total); ?></td>
+			<td style="text-align:left;<?php echo $border? 'border-top: 2px solid grey;' : 'border-top: 2px solid grey;'; ?>"><?php echo $this->lang->line('sales_total'); ?></td>
+			<td style="text-align:right;<?php echo $border? 'border-top: 2px solid grey;' : 'border-top: 2px solid grey;'; ?>"><?php echo to_currency($total); ?></td>
 		</tr>
 
 		<!-- 
@@ -203,7 +203,7 @@ $total_items = 0;
 			<td class="total-value"><?php echo to_currency($amount_change); ?></td>
 		</tr>
 		<tr>
-			<td style="text-align:left; border-top:2px dotted #808080;" colspan="2"><?php echo empty($comments) ? '' : 'Catatan : ' . $comments; ?></td>
+			<td style="text-align:left; border-top:2px solid #808080;" colspan="2"><?php echo empty($comments) ? '' : 'Catatan : ' . $comments; ?></td>
 		</tr>
 		<!-- 
 		<tr>
@@ -215,7 +215,7 @@ $total_items = 0;
 	</table>
 	
 	<div id="footnote">
-		<p>JUMLAH ITEM <?php echo $total_items; ?></p>
+		<p>JUMLAH ITEM: <?php echo $total_items; ?></p>
 	</div>
 	<div id="sale_return_policy">
 		<?php echo nl2br($this->config->item('return_policy')); ?>

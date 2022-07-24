@@ -55,11 +55,31 @@
 		}
 
 		.tag h3 {
-			font-size: 28pt;
-			font-weight: 400;
+			text-align: right !important;
+			font-size: 30pt;
+			font-weight: 600;
 		}
 		.tag h3, .tag p {
 			vertical-align: middle;
+			text-align: right;
+		}
+		.tag p {
+			font-size: 10pt;
+		}
+
+		.barcode-tag {
+			margin: 0;
+		    padding: 0;
+		    position: absolute;
+		    bottom: -5px;
+		}
+
+		.toko {
+			right: 12px;
+		    position: absolute;
+		    bottom: 18px;
+		    font-size: 12pt;
+		    font-weight: 400;
 		}
 
 		
@@ -81,20 +101,23 @@
 				}
 
 				$first = $item[$pricetag_config['pricetag_first_row']];
-				if(in_array($pricetag_config['pricetag_first_row'],['cost_price','unit_price'])) $first = to_currency($item[$pricetag_config['pricetag_first_row']]);
+				if(in_array($pricetag_config['pricetag_first_row'],['cost_price','unit_price'])) $first = '<span style="font-size:10pt;font-weight:400;vertical-align:top!important;top:-12px;position:relative;">Rp</span> '.($item[$pricetag_config['pricetag_first_row']]);
 				$second = $item[$pricetag_config['pricetag_second_row']];
-				if(in_array($pricetag_config['pricetag_second_row'],['cost_price','unit_price'])) $second = to_currency($item[$pricetag_config['pricetag_second_row']]);
+				if(in_array($pricetag_config['pricetag_second_row'],['cost_price','unit_price'])) $second = '<span style="font-size:10pt;font-weight:400;vertical-align:top!important;top:-12px;position:relative;">Rp</span> '.($item[$pricetag_config['pricetag_second_row']]);
 				$third = $item[$pricetag_config['pricetag_third_row']];
-				if(in_array($pricetag_config['pricetag_third_row'],['cost_price','unit_price'])) $third = to_currency($item[$pricetag_config['pricetag_third_row']]);
+				if(in_array($pricetag_config['pricetag_third_row'],['cost_price','unit_price'])) $third = '<span style="font-size:10pt;font-weight:400;vertical-align:top!important;top:-12px;position:relative;">Rp</span> '.($item[$pricetag_config['pricetag_third_row']]);
 				?>
 				<td>
 					<div class="tag" style="width: <?=$pricetag_config['pricetag_width'];?>px;height: <?=$pricetag_config['pricetag_height'];?>px;">
-						<!-- <div class="child"> -->
-						<h3><?=$first;?></h3>
 						<p><?=$second;?></p>
 						<p><?=$third;?></p>
-						<!-- </div> -->
+						<h3><?=$first;?></h3>
+						<div class="barcode-tag">
+							<?=$this->barcode_lib->display_barcode($item, $barcode_config) ;?>
+						</div>
+						<span class="toko">AB MART</span>
 					</div>
+					
 				</td>
 				<?php
 				++$count;

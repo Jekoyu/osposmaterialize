@@ -454,6 +454,22 @@ class Items extends Secure_Controller
 		$data['pricetag_config'] = $config;
 		// print_r($config);
 		// display barcodes
+
+		// barcode:
+		$this->load->library('barcode_lib');
+
+		// $item_ids = explode(':', $item_ids);
+		$result = $this->Item->get_multiple_info($item_ids, $this->item_lib->get_item_location())->result_array();
+		$config_br = $this->barcode_lib->get_barcode_config();
+			
+		$config_br['barcode_first_row'] =null;
+		$config_br['barcode_second_row'] =null;
+		$config_br['barcode_third_row'] =null;
+		$config_br['barcode_width'] =130;
+		$config_br['barcode_height'] =30;
+			
+
+		$data['barcode_config'] = $config_br;
 		$this->load->view('pricetag/pricetag_sheet', $data);
 	}
 
