@@ -215,7 +215,7 @@ $total_items = 0;
 	</table>
 	
 	<div id="footnote">
-		<p>JUMLAH ITEM: <?php echo $total_items; ?></p>
+		<p>JUMLAH ITEM : <?php echo $total_items; ?></p>
 	</div>
 	<div id="sale_return_policy">
 		<?php echo nl2br($this->config->item('return_policy')); ?>
