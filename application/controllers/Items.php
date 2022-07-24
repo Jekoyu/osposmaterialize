@@ -465,7 +465,7 @@ class Items extends Secure_Controller
 		$config_br['barcode_first_row'] =null;
 		$config_br['barcode_second_row'] =null;
 		$config_br['barcode_third_row'] =null;
-		$config_br['barcode_width'] =130;
+		$config_br['barcode_width'] =140;
 		$config_br['barcode_height'] =30;
 			
 

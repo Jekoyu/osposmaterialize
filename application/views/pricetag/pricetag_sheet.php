@@ -13,7 +13,7 @@
 			-webkit-border-radius: 3px 4px 4px 3px;
 			-moz-border-radius: 3px 4px 4px 3px;
 			border-radius: 3px 4px 4px 3px;
-			border-left: 3px solid #000;
+			border-left: 2px solid #000;
 
 			/* This makes room for the triangle */
 			margin-left: 19px;
@@ -77,9 +77,15 @@
 		.toko {
 			right: 12px;
 		    position: absolute;
-		    bottom: 18px;
+		    bottom: 27px;
 		    font-size: 12pt;
 		    font-weight: 400;
+		}
+
+		.tgl {
+			position: absolute;
+		    font-size: 9pt;
+		    right: 12px;
 		}
 
 		
@@ -101,21 +107,22 @@
 				}
 
 				$first = $item[$pricetag_config['pricetag_first_row']];
-				if(in_array($pricetag_config['pricetag_first_row'],['cost_price','unit_price'])) $first = '<span style="font-size:10pt;font-weight:400;vertical-align:top!important;top:-12px;position:relative;">Rp</span> '.($item[$pricetag_config['pricetag_first_row']]);
+				if(in_array($pricetag_config['pricetag_first_row'],['cost_price','unit_price'])) $first = '<span style="font-size:10pt;font-weight:400;vertical-align:top!important;top:-12px;position:relative;">Rp</span> '.to_currency_no_money($item[$pricetag_config['pricetag_first_row']]);
 				$second = $item[$pricetag_config['pricetag_second_row']];
-				if(in_array($pricetag_config['pricetag_second_row'],['cost_price','unit_price'])) $second = '<span style="font-size:10pt;font-weight:400;vertical-align:top!important;top:-12px;position:relative;">Rp</span> '.($item[$pricetag_config['pricetag_second_row']]);
+				if(in_array($pricetag_config['pricetag_second_row'],['cost_price','unit_price'])) $second = '<span style="font-size:10pt;font-weight:400;vertical-align:top!important;top:-12px;position:relative;">Rp</span> '.to_currency_no_money($item[$pricetag_config['pricetag_second_row']]);
 				$third = $item[$pricetag_config['pricetag_third_row']];
-				if(in_array($pricetag_config['pricetag_third_row'],['cost_price','unit_price'])) $third = '<span style="font-size:10pt;font-weight:400;vertical-align:top!important;top:-12px;position:relative;">Rp</span> '.($item[$pricetag_config['pricetag_third_row']]);
+				if(in_array($pricetag_config['pricetag_third_row'],['cost_price','unit_price'])) $third = '<span style="font-size:10pt;font-weight:400;vertical-align:top!important;top:-12px;position:relative;">Rp</span> '.to_currency_no_money($item[$pricetag_config['pricetag_third_row']]);
 				?>
 				<td>
 					<div class="tag" style="width: <?=$pricetag_config['pricetag_width'];?>px;height: <?=$pricetag_config['pricetag_height'];?>px;">
 						<p><?=$second;?></p>
-						<p><?=$third;?></p>
+						<p>#<?=$third;?> | <?=$item['category'];?></p>
 						<h3><?=$first;?></h3>
 						<div class="barcode-tag">
 							<?=$this->barcode_lib->display_barcode($item, $barcode_config) ;?>
 						</div>
 						<span class="toko">AB MART</span>
+						<p class="tgl"><?=date('d/m/Y');?></p>
 					</div>
 					
 				</td>
