@@ -36,6 +36,7 @@ $lang["items_csv_import_nodata_wrongformat"] = "Berkas unggahan tidak berisi dat
 $lang["items_csv_import_partially_failed"] = "Terdapat %1 item yang gagal diimpor pada baris: %2. Tidak ada kolom yang diimpor.";
 $lang["items_csv_import_success"] = "Impor item berhasil.";
 $lang["items_generate_barcodes"] = "Buat Barcode";
+$lang["items_generate_pricetag"] = "Buat Tag Harga";
 $lang["items_hsn_code"] = "Kode HSN";
 $lang["items_image"] = "Gambar";
 $lang["items_import_items_csv"] = "Impor item dari CSV sheet";

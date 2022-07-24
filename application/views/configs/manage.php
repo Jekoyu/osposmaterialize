@@ -20,6 +20,10 @@
 	<li role="presentation">
 		<a data-toggle="tab" href="#barcode_tab" title="<?php echo $this->lang->line('config_barcode_configuration'); ?>"><?php echo $this->lang->line('config_barcode'); ?></a>
 	</li>
+	<!-- custom pricetag -->
+	<li role="presentation">
+		<a data-toggle="tab" href="#pricetag_tab" title="<?php echo $this->lang->line('config_barcode_configuration'); ?>">Tag Harga</a>
+	</li>
 	<li role="presentation">
 		<a data-toggle="tab" href="#stock_tab" title="<?php echo $this->lang->line('config_location_configuration'); ?>"><?php echo $this->lang->line('config_location'); ?></a>
 	</li>
@@ -67,6 +71,9 @@
 	</div>
 	<div class="tab-pane" id="barcode_tab">
 		<?php $this->load->view("configs/barcode_config"); ?>
+	</div>
+	<div class="tab-pane" id="pricetag_tab">
+		<?php $this->load->view("configs/pricetag_config"); ?>
 	</div>
 	<div class="tab-pane" id="stock_tab">
 		<?php $this->load->view("configs/stock_config"); ?>

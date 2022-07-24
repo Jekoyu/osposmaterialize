@@ -422,6 +422,41 @@ class Items extends Secure_Controller
 		$this->load->view('barcodes/barcode_sheet', $data);
 	}
 
+	public function generate_pricetag($item_ids)
+	{
+		// $this->load->helper('general');
+
+		$item_ids = explode(':', $item_ids);
+		$result = $this->Item->get_multiple_info($item_ids, $this->item_lib->get_item_location())->result_array();
+				
+		$data['items'] = $result;
+
+		$config['company'] = $this->config->item('company');
+		$config['pricetag_content'] = $this->config->item('pricetag_content');
+		$config['pricetag_type'] = $this->config->item('pricetag_type');
+		$config['pricetag_font'] = $this->config->item('pricetag_font');
+		$config['pricetag_font_size'] = $this->config->item('pricetag_font_size');
+		$config['pricetag_height'] = $this->config->item('pricetag_height');
+		$config['pricetag_width'] = $this->config->item('pricetag_width');
+		
+		$config['pricetag_first_row'] = $this->config->item('pricetag_first_row');
+		if($config['pricetag_first_row'] == 'item_code') $config['pricetag_first_row'] = 'item_number';
+		$config['pricetag_second_row'] = $this->config->item('pricetag_second_row');
+		if($config['pricetag_second_row'] == 'item_code') $config['pricetag_second_row'] = 'item_number';
+		$config['pricetag_third_row'] = $this->config->item('pricetag_third_row');
+		if($config['pricetag_third_row'] == 'item_code') $config['pricetag_third_row'] = 'item_number';
+
+		$config['pricetag_num_in_row'] = $this->config->item('pricetag_num_in_row');
+		$config['pricetag_page_width'] = $this->config->item('pricetag_page_width');
+		$config['pricetag_page_cellspacing'] = $this->config->item('pricetag_page_cellspacing');
+		$config['pricetag_generate_if_empty'] = $this->config->item('pricetag_generate_if_empty');
+		$config['pricetag_formats'] = $this->config->item('pricetag_formats');
+		$data['pricetag_config'] = $config;
+		// print_r($config);
+		// display barcodes
+		$this->load->view('pricetag/pricetag_sheet', $data);
+	}
+
 	public function attributes($item_id)
 	{
 		$data['item_id'] = $item_id;

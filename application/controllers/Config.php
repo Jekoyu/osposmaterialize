@@ -750,6 +750,35 @@ class Config extends Secure_Controller
 			'message' => $this->lang->line('config_saved_' . ($success ? '' : 'un') . 'successfully')
 		));
 	}
+
+	public function save_pricetag()
+	{
+		$batch_save_data = array(
+			'pricetag_width' => $this->input->post('pricetag_width'),
+			'pricetag_height' => $this->input->post('pricetag_height'),
+			// 'pricetag_font' => $this->input->post('pricetag_font'),
+			// 'pricetag_font_size' => $this->input->post('pricetag_font_size'),
+			'pricetag_first_row' => $this->input->post('pricetag_first_row'),
+			'pricetag_second_row' => $this->input->post('pricetag_second_row'),
+			'pricetag_third_row' => $this->input->post('pricetag_third_row'),
+			
+			'pricetag_num_in_row' => $this->input->post('pricetag_num_in_row'),
+			'pricetag_page_width' => $this->input->post('pricetag_page_width'),
+			'pricetag_page_cellspacing' => $this->input->post('pricetag_page_cellspacing'),
+			// 'pricetag_generate_if_empty' => $this->input->post('pricetag_generate_if_empty') != NULL,
+			// 'allow_duplicate_barcodes' => $this->input->post('allow_duplicate_barcodes') != NULL,
+			// 'pricetag_content' => $this->input->post('pricetag_content'),
+			// 'pricetag_formats' => json_encode($this->input->post('pricetag_formats'))
+		);
+		
+		$result = $this->Appconfig->batch_save($batch_save_data);
+		$success = $result ? TRUE : FALSE;
+		
+		echo json_encode(array(
+			'success' => $success,
+			'message' => $this->lang->line('config_saved_' . ($success ? '' : 'un') . 'successfully')
+		));
+	}
 	
 	public function save_receipt()
 	{
