@@ -2,6 +2,10 @@
 $total_items = 0;
 ?>
 <style>
+	#receipt_items {
+		margin-top: -10px!important;
+
+	}
 	#receipt_items td {
 		padding: 0 !important;
 	}
