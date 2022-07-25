@@ -117,13 +117,15 @@
 					<?php echo anchor('home/logout', $this->lang->line('common_logout')); ?>
 				</div>
 
-				<div class="navbar-center" style="text-align:center">
+				<div class="navbar-center" style="text-align:center;font-size: 16px!important;">
 					<strong><?php echo $this->config->item('company'); ?></strong>
 				</div>
 			</div>
 		</div>
 
-		<div class="navbar navbar-default" role="navigation">
+		<div class="navbar navbar-default" role="navigation" style="
+    background-color: #05e8ba;
+    background-image: linear-gradient(315deg, #05e8ba 0%, #087ee1 74%);">
 			<div class="container">
 				<div class="navbar-header">
 					<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target=".navbar-collapse">
@@ -133,7 +135,9 @@
 						<span class="icon-bar"></span>
 					</button>
 
-					<a class="navbar-brand hidden-sm" href="<?php echo site_url(); ?>">AB MART</a>
+					<a class="navbar-brand hidden-sm" href="<?php echo site_url(); ?>">
+								<img data-src="holder.js/100%x100%" alt="Logo perusahaan" src="http://localhost/ospos-mod/public/uploads/company_logo.png" style="width: 50px; margin-top: -15px;">
+					</a>
 				</div>
 
 				<div class="navbar-collapse collapse">
