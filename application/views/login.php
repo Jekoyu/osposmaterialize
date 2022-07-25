@@ -27,7 +27,8 @@
 				<?php endif; ?>
 
 				<div id="login_form">
-					<div class="input-group">
+					<p class="notice">-- Masukkan User dan Password dengan benar --</p>
+					<div class="input-group" style="margin-bottom: 5px;">
 						<span class="input-group-addon input-sm"><span class="glyphicon glyphicon-user"></span></span>
 						<input class="form-control" placeholder="<?php echo $this->lang->line('login_username')?>" name="username" type="text" size=20 autofocus></input>
 					</div>
@@ -55,3 +56,14 @@
 	</div>
 </body>
 </html>
+
+
+<style>
+		.notice{
+				margin-bottom: 10px;
+    font-size: 13px!important;
+    color: #1070ba;
+    font-weight: 400;
+    text-align: center;
+		}
+</style>
