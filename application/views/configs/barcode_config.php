@@ -61,12 +61,12 @@
 			</div>
 
 			<div class="form-group form-group-sm">
-				<?php echo form_label('Jarak antar barcdode (px)', 'barcode_jarak', array('class' => 'control-label col-xs-2 required')); ?>
+				<?php echo form_label('Jarak antar barcdode (mm)', 'barcode_jarak', array('class' => 'control-label col-xs-2 required')); ?>
 				<div class='col-xs-2'>
 					<?php echo form_input(array(
 						'type' => 'number',
-						'min' => 10,
-						'max' => 900,
+						'min' => 0,
+						'max' => 300,
 						'name' => 'barcode_jarak',
 						'id' => 'barcode_jarak',
 						'class' => 'form-control input-sm required',

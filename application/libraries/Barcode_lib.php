@@ -206,7 +206,7 @@ class Barcode_lib
 
 		if($layout_type == 'name')
 		{
-			$result = $this->CI->lang->line('items_name') . " " . $item['name'];
+			$result = $item['name'];
 		}
 		elseif($layout_type == 'category' && isset($item['category']))
 		{

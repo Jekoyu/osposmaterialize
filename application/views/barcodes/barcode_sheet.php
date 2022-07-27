@@ -11,10 +11,12 @@
 			width: <?=$barcode_config['barcode_width'];?>px;
 			height: <?=$barcode_config['barcode_height']+40;?>px;
 			text-align: center;
+			position: relative;
 		}
 
 		.print-barcode table {
 			position: relative;
+			display: inline-block;
 		    top: 50%;
 		    left: 50%;
 		    transform: translate(-50%, -50%);
@@ -37,7 +39,7 @@
 				}
 				echo '<td class="print-barcode">' . $this->barcode_lib->display_barcode($item, $barcode_config) . '</td>';
 				// cek($count % $barcode_config['barcode_num_in_row']);
-				if($count < count($items)-1 && $count % $barcode_config['barcode_num_in_row'] < $barcode_config['barcode_num_in_row']-1) echo '<td style="width:'.$barcode_config['barcode_jarak'].'px;">&nbsp;</td>';
+				if($count < count($items)-1 && $count % $barcode_config['barcode_num_in_row'] < $barcode_config['barcode_num_in_row']-1) echo '<td style="min-width:'.$barcode_config['barcode_jarak'].'mm;">&nbsp;</td>';
 				++$count;
 			}
 			?>
