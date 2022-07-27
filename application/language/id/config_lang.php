@@ -315,3 +315,5 @@ $lang["config_default_pricetag_page_width_number"] = "Lebar halaman tag harga ha
 $lang["config_default_pricetag_page_width_required"] = "Lebar halaman tag harga harus diisi.";
 $lang["config_default_pricetag_width_number"] = "Lebar tag harga harus berupa angka.";
 $lang["config_default_pricetag_width_required"] = "Lebar tag harga harus diisi.";
+
+$lang["config_default_barcode_jarak_required"] = "Pengaturan jarak kode batang harus diisi.";

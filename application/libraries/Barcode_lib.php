@@ -45,6 +45,7 @@ class Barcode_lib
 		$data['barcode_page_cellspacing'] = $this->CI->config->item('barcode_page_cellspacing');
 		$data['barcode_generate_if_empty'] = $this->CI->config->item('barcode_generate_if_empty');
 		$data['barcode_formats'] = $this->CI->config->item('barcode_formats');
+		$data['barcode_jarak'] = $this->CI->config->item('barcode_jarak');
 
 		return $data;
 	}

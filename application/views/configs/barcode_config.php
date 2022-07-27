@@ -61,6 +61,20 @@
 			</div>
 
 			<div class="form-group form-group-sm">
+				<?php echo form_label('Jarak antar barcdode (px)', 'barcode_jarak', array('class' => 'control-label col-xs-2 required')); ?>
+				<div class='col-xs-2'>
+					<?php echo form_input(array(
+						'type' => 'number',
+						'min' => 10,
+						'max' => 900,
+						'name' => 'barcode_jarak',
+						'id' => 'barcode_jarak',
+						'class' => 'form-control input-sm required',
+						'value'=>$this->config->item('barcode_jarak'))); ?>
+				</div>
+			</div>
+
+			<div class="form-group form-group-sm">
 				<?php echo form_label($this->lang->line('config_allow_duplicate_barcodes'), 'allow_duplicate_barcodes', array('class' => 'control-label col-xs-2')); ?>
 				<div class='col-xs-1'>
 					<?php echo form_checkbox(array(
@@ -264,6 +278,11 @@ $(document).ready(function()
 			{
 				required:"<?php echo $this->lang->line('config_default_barcode_height_required'); ?>",
 				number:"<?php echo $this->lang->line('config_default_barcode_height_number'); ?>"
+			},
+			barcode_jarak:
+			{
+				required:"<?php echo $this->lang->line('config_default_barcode_jarak_required'); ?>",
+				number:"<?php echo $this->lang->line('config_default_barcode_jarak_number'); ?>"
 			},
 			barcode_font_size:
 			{

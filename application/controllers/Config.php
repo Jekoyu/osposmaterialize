@@ -725,6 +725,7 @@ class Config extends Secure_Controller
 	public function save_barcode()
 	{
 		$batch_save_data = array(
+			'barcode_jarak' => $this->input->post('barcode_jarak'),
 			'barcode_type' => $this->input->post('barcode_type'),
 			'barcode_width' => $this->input->post('barcode_width'),
 			'barcode_height' => $this->input->post('barcode_height'),

@@ -9,7 +9,7 @@
 	<style>
 		.print-barcode {
 			width: <?=$barcode_config['barcode_width'];?>px;
-			height: <?=$barcode_config['barcode_height'];?>px;
+			height: <?=$barcode_config['barcode_height']+40;?>px;
 			text-align: center;
 		}
 
@@ -37,7 +37,7 @@
 				}
 				echo '<td class="print-barcode">' . $this->barcode_lib->display_barcode($item, $barcode_config) . '</td>';
 				// cek($count % $barcode_config['barcode_num_in_row']);
-				if($count < count($items)-1 && $count % $barcode_config['barcode_num_in_row'] < $barcode_config['barcode_num_in_row']-1) echo '<td></td>';
+				if($count < count($items)-1 && $count % $barcode_config['barcode_num_in_row'] < $barcode_config['barcode_num_in_row']-1) echo '<td style="width:'.$barcode_config['barcode_jarak'].'px;"></td>';
 				++$count;
 			}
 			?>
