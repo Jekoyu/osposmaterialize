@@ -136,7 +136,7 @@
 					</button>
 
 					<a class="navbar-brand hidden-sm" href="<?php echo site_url(); ?>">
-								<img data-src="holder.js/100%x100%" alt="Logo perusahaan" src="http://localhost/ospos-mod/public/uploads/company_logo.png" style="width: 50px; margin-top: -15px;">
+								<img data-src="holder.js/100%x100%" alt="Logo perusahaan" src="<?php echo is_file(FCPATH.'uploads/' . $this->config->item('company_logo')) ? base_url('uploads/' . $this->config->item('company_logo')) : ''; ?>" style="width: 50px; margin-top: -15px;">
 					</a>
 				</div>
 
