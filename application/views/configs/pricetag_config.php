@@ -11,7 +11,7 @@
 				<div class='col-xs-2'>
 					<?php echo form_input(array(
 						'step' => '5',
-						'max' => '350',
+						'max' => '380',
 						'min' => '60',
 						'type' => 'number',
 						'name' => 'pricetag_width',
@@ -27,7 +27,7 @@
 					<?php echo form_input(array(
 						'type' => 'number',
 						'min' => 10,
-						'max' => 150,
+						'max' => 180,
 						'name' => 'pricetag_height',
 						'id' => 'pricetag_height',
 						'class' => 'form-control input-sm required',
