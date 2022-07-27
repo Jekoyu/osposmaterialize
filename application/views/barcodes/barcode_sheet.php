@@ -27,7 +27,7 @@
 	<table cellspacing=<?php echo $barcode_config['barcode_page_cellspacing']; ?> width='<?php echo $barcode_config['barcode_page_width']."%"; ?>' >
 		<tr>
 			<?php
-			// cek($barcode_config);
+			cek($barcode_config);
 			$count = 0;
 			foreach($items as $item)
 			{
@@ -37,7 +37,7 @@
 				}
 				echo '<td class="print-barcode">' . $this->barcode_lib->display_barcode($item, $barcode_config) . '</td>';
 				// cek($count % $barcode_config['barcode_num_in_row']);
-				if($count < count($items)-1 && $count % $barcode_config['barcode_num_in_row'] < $barcode_config['barcode_num_in_row']-1) echo '<td style="width:'.$barcode_config['barcode_jarak'].'px;"></td>';
+				if($count < count($items)-1 && $count % $barcode_config['barcode_num_in_row'] < $barcode_config['barcode_num_in_row']-1) echo '<td style="width:'.$barcode_config['barcode_jarak'].'px;">&nbsp;</td>';
 				++$count;
 			}
 			?>
