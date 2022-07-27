@@ -16,7 +16,7 @@
 				<div class='col-xs-2'>
 					<?php echo form_input(array(
 						'step' => '5',
-						'max' => '350',
+						'max' => '600',
 						'min' => '60',
 						'type' => 'number',
 						'name' => 'barcode_width',
