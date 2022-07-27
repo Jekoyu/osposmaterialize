@@ -6,6 +6,20 @@
 	<meta http-equiv="content-type" content="text/html; charset=utf-8" />
 	<title><?php echo $this->lang->line('items_generate_barcodes'); ?></title>
 	<link rel="stylesheet" rev="stylesheet" href="<?php echo base_url();?>css/barcode_font.css" />
+	<style>
+		.print-barcode {
+			width: <?=$barcode_config['barcode_width'];?>px;
+			height: <?=$barcode_config['barcode_height'];?>px;
+			text-align: center;
+		}
+
+		.print-barcode table {
+			position: relative;
+		    top: 50%;
+		    left: 50%;
+		    transform: translate(-50%, -50%);
+		}
+	</style>
 </head>
 
 <body class=<?php echo "font_".$this->barcode_lib->get_font_name($barcode_config['barcode_font']); ?> 
@@ -13,6 +27,7 @@
 	<table cellspacing=<?php echo $barcode_config['barcode_page_cellspacing']; ?> width='<?php echo $barcode_config['barcode_page_width']."%"; ?>' >
 		<tr>
 			<?php
+			// cek($barcode_config);
 			$count = 0;
 			foreach($items as $item)
 			{
@@ -20,7 +35,7 @@
 				{
 					echo '</tr><tr>';
 				}
-				echo '<td>' . $this->barcode_lib->display_barcode($item, $barcode_config) . '</td>';
+				echo '<td class="print-barcode">' . $this->barcode_lib->display_barcode($item, $barcode_config) . '</td>';
 				++$count;
 			}
 			?>
