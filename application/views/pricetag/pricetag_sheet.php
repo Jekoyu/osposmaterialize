@@ -56,7 +56,7 @@
 
 		.tag h3 {
 			text-align: right !important;
-			font-size: 30pt;
+			font-size: 40pt;
 			font-weight: 600;
 		}
 		.tag h3, .tag p {
@@ -64,7 +64,7 @@
 			text-align: right;
 		}
 		.tag p {
-			font-size: 10pt;
+			font-size: 8pt;
 		}
 
 		.barcode-tag {
@@ -86,6 +86,7 @@
 			position: absolute;
 		    font-size: 9pt;
 		    right: 12px;
+		    bottom: -3px;
 		}
 
 		
