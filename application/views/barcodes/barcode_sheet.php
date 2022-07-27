@@ -27,7 +27,7 @@
 	<table cellspacing=<?php echo $barcode_config['barcode_page_cellspacing']; ?> width='<?php echo $barcode_config['barcode_page_width']."%"; ?>' >
 		<tr>
 			<?php
-			cek($barcode_config);
+			// cek($barcode_config);
 			$count = 0;
 			foreach($items as $item)
 			{
