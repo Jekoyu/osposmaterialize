@@ -1,6 +1,6 @@
 <script type="text/javascript">
 	"use strict"
-	function currencyFormat(elm){
+	function currencyFormat_(elm){
 		// skip for arrow keys
 		if(event.which >= 37 && event.which <= 40){
 			event.preventDefault();
@@ -14,5 +14,21 @@
 			;
 		});
 	}
+
+	$(document).on('change click keyup input paste', 'input.auto-currency', function() {
+	    $(this).val(function(index, value) {
+	        var sign = value.charAt(0),
+	        $return = 0;
+	        // $return = value.replace(/(?!\.)\D/g, "").replace(/(?:\..*)\./g, "").replace(/\.(\d\d)\d?$/, '.$1').replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+	        $return = value.replace(/\D/g, "").replace(/\B(?=(\d{3})+(?!\d)\.?)/g, ".");
+	        if (sign == '-')
+	        {
+	            $return = '-'+$return;
+	        }
+
+	        return $return;
+	    });
+	});
+
 
 </script>
