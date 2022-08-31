@@ -2,8 +2,8 @@
 $lang["module_attributes"] = "Atribut";
 $lang["module_attributes_desc"] = "Tambah, Perbaharui, Hapus dan Cari atribut.";
 $lang["module_both"] = "Keduanya";
-$lang["module_cashups"] = "Uang Tunai";
-$lang["module_cashups_desc"] = "Tambah, Perbaharui, Hapus dan Cari Uang Tunai.";
+$lang["module_cashups"] = "Laci Uang";
+$lang["module_cashups_desc"] = "Tambah, Perbaharui, Hapus dan Cari Laci Uang.";
 $lang["module_config"] = "Konfigurasi";
 $lang["module_config_desc"] = "Ubah Konfigurasi Toko.";
 $lang["module_customers"] = "Pelanggan";
