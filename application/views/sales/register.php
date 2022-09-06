@@ -395,7 +395,7 @@ if(isset($success))
 				<?php echo form_open($controller_name."/process_trans_mode", array('id'=>'form_proses_btn', 'class'=>'form-horizontal')); ?>
 				<h4 class="pull-left" style="margin-right: 10px;"><?php echo $this->lang->line('sales_quantity_of_items',$item_count); ?> : <b><?php echo $total_units; ?></b></h4>
 
-				<button id="btn-process" value="1" type="button" class="btn btn-success pull-right" style="margin-right: 8px;margin-top: 5px;"><b>PROSES</b></button>
+				<button id="btn-process" value="1" type="button" class="btn btn-success pull-right" style="margin-right: 8px;margin-top: 5px;"><b>PROSES/F1/END</b></button>
 				<?php 
 				echo form_hidden('btn_proses', '1');
 				echo form_close(); ?>
