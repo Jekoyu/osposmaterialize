@@ -769,6 +769,7 @@ if(isset($success))
 					        //f10,f12,end
 					        case 121 :
 					        case 123 :
+					        case 112 :
 					        case 35 :
 					       		e.preventDefault();
 					            // console.log(keyCode);
