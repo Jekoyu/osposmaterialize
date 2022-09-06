@@ -477,6 +477,7 @@ class Sales extends Secure_Controller
 
 	public function edit_item($item_id)
 	{
+		$in = $this->input->post();
 		$data = array();
 
 		$this->form_validation->set_rules('price', 'lang:sales_price', 'required|callback_numeric');
@@ -492,7 +493,10 @@ class Sales extends Secure_Controller
 
 		$item_location = $this->input->post('location');
 		$discounted_total = $this->input->post('discounted_total') != '' ? $this->input->post('discounted_total') : NULL;
-
+		// cek($this->form_validation->run());
+		// cek($in);
+		// cek($quantity);
+		// die();
 		if($this->form_validation->run() != FALSE)
 		{
 			$this->sale_lib->edit_item($item_id, $description, $serialnumber, $quantity, $discount, $discount_type, $price, $discounted_total);

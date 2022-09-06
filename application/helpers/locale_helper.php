@@ -396,7 +396,7 @@ function to_decimals($number, $decimals, $type=\NumberFormatter::DECIMAL)
 		$fmt->setAttribute(\NumberFormatter::GROUPING_SEPARATOR_SYMBOL, '');
 	}
 	$fmt->setSymbol(\NumberFormatter::CURRENCY_SYMBOL, $config->item('currency_symbol'));
-
+	// cek($number+0);
 	return $fmt->format($number);
 }
 
