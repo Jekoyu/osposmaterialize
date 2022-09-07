@@ -51,8 +51,7 @@ if(isset($success))
 									'class'=>'form-control input-xl non-giftcard-input text-bold auto-currency',
 									'style'=>'font-weight: 800;font-size: x-large;',
 									// 'onkeyup'=>'currencyFormat(this);$(\'#amount_tendered\').val(this.value);',
-									'value'=>!empty($amount_due) ? to_currency_no_money($amount_due) : 0, 
-									// 'value'=>to_currency_no_money($amount_due), 
+									// 'value'=>!empty($amount_due) ? to_currency_no_money($amount_due) : 0, 
 									'size'=>'5', 'tabindex'=>++$tabindex, 'onClick'=>'this.select();'
 								)); ?>
 							<?php echo form_input(array(
@@ -62,8 +61,7 @@ if(isset($success))
 								'class'=>'form-control input-xl giftcard-input auto-currency',
 								'style'=>'font-weight: 800;font-size: x-large;',
 								// 'onkeyup'=>'currencyFormat(this);$(\'#amount_tendered\').val(this.value);',
-								'value'=>!empty($amount_due) ? to_currency_no_money($amount_due) : 0, 
-								// 'value'=>to_currency_no_money($amount_due), 
+								// 'value'=>!empty($amount_due) ? to_currency_no_money($amount_due) : 0, 
 								'size'=>'5', 'tabindex'=>++$tabindex)); ?>
 							<div class="input-group-btn">
 								<div class='btn btn-xl btn-success pull-right' id='add_payment_button' tabindex="<?php echo ++$tabindex; ?>"><span class="glyphicon glyphicon-credit-card">&nbsp</span><?php echo $this->lang->line('sales_add_payment'); ?></div>
@@ -269,7 +267,7 @@ if(isset($success))
 
 						<td>
 							<div class="input-group">
-								<?php echo form_input(array('name'=>'discount', 'class'=>'form-control input-sm', 'value'=>$item['discount'], 'tabindex'=>++$tabindex, 'onClick'=>'this.select();')); ?>
+								<?php echo form_input(array('name'=>'discount', 'class'=>'form-control input-sm', 'value'=>($item['discount']+0), 'tabindex'=>++$tabindex, 'onClick'=>'this.select();')); ?>
 								<span class="input-group-btn">
 									<?php echo form_checkbox(array('id'=>'discount_toggle', 'name'=>'discount_toggle', 'value'=>1, 'data-toggle'=>"toggle",'data-size'=>'small', 'data-onstyle'=>'success', 'data-on'=>'<b>'.$this->config->item('currency_symbol').'</b>', 'data-off'=>'<b>%</b>', 'data-line'=>$line, 'checked'=>$item['discount_type'])); ?>
 								</span>
@@ -397,7 +395,7 @@ if(isset($success))
 				<?php echo form_open($controller_name."/process_trans_mode", array('id'=>'form_proses_btn', 'class'=>'form-horizontal')); ?>
 				<h4 class="pull-left" style="margin-right: 10px;"><?php echo $this->lang->line('sales_quantity_of_items',$item_count); ?> : <b><?php echo $total_units; ?></b></h4>
 
-				<button id="btn-process" value="1" type="button" class="btn btn-success pull-right" style="margin-right: 8px;margin-top: 5px;"><b>PROSES</b></button>
+				<button id="btn-process" value="1" type="button" class="btn btn-success pull-right" style="margin-right: 8px;margin-top: 5px;"><b>PROSES/F1/END</b></button>
 				<?php 
 				echo form_hidden('btn_proses', '1');
 				echo form_close(); ?>
@@ -771,6 +769,7 @@ if(isset($success))
 					        //f10,f12,end
 					        case 121 :
 					        case 123 :
+					        case 112 :
 					        case 35 :
 					       		e.preventDefault();
 					            // console.log(keyCode);
@@ -1067,7 +1066,7 @@ function check_payment_type()
 		$("#sale_total").html("<?php echo to_currency($total); ?>");
 		$("#sale_amount_due").html("<?php echo to_currency($amount_due); ?>");
 		$("#amount_tendered_label").html("<?php echo $this->lang->line('sales_giftcard_number'); ?>");
-		$("#amount_tendered:enabled").val('<?=to_currency_no_money($amount_due);?>').focus();
+		// $("#amount_tendered:enabled").val('<?=to_currency_no_money($amount_due);?>').focus();
 		$(".giftcard-input").attr('disabled', false);
 		$(".non-giftcard-input").attr('disabled', true);
 		$(".giftcard-input:enabled").val('').focus();
@@ -1077,8 +1076,7 @@ function check_payment_type()
 		$("#sale_total").html("<?php echo to_currency($cash_total); ?>");
 		$("#sale_amount_due").html("<?php echo to_currency($cash_amount_due); ?>");
 		$("#amount_tendered_label").html("<?php echo $this->lang->line('sales_amount_tendered'); ?>");
-		// $("#amount_tendered:enabled").val("<?php echo to_currency_no_money($cash_amount_due); ?>");
-		$("#amount_tendered:enabled").val('<?=to_currency_no_money($amount_due);?>').focus();
+		// $("#amount_tendered:enabled").val('<?=to_currency_no_money($amount_due);?>').focus();
 		$(".giftcard-input").attr('disabled', true);
 		$(".non-giftcard-input").attr('disabled', false);
 	}
@@ -1087,8 +1085,7 @@ function check_payment_type()
 		$("#sale_total").html("<?php echo to_currency($non_cash_total); ?>");
 		$("#sale_amount_due").html("<?php echo to_currency($non_cash_amount_due); ?>");
 		$("#amount_tendered_label").html("<?php echo $this->lang->line('sales_amount_tendered'); ?>");
-		$("#amount_tendered:enabled").val('<?=to_currency_no_money($amount_due);?>').focus();
-		// $("#amount_tendered:enabled").val("<?php echo to_currency_no_money($non_cash_amount_due); ?>");
+		// $("#amount_tendered:enabled").val('<?=to_currency_no_money($amount_due);?>').focus();
 		$(".giftcard-input").attr('disabled', true);
 		$(".non-giftcard-input").attr('disabled', false);
 	}
