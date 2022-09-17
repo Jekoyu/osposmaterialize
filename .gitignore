@@ -4,6 +4,7 @@
 #     https://www.atlassian.com/git/tutorials/saving-changes/gitignore
 
 # Node artifact files
+application/config/database.php
 
 # Log files
 *.log
@@ -34,5 +35,4 @@ Thumbs.db
 *.flv
 *.mov
 *.wmv
-application/config/database.php
 
