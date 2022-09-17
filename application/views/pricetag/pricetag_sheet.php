@@ -4,7 +4,7 @@
 
 <head>
 	<meta http-equiv="content-type" content="text/html; charset=utf-8" />
-	<title><?php echo $this->lang->line('items_generate_barcodes'); ?></title>
+	<title><?php echo $this->lang->line('items_generate_pricetag'); ?></title>
 	<!-- <link rel="stylesheet" rev="stylesheet" href="<?php echo base_url();?>css/pricetag_font.css" /> -->
 
 	<style>
@@ -89,6 +89,63 @@
 		    bottom: -3px;
 		}
 
+		.border-1-grey {
+			border: 1px solid grey;
+		}
+
+		.m-t-28 {
+			margin-top: 28px !important;
+		}
+
+		.m-t-35 {
+			margin-top: 35px !important;
+		}
+		.m-t-50 {
+			margin-top: 50px !important;
+		}
+
+		.m-t-40 {
+			margin-top: 40px !important;
+		}
+
+		.m-b-3 {
+			margin-bottom: 3px !important;
+		}
+
+		.label-top {
+			width: 100%;
+		    height: 22px;
+		    /* white-space: nowrap; */
+		    overflow: hidden;
+		    text-overflow: ellipsis;
+		    font-size: 9pt !important;
+		    margin: 5px 0px 0px 0px !important;
+		    padding-top: 3px;
+		    line-height: 0.9;
+		}
+
+		.label-top {
+			width: 100%;
+		    height: 22px;
+		    /* white-space: nowrap; */
+		    overflow: hidden;
+		    text-overflow: ellipsis;
+		    font-size: 9pt !important;
+		    margin: 5px 0px 0px 0px !important;
+		    padding-top: 3px;
+		    line-height: 0.9;
+		}
+
+		.label-second {
+			width: 100%;
+		    height: 22px;
+		    overflow: hidden;
+		    text-overflow: ellipsis;
+		    font-size: 9pt !important;
+		    margin: 5px 0px 0px 0px !important;
+		    padding-second: 3px;
+		    line-height: 0.9;
+		}
 		
 	</style>
 </head>
@@ -101,7 +158,6 @@
 			$count = 0;
 			foreach($items as $item)
 			{
-				// cek($item);die();
 				if ($count % $pricetag_config['pricetag_num_in_row'] == 0 and $count != 0)
 				{
 					echo '</tr><tr>';
@@ -115,14 +171,14 @@
 				if(in_array($pricetag_config['pricetag_third_row'],['cost_price','unit_price'])) $third = '<span style="font-size:10pt;font-weight:400;vertical-align:top!important;top:-12px;position:relative;">Rp</span> '.to_currency_no_money($item[$pricetag_config['pricetag_third_row']]);
 				?>
 				<td>
-					<div class="tag" style="width: <?=$pricetag_config['pricetag_width'];?>px;height: <?=$pricetag_config['pricetag_height'];?>px;">
-						<p><?=$second;?></p>
-						<p>#<?=$third;?> | <?=$item['category'];?></p>
-						<h3><?=$first;?></h3>
+					<div class="tag border-1-grey m-b-3" style="width: <?=$pricetag_config['pricetag_width'];?>px;height: <?=$pricetag_config['pricetag_height'];?>px;">
+						<h4 class="label-top"><?=$second;?></h4>
+						<p class="label-second">#<?=$third;?> | <?=$item['category'];?></p>
+						<h3 class="m-t-28"><?=$first;?></h3>
 						<div class="barcode-tag">
 							<?=$this->barcode_lib->display_barcode($item, $barcode_config) ;?>
 						</div>
-						<span class="toko">AB MART</span>
+						<span class="toko">SATRIO MART</span>
 						<p class="tgl"><?=date('d/m/Y');?></p>
 					</div>
 					
