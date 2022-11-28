@@ -375,7 +375,12 @@ function to_tax_decimals($number)
 
 function to_quantity_decimals($number)
 {
-	return to_decimals($number, 'quantity_decimals');
+	if(fmod($number, 1) !== 0.00){
+		return to_decimals($number, 'quantity_decimals');
+	}else{
+		return $number+0;
+	}
+	
 }
 
 function to_decimals($number, $decimals, $type=\NumberFormatter::DECIMAL)
@@ -396,7 +401,8 @@ function to_decimals($number, $decimals, $type=\NumberFormatter::DECIMAL)
 		$fmt->setAttribute(\NumberFormatter::GROUPING_SEPARATOR_SYMBOL, '');
 	}
 	$fmt->setSymbol(\NumberFormatter::CURRENCY_SYMBOL, $config->item('currency_symbol'));
-	// cek($number+0);
+
+	// cek($config->item('quantity_decimals'));
 	return $fmt->format($number);
 }
 

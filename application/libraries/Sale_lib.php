@@ -835,7 +835,7 @@ class Sale_lib
 
 		if($this->CI->config->item('multi_pack_enabled') == '1')
 		{
-			$item_info->name .= NAME_SEPARATOR . $item_info->pack_name;
+			if(!empty($item_info->pack_name)) $item_info->name .= NAME_SEPARATOR . $item_info->pack_name;
 		}
 
 		$attribute_links = $this->CI->Attribute->get_link_values($item_id, 'sale_id', $sale_id, Attribute::SHOW_IN_SALES)->row_object();

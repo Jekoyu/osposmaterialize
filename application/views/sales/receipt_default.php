@@ -18,6 +18,18 @@ $total_items = 0;
 </style>
 <div id="receipt_wrapper" style="font-size:<?php echo $this->config->item('receipt_font_size');?>px">
 	<div id="receipt_header">
+
+		<?php
+		if($this->config->item('company_logo') != '')
+		{
+		?>
+			<div id="company_name">
+				<img id="image" src="<?php echo base_url('uploads/' . $this->config->item('company_logo')); ?>" alt="company_logo" />
+			</div>
+		<?php
+		}
+		?>
+
 		<?php
 		if($this->config->item('receipt_show_company_name'))
 		{
@@ -33,8 +45,8 @@ $total_items = 0;
 
 	<table id="receipt_items">
 		<tr>
-			<th style="width:40%;"><?php echo $transaction_time ?> <?php echo $sale_id; ?></th>
-			<th style="width:20%;text-align:right"><?php echo $employee; ?></th>
+			<th style="width:40%;vertical-align: bottom;"><span style="font-weight: 400;"><?php echo $transaction_time ?></span> <?php echo $sale_id; ?></th>
+			<th style="width:20%;text-align:right;vertical-align: bottom;"><?php echo $employee; ?></th>
 		</tr>
 		<tr>
 			<th colspan="2" style='text-align:right;border-top:2px solid #808080;'></th>
@@ -173,8 +185,8 @@ $total_items = 0;
 			$show_giftcard_remainder |= $splitpayment[0] == $this->lang->line('sales_giftcard');
 		?>
 			<tr>
-				<td style="text-align:left;"><?php echo 'Pembayaran '.$splitpayment[0]; ?> </td>
-				<td class="total-value"><?php echo to_currency( $payment['payment_amount'] * -1 ); ?></td>
+				<td style="text-align:left;"><?php echo $splitpayment[0]; ?> </td>
+				<td class="total-value" style="white-space: nowrap;"><?php echo to_currency( $payment['payment_amount'] * -1 ); ?></td>
 			</tr>
 		<?php
 		}
@@ -192,7 +204,7 @@ $total_items = 0;
 		?>
 			<tr>
 				<td style="text-align:left;"><?php echo $this->lang->line('sales_giftcard_balance'); ?></td>
-				<td class="total-value"><?php echo to_currency($cur_giftcard_value); ?></td>
+				<td class="total-value" style="white-space: nowrap;"><?php echo to_currency($cur_giftcard_value); ?></td>
 			</tr>
 		<?php
 		}
@@ -200,7 +212,7 @@ $total_items = 0;
 		<tr>
 			<!-- <td style="text-align:left;"> <?php echo $this->lang->line($amount_change >= 0 ? ($only_sale_check ? 'sales_check_balance' : 'sales_change_due') : 'sales_amount_due') ; ?> </td> -->
 			<td style="text-align:left;"> Kembali </td>
-			<td class="total-value"><?php echo to_currency($amount_change); ?></td>
+			<td class="total-value" style="white-space: nowrap;"><?php echo to_currency($amount_change); ?></td>
 		</tr>
 		<tr>
 			<td style="text-align:left; border-top:2px solid #808080;" colspan="2"><?php echo empty($comments) ? '' : 'Catatan : ' . $comments; ?></td>
