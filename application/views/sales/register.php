@@ -19,7 +19,7 @@ if(isset($success))
 
 <div id="remote-payment" class="row">
 	<div class="col-md-6 form-group">
-		<h3 style="margin-top: 6px !important;">TOTAL HARGA : <b><?php echo to_currency($total); ?></b></h3>
+		<h3 style="margin-top: 6px !important;color: #1b6193;"><b>TOTAL HARGA : <?php echo to_currency($total); ?></b></h3>
 	</div>
 	<div class="col-md-6 form-group">
 		<?php
@@ -30,10 +30,10 @@ if(isset($success))
 				?>
 
 				<div class="input-group">
-					<div class="input-group-addon">
+					<div class="input-group-addon" style="color: red;font-weight: 600;">
 						<?php echo strtoupper($this->lang->line('sales_amount_due'));?> :
 					</div>
-					<input type="text" value="<?php echo to_currency($amount_due); ?>" readonly class="form-control" style="background-color: #fcfcfc !important; font-weight: 800;font-size: x-large;">
+					<input type="text" value="<?php echo to_currency($amount_due); ?>" readonly class="form-control" style="background-color: #fcfcfc !important; font-weight: 800;font-size: x-large;color: red;">
 				</div>
 				<?php
 			}else{
