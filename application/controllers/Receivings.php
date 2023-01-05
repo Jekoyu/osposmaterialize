@@ -255,7 +255,7 @@ class Receivings extends Secure_Controller
 
 		$data['print_after_sale'] = $this->receiving_lib->is_print_after_sale();
 
-		$this->load->view("receivings/receipt",$data);
+		$this->load->view("receivings/receipt2",$data);
 
 		$this->receiving_lib->clear_all();
 	}
@@ -369,7 +369,7 @@ class Receivings extends Secure_Controller
 
 		$data = $this->xss_clean($data);
 
-		$this->load->view("receivings/receiving", $data);
+		$this->load->view("receivings/receiving2", $data);
 	}
 	
 	public function save($receiving_id = -1)

@@ -48,7 +48,7 @@ class Item_kits extends Secure_Controller
 	{
 		$data['table_headers'] = $this->xss_clean(get_item_kits_manage_table_headers());
 
-		$this->load->view('item_kits/manage', $data);
+		$this->load->view('item_kits/manage2', $data);
 	}
 
 	/*

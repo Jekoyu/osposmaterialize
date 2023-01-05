@@ -11,7 +11,7 @@ class Home extends Secure_Controller
 
 	public function index()
 	{
-		$this->load->view('home/home');
+		$this->load->view('home/home2');
 	}
 
 	public function logout()

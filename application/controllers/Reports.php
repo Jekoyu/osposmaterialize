@@ -32,7 +32,7 @@ class Reports extends Secure_Controller
 	{
 		$data['grants'] = $this->xss_clean($this->Employee->get_employee_grants($this->session->userdata('person_id')));
 
-		$this->load->view('reports/listing', $data);
+		$this->load->view('reports/listing2', $data);
 	}
 
 	//Summary sales report
@@ -70,7 +70,7 @@ class Reports extends Secure_Controller
 
 		);
 
-		$this->load->view('reports/tabular', $data);
+		$this->load->view('reports/tabular2', $data);
 	}
 
 	//Summary Categories report
@@ -108,7 +108,7 @@ class Reports extends Secure_Controller
 
 		);
 
-		$this->load->view('reports/tabular', $data);
+		$this->load->view('reports/tabular2', $data);
 	}
 
 	//Summary Expenses by Categories report
@@ -143,7 +143,7 @@ class Reports extends Secure_Controller
 
 		);
 
-		$this->load->view('reports/tabular', $data);
+		$this->load->view('reports/tabular2', $data);
 	}
 
 	//Summary Customers report
@@ -181,7 +181,7 @@ class Reports extends Secure_Controller
 
 		);
 
-		$this->load->view('reports/tabular', $data);
+		$this->load->view('reports/tabular2', $data);
 	}
 
 	//Summary Suppliers report
@@ -219,7 +219,7 @@ class Reports extends Secure_Controller
 
 		);
 
-		$this->load->view('reports/tabular', $data);
+		$this->load->view('reports/tabular2', $data);
 	}
 
 	//Summary Items report
@@ -257,7 +257,7 @@ class Reports extends Secure_Controller
 
 		);
 
-		$this->load->view('reports/tabular', $data);
+		$this->load->view('reports/tabular2', $data);
 	}
 
 	//Summary Employees report
@@ -295,7 +295,7 @@ class Reports extends Secure_Controller
 
 		);
 
-		$this->load->view('reports/tabular', $data);
+		$this->load->view('reports/tabular2', $data);
 	}
 
 	//Summary Taxes report
@@ -331,7 +331,7 @@ class Reports extends Secure_Controller
 
 		);
 
-		$this->load->view('reports/tabular', $data);
+		$this->load->view('reports/tabular2', $data);
 	}
 
 	//Summary Sales Taxes report
@@ -367,7 +367,7 @@ class Reports extends Secure_Controller
 
 		);
 
-		$this->load->view('reports/tabular', $data);
+		$this->load->view('reports/tabular2', $data);
 	}
 
 	public function summary_discounts_input()
@@ -382,7 +382,7 @@ class Reports extends Secure_Controller
 			'1'=> $this->lang->line('reports_discount_fixed'));
 		$data['sale_type_options'] = $this->get_sale_type_options();
 
-		$this->load->view('reports/date_input', $data);
+		$this->load->view('reports/date_input2', $data);
 	}
 
 	//Summary Discounts report
@@ -416,7 +416,7 @@ class Reports extends Secure_Controller
 
 		);
 
-		$this->load->view('reports/tabular', $data);
+		$this->load->view('reports/tabular2', $data);
 	}
 
 	//Summary Payments report
@@ -474,13 +474,12 @@ class Reports extends Secure_Controller
 
 		);
 
-		$this->load->view('reports/tabular', $data);
+		$this->load->view('reports/tabular2', $data);
 	}
 
 	//Input for reports that require only a date range. (see routes.php to see that all graphical summary reports route here)
 	public function date_input()
 	{
-		// die();
 		$data = array();
 		$stock_locations = $data = $this->xss_clean($this->Stock_location->get_allowed_locations('sales'));
 		$stock_locations['all'] = $this->lang->line('reports_all');
@@ -488,7 +487,7 @@ class Reports extends Secure_Controller
 		$data['mode'] = 'sale';
 		$data['sale_type_options'] = $this->get_sale_type_options();
 
-		$this->load->view('reports/date_input', $data);
+		$this->load->view('reports/date_input2', $data);
 	}
 
 	//Input for reports that require only a date range. (see routes.php to see that all graphical summary reports route here)
@@ -496,7 +495,7 @@ class Reports extends Secure_Controller
 	{
 		$data = array();
 
-		$this->load->view('reports/date_input', $data);
+		$this->load->view('reports/date_input2', $data);
 	}
 
 	//Input for reports that require only a date range. (see routes.php to see that all graphical summary reports route here)
@@ -524,7 +523,7 @@ class Reports extends Secure_Controller
 			$data['employees'][$employee->person_id] = $employee->first_name . ' ' . $employee->last_name;
 		}
 
-		$this->load->view('reports/date_input', $data);
+		$this->load->view('reports/date_input2', $data);
 	}
 
 	public function date_input_recv()
@@ -535,7 +534,7 @@ class Reports extends Secure_Controller
 		$data['stock_locations'] = array_reverse($stock_locations, TRUE);
 		$data['mode'] = 'receiving';
 
-		$this->load->view('reports/date_input', $data);
+		$this->load->view('reports/date_input2', $data);
 	}
 
 	//Graphical Expenses by Categories report
@@ -569,7 +568,7 @@ class Reports extends Secure_Controller
 			'show_currency' => TRUE
 		);
 
-		$this->load->view('reports/graphical', $data);
+		$this->load->view('reports/graphical2', $data);
 	}
 
 	//Graphical summary sales report
@@ -606,7 +605,7 @@ class Reports extends Secure_Controller
 			'show_currency' => TRUE
 		);
 
-		$this->load->view('reports/graphical', $data);
+		$this->load->view('reports/graphical2', $data);
 	}
 
 	//Graphical summary items report
@@ -642,7 +641,7 @@ class Reports extends Secure_Controller
 			'show_currency' => TRUE
 		);
 
-		$this->load->view('reports/graphical', $data);
+		$this->load->view('reports/graphical2', $data);
 	}
 
 	//Graphical summary customers report
@@ -676,7 +675,7 @@ class Reports extends Secure_Controller
 			'show_currency' => TRUE
 		);
 
-		$this->load->view('reports/graphical', $data);
+		$this->load->view('reports/graphical2', $data);
 	}
 
 	//Graphical summary suppliers report
@@ -710,7 +709,7 @@ class Reports extends Secure_Controller
 			'show_currency' => TRUE
 		);
 
-		$this->load->view('reports/graphical', $data);
+		$this->load->view('reports/graphical2', $data);
 	}
 
 	//Graphical summary employees report
@@ -744,7 +743,7 @@ class Reports extends Secure_Controller
 			'show_currency' => TRUE
 		);
 
-		$this->load->view('reports/graphical', $data);
+		$this->load->view('reports/graphical2', $data);
 	}
 
 	//Graphical summary taxes report
@@ -778,7 +777,7 @@ class Reports extends Secure_Controller
 			'show_currency' => TRUE
 		);
 
-		$this->load->view('reports/graphical', $data);
+		$this->load->view('reports/graphical2', $data);
 	}
 
 	//Graphical summary sales taxes report
@@ -812,7 +811,7 @@ class Reports extends Secure_Controller
 			'show_currency' => TRUE
 		);
 
-		$this->load->view('reports/graphical', $data);
+		$this->load->view('reports/graphical2', $data);
 	}
 
 	//Graphical summary customers report
@@ -848,7 +847,7 @@ class Reports extends Secure_Controller
 			'show_currency' => TRUE
 		);
 
-		$this->load->view('reports/graphical', $data);
+		$this->load->view('reports/graphical2', $data);
 	}
 
 	//Graphical summary discounts report
@@ -884,7 +883,7 @@ class Reports extends Secure_Controller
 			'show_currency' => FALSE
 		);
 
-		$this->load->view('reports/graphical', $data);
+		$this->load->view('reports/graphical2', $data);
 	}
 
 	//Graphical summary payments report
@@ -918,7 +917,7 @@ class Reports extends Secure_Controller
 			'show_currency' => TRUE
 		);
 
-		$this->load->view('reports/graphical', $data);
+		$this->load->view('reports/graphical2', $data);
 	}
 
 	public function specific_customer_input()
@@ -1048,7 +1047,7 @@ class Reports extends Secure_Controller
 			'overall_summary_data' => $this->xss_clean($model->getSummaryData($inputs)),
 			'grants_labarugi' => $this->xss_clean($this->Employee->get_employee_grants_labarugi($this->session->userdata('person_id'))) > 0
 		);
-		$this->load->view('reports/tabular_details', $data);
+		$this->load->view('reports/tabular_details2', $data);
 	}
 
 	public function specific_employee_input()
@@ -1151,7 +1150,7 @@ class Reports extends Secure_Controller
 			'grants_labarugi' => $this->xss_clean($this->Employee->get_employee_grants_labarugi($this->session->userdata('person_id'))) > 0
 		);
 
-		$this->load->view('reports/tabular_details', $data);
+		$this->load->view('reports/tabular_details2', $data);
 	}
 
 	public function specific_discount_input()
@@ -1258,7 +1257,7 @@ class Reports extends Secure_Controller
 			'grants_labarugi' => $this->xss_clean($this->Employee->get_employee_grants_labarugi($this->session->userdata('person_id'))) > 0
 		);
 
-		$this->load->view('reports/tabular_details', $data);
+		$this->load->view('reports/tabular_details2', $data);
 	}
 
 	public function get_detailed_sales_row($sale_id)
@@ -1427,7 +1426,7 @@ class Reports extends Secure_Controller
 			'grants_labarugi' => $this->xss_clean($this->Employee->get_employee_grants_labarugi($this->session->userdata('person_id'))) > 0
 		);
 		// cek($data);die();
-		$this->load->view('reports/tabular_details', $data);
+		$this->load->view('reports/tabular_details2', $data);
 	}
 
 	public function get_detailed_receivings_row($receiving_id)
@@ -1530,7 +1529,7 @@ class Reports extends Secure_Controller
 			'grants_labarugi' => $this->xss_clean($this->Employee->get_employee_grants_labarugi($this->session->userdata('person_id'))) > 0
 		);
 
-		$this->load->view('reports/tabular_details', $data);
+		$this->load->view('reports/tabular_details2', $data);
 	}
 
 	public function inventory_low()
@@ -1562,7 +1561,7 @@ class Reports extends Secure_Controller
 			'summary_data' => $this->xss_clean($model->getSummaryData($inputs))
 		);
 
-		$this->load->view('reports/tabular', $data);
+		$this->load->view('reports/tabular2', $data);
 	}
 
 	public function inventory_summary_input()
@@ -1577,7 +1576,7 @@ class Reports extends Secure_Controller
 		$stock_locations['all'] = $this->lang->line('reports_all');
 		$data['stock_locations'] = array_reverse($stock_locations, TRUE);
 
-		$this->load->view('reports/inventory_summary_input', $data);
+		$this->load->view('reports/inventory_summary_input2', $data);
 	}
 
 	public function inventory_summary($location_id = 'all', $item_count = 'all')
@@ -1614,7 +1613,7 @@ class Reports extends Secure_Controller
 			'summary_data' => $this->xss_clean($model->getSummaryData($report_data))
 		);
 
-		$this->load->view('reports/tabular', $data);
+		$this->load->view('reports/tabular2', $data);
 	}
 
 	//	Returns subtitle for the reports

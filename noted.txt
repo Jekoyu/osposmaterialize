@@ -1,0 +1,6 @@
+BERANDA:
++pelanggan
++item barang
+
+
+OFFICE:

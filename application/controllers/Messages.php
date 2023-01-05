@@ -13,7 +13,7 @@ class Messages extends Secure_Controller
 	
 	public function index()
 	{
-		$this->load->view('messages/sms');
+		$this->load->view('messages/sms2');
 	}
 
 	public function view($person_id = -1)

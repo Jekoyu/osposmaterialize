@@ -13,7 +13,7 @@ class Giftcards extends Secure_Controller
 	{
 		$data['table_headers'] = $this->xss_clean(get_giftcards_manage_table_headers());
 
-		$this->load->view('giftcards/manage', $data);
+		$this->load->view('giftcards/manage2', $data);
 	}
 
 	/*

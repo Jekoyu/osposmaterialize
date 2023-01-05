@@ -13,7 +13,7 @@ class Attributes extends Secure_Controller
 	{
 		$data['table_headers'] = $this->xss_clean(get_attribute_definition_manage_table_headers());
 
-		$this->load->view('attributes/manage', $data);
+		$this->load->view('attributes/manage2', $data);
 	}
 
 	/*

@@ -29,7 +29,8 @@ class Items extends Secure_Controller
 			'is_deleted' => $this->lang->line('items_is_deleted'),
 			'temporary' => $this->lang->line('items_temp'));
 
-		$this->load->view('items/manage', $data);
+		// $this->load->view('items/manage', $data);
+		$this->load->view('items/manage2', $data);
 	}
 
 	/*

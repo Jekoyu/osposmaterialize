@@ -233,7 +233,7 @@ class Config extends Secure_Controller
 		// load mailchimp lists associated to the given api key, already XSS cleaned in the private function
 		$data['mailchimp']['lists'] = $this->_mailchimp();
 		
-		$this->load->view("configs/manage", $data);
+		$this->load->view("configs/manage2", $data);
 	}
 	
 	public function save_info()

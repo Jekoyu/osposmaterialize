@@ -45,7 +45,7 @@ class Taxes extends Secure_Controller
 
 		$data['tax_type_options'] = $this->tax_lib->get_tax_type_options($data['default_tax_type']);
 
-		$this->load->view('taxes/manage', $data);
+		$this->load->view('taxes/manage2', $data);
 	}
 
 

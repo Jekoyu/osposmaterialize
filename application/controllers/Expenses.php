@@ -21,7 +21,7 @@ class Expenses extends Secure_Controller
 			'only_debit' => $this->lang->line('expenses_debit_filter'),
 			'is_deleted' => $this->lang->line('expenses_is_deleted'));
 
-		$this->load->view('expenses/manage', $data);
+		$this->load->view('expenses/manage2', $data);
 	}
 
 	public function search()

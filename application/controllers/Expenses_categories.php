@@ -13,7 +13,7 @@ class Expenses_categories extends Secure_Controller
 	{
 		 $data['table_headers'] = $this->xss_clean(get_expense_category_manage_table_headers());
 
-		 $this->load->view('expenses_categories/manage', $data);
+		 $this->load->view('expenses_categories/manage2', $data);
 	}
 
 	/*

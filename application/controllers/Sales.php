@@ -53,7 +53,7 @@ class Sales extends Secure_Controller
 					'only_check' => $this->lang->line('sales_check_filter'));
 			}
 
-			$this->load->view('sales/manage', $data);
+			$this->load->view('sales/manage2', $data);
 		}
 	}
 
@@ -818,7 +818,7 @@ class Sales extends Secure_Controller
 			else
 			{
 				$data['barcode'] = $this->barcode_lib->generate_receipt_barcode($data['sale_id']);
-				$this->load->view('sales/receipt', $data);
+				$this->load->view('sales/receipt2', $data);
 				$this->sale_lib->clear_all();
 			}
 		}
@@ -1172,13 +1172,13 @@ class Sales extends Secure_Controller
 
 		$data = $this->xss_clean($data);
 
-		$this->load->view("sales/register", $data);
+		$this->load->view("sales/register2", $data);
 	}
 
 	public function receipt($sale_id)
 	{
 		$data = $this->_load_sale_data($sale_id);
-		$this->load->view('sales/receipt', $data);
+		$this->load->view('sales/receipt2', $data);
 		$this->sale_lib->clear_all();
 	}
 
