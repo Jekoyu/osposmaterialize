@@ -21,7 +21,7 @@
 		
 		<!-- begin header navigation right -->
 		<ul class="nav navbar-nav navbar-right">
-			<li class="navbar-item pull-left" id="liveclock"><?php echo date($this->config->item('dateformat') . ' ' . $this->config->item('timeformat')) ?></li>
+			<li class="navbar-item" id="liveclock"><?php echo date($this->config->item('dateformat') . ' ' . $this->config->item('timeformat')) ?></li>
 			<li class="dropdown navbar-user">
 
 				<a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown">
@@ -30,10 +30,10 @@
 				</a>
 				<ul class="dropdown-menu animated fadeInLeft">
 					<li class="arrow"></li>
-					<li><a href="<?=site_url().'home/change_password/'.$user_info->person_id;?>" class="modal-dlg" data-btn-submit="<?=$this->lang->line('common_submit');?>">Ubah Profil</a></li>
+					<li><a href="<?=site_url().'home/change_password/'.$user_info->person_id;?>" class="modal-dlg" data-btn-submit="<?=$this->lang->line('common_submit');?>"><i class="fa fa-user"></i> Ubah Profil</a></li>
 					<!-- <li><a href="javascript:;">Setting</a></li> -->
 					<li class="divider"></li>
-					<li><a href="<?=site_url().'home/logout';?>"><?=$this->lang->line('common_logout');?></a></li>
+					<li><a href="<?=site_url().'home/logout';?>"><i class="fa fa-sign-out text-danger"></i> <?=$this->lang->line('common_logout');?></a></li>
 				</ul>
 			</li>
 		</ul>
