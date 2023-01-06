@@ -11,13 +11,13 @@
 		<!-- begin #content -->
 		<div id="content" class="content">
 			<!-- begin breadcrumb -->
-			<ol class="breadcrumb pull-right">
+			<ol class="breadcrumb pull-right no-print">
 				<li><a href="javascript:;">Beranda</a></li>
 				<li><a href="javascript:;">Nota Penerimaan</a></li>
 			</ol>
 			<!-- end breadcrumb -->
 			<!-- begin page-header -->
-			<h1 class="page-header">Nota Penerimaan</h1>
+			<h1 class="page-header no-print">Nota Penerimaan</h1>
 			<!-- end page-header -->
 			
 			<div class="row">

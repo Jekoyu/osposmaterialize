@@ -320,7 +320,7 @@ class Receivings extends Secure_Controller
 
 		$data = $this->xss_clean($data);
 		
-		$this->load->view("receivings/receipt", $data);
+		$this->load->view("receivings/receipt2", $data);
 
 		$this->receiving_lib->clear_all();
 	}
