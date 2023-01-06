@@ -16,7 +16,7 @@ $total_items = 0;
 	    	margin: 0 !important;
 	    }
 	.td-item {
-		font-size: 8pt;
+		font-size: 7pt;
 	}
 </style>
 <div id="receipt_wrapper" style="font-size:<?php echo $this->config->item('receipt_font_size');?>px;">
@@ -70,7 +70,7 @@ $total_items = 0;
 			{
 			?>
 				<tr>
-					<td class="td-item"><?php echo ucfirst($item['name']); ?></td>
+					<td class="td-item" colspan="3"><?php echo ucfirst($item['name']);?></td>
 				</tr>
 				
 				<tr>
@@ -230,7 +230,7 @@ $total_items = 0;
 	</table>
 	
 	<div id="footnote">
-		<p>JUMLAH ITEM : <?php echo $total_items; ?></p>
+		<p>Jumlah Item : <?php echo $total_items; ?></p>
 	</div>
 	<div id="sale_return_policy">
 		<?php echo nl2br($this->config->item('return_policy')); ?>
