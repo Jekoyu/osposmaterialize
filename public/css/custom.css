@@ -159,4 +159,13 @@ box-shadow: rgba(255,255,255, 0.75) 1.5em 0 0 0, rgba(255,255,255, 0.75) 1.1em 1
     font-weight: 700;
     font-size: 2rem;
 }
+
+#overall_sale {
+    width: 28%;
+    float: left;
+    margin-left: 0.7em;
+    padding-bottom: 1em;
+    padding-top: 1em;
+    font-size: 13px;
+    text-align: center;
 }
