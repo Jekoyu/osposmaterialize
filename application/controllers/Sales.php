@@ -966,7 +966,7 @@ class Sales extends Secure_Controller
 				$data['customer_info'] .= "\n" . $this->lang->line('sales_tax_id') . ": " . $customer_info->tax_id;
 			}
 			$data['tax_id'] = $customer_info->tax_id;
-			$saldo  = $this->Customer->get_saldo($customer_info->unik);
+			$saldo  = $this->Customer->get_saldo(@$customer_info->unik);
 			if($saldo) $data['saldo'] = $saldo;
 		}
 		// cek($data);die();
