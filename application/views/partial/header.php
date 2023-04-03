@@ -88,7 +88,6 @@
 		<link rel="stylesheet" type="text/css" href="css/custom.css"/>
 		<script type="text/javascript" src="js/custom.js"></script>
 	<!-- ./custom css -->
-
 	<?php $this->load->view('partial/header_js'); ?>
 	<?php $this->load->view('partial/general_js'); ?>
 	<?php $this->load->view('partial/lang_lines'); ?>

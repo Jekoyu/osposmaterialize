@@ -241,7 +241,7 @@ function get_payment_options()
 
 	$payments = array();
 
-
+	// $payments['dana'] = 'DANA ASSALAM';
 	if($config->item('payment_options_order') == 'debitcreditcash')
 	{
 		$payments[$lang->line('sales_debit')] = $lang->line('sales_debit');
@@ -413,7 +413,7 @@ function parse_decimals($number)
 	{
 		return $number;
 	}
-
+	$number = preg_replace("/[^0-9,]/", "", $number);
 	$config = get_instance()->config;
 	$fmt = new \NumberFormatter($config->item('number_locale'), \NumberFormatter::DECIMAL);
 
@@ -430,6 +430,38 @@ function parse_decimals($number)
 	}
 	catch(Exception $e)
 	{
+		return FALSE;
+	}
+}
+
+function parse_decimals2($number,$separator=1)
+{
+	// ignore empty strings and return
+	// cek($number);
+	if(empty($number))
+	{
+		return $number;
+	}
+
+	$number = preg_replace("/[^0-9,]/", "", $number);
+
+	$fmt = new \NumberFormatter('id_ID', \NumberFormatter::DECIMAL);
+	// cek($fmt);
+
+	$fmt->setAttribute(\NumberFormatter::FRACTION_DIGITS, '0');
+
+	if(empty($separator))
+	{
+		$fmt->setAttribute(\NumberFormatter::GROUPING_SEPARATOR_SYMBOL, '');
+	}
+
+	try
+	{
+		return $fmt->parse($number);
+	}
+	catch(Exception $e)
+	{
+		// cek($e);
 		return FALSE;
 	}
 }

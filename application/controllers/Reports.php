@@ -44,7 +44,10 @@ class Reports extends Secure_Controller
 		$model = $this->Summary_sales;
 
 		$report_data = $model->getData($inputs);
+		// cek($this->db->last_query());die();
 		$summary = $this->xss_clean($model->getSummaryData($inputs));
+		// cek($summary);
+		// die();
 
 		$tabular_data = array();
 		foreach($report_data as $row)

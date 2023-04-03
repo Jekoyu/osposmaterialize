@@ -285,6 +285,8 @@ class Sales extends Secure_Controller
 		$data = array();
 
 		$payment_type = $this->input->post('payment_type');
+		// cek($payment_type);die();
+
 		if($payment_type != $this->lang->line('sales_giftcard'))
 		{
 			$this->form_validation->set_rules('amount_tendered', 'lang:sales_amount_tendered', 'trim|required|callback_numeric');
@@ -376,6 +378,8 @@ class Sales extends Secure_Controller
 				$this->sale_lib->add_payment($payment_type, $amount_tendered);
 			}
 		}
+
+		// cek($data);die();
 
 		$this->_reload($data);
 	}
@@ -532,12 +536,15 @@ class Sales extends Secure_Controller
 
 	public function complete()
 	{
+		// $in = $this->input->post();
+		// die();
 		$sale_id = $this->sale_lib->get_sale_id();
 		$sale_type = $this->sale_lib->get_sale_type();
 		$data = array();
 		$data['dinner_table'] = $this->sale_lib->get_dinner_table();
 
 		$data['cart'] = $this->sale_lib->get_cart();
+		// cek($data);die();
 
 		$data['include_hsn'] = ($this->config->item('include_hsn') == '1');
 		$__time = time();
@@ -586,7 +593,7 @@ class Sales extends Secure_Controller
 		$data['taxes'] = $tax_details[0];
 		$data['discount'] = $this->sale_lib->get_discount();
 		$data['payments'] = $this->sale_lib->get_payments();
-
+		// cek($data);die();
 		// Returns 'subtotal', 'total', 'cash_total', 'payment_total', 'amount_due', 'cash_amount_due', 'payments_cover_total'
 		$totals = $this->sale_lib->get_totals($tax_details[0]);
 		$data['subtotal'] = $totals['subtotal'];
@@ -630,6 +637,7 @@ class Sales extends Secure_Controller
 		$data['print_price_info'] = TRUE;
 
 		$override_invoice_number = NULL;
+		// cek($data);die();
 
 		if($this->sale_lib->is_sale_by_receipt_mode() && $invoice_number_enabled )
 		{
@@ -705,6 +713,7 @@ class Sales extends Secure_Controller
 				}
 				else
 				{
+					if(!empty($data['saldo'])) $this->sale_lib->update_dana($data['saldo'], $data['payments'], $data['sale_id']);
 					$data['barcode'] = $this->barcode_lib->generate_receipt_barcode($data['sale_id']);
 					$this->load->view('sales/'.$invoice_view, $data);
 					$this->sale_lib->clear_all();
@@ -817,6 +826,8 @@ class Sales extends Secure_Controller
 			}
 			else
 			{
+				#update saldo data assalam;
+				if(!empty($data['saldo'])) $this->sale_lib->update_dana($data['saldo'], $data['payments'], $data['sale_id']);
 				$data['barcode'] = $this->barcode_lib->generate_receipt_barcode($data['sale_id']);
 				$this->load->view('sales/receipt2', $data);
 				$this->sale_lib->clear_all();
@@ -898,6 +909,8 @@ class Sales extends Secure_Controller
 		if($customer_id != -1)
 		{
 			$customer_info = $this->Customer->get_info($customer_id);
+			// cek($customer_info);
+
 			$data['customer_id'] = $customer_id;
 			if(!empty($customer_info->company_name))
 			{
@@ -953,7 +966,10 @@ class Sales extends Secure_Controller
 				$data['customer_info'] .= "\n" . $this->lang->line('sales_tax_id') . ": " . $customer_info->tax_id;
 			}
 			$data['tax_id'] = $customer_info->tax_id;
+			$saldo  = $this->Customer->get_saldo($customer_info->unik);
+			if($saldo) $data['saldo'] = $saldo;
 		}
+		// cek($data);die();
 
 		return $customer_info;
 	}
@@ -1085,6 +1101,8 @@ class Sales extends Secure_Controller
 		$data['taxes'] = $tax_details[0];
 		$data['discount'] = $this->sale_lib->get_discount();
 		$data['payments'] = $this->sale_lib->get_payments();
+
+		// cek($data);die();
 		// sale_type (0=pos, 1=invoice, 2=work order, 3=quote, 4=return)
 		$sale_type = $this->sale_lib->get_sale_type();
 
@@ -1094,6 +1112,35 @@ class Sales extends Secure_Controller
 		$data['total_units'] = $totals['total_units'];
 		$data['subtotal'] = $totals['subtotal'];
 		$data['total'] = $totals['total'];
+
+		// koreksi input nominal bayar jika pakai "dana":
+		if(array_key_exists('dana', $data['payments'])){
+			$payment_amount = $data['payments']['dana']['payment_amount'];
+			$total = $data['total'];
+			if($payment_amount > $total){
+				// cek('over !');die();
+				$this->sale_lib->edit_payment('dana', $data['total']);
+				$data['payments'] = $this->sale_lib->get_payments();
+				$totals = $this->sale_lib->get_totals($tax_details[0]);
+			}
+			// koreksi jika saldo "dana" tidak mencukupi:
+			if(!empty($data['saldo'])){
+				// cek($data['saldo']);die();
+				$saldo = parse_decimals($data['saldo']['nominal']);
+				// cek($saldo);die();
+				if($saldo < $total && $payment_amount >= $total){
+					$this->sale_lib->edit_payment('dana', $saldo);
+					$data['payments'] = $this->sale_lib->get_payments();
+					$totals = $this->sale_lib->get_totals($tax_details[0]);
+				}
+			}else{
+				#jika saldo "dana" kosong, maka pembayaran tidak bisa dilakukan:
+				$this->sale_lib->delete_payment('dana');
+				$data['payments'] = $this->sale_lib->get_payments();
+				$totals = $this->sale_lib->get_totals($tax_details[0]);
+			}
+		}
+
 		$data['payments_total'] = $totals['payment_total'];
 		$data['payments_cover_total'] = $totals['payments_cover_total'];
 		$data['cash_rounding'] = $this->session->userdata('cash_rounding');
@@ -1121,11 +1168,19 @@ class Sales extends Secure_Controller
 		if($customer_info && $this->config->item('customer_reward_enable') == TRUE)
 		{
 			$data['payment_options'] = $this->Sale->get_payment_options(TRUE, TRUE);
+			$payment_options_select = $this->sale_lib->get_payment_options_select();
 		}
 		else
 		{
 			$data['payment_options'] = $this->Sale->get_payment_options();
+			$payment_options_select = $this->sale_lib->get_payment_options_select();
 		}
+
+		// cek(array_keys($data['payment_options'])[0]);
+
+		if(empty($payment_options_select)) $payment_options_select = array_keys($data['payment_options'])[0];
+		$data['payment_options_select'] = $payment_options_select;
+		// cek($data);
 
 		$data['items_module_allowed'] = $this->Employee->has_grant('items', $this->Employee->get_logged_in_employee_info()->person_id);
 
@@ -1171,6 +1226,7 @@ class Sales extends Secure_Controller
 		}
 
 		$data = $this->xss_clean($data);
+		// cek($data);
 
 		$this->load->view("sales/register2", $data);
 	}

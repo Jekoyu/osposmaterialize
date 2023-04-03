@@ -378,10 +378,31 @@ class Sale_lib
 		$this->CI->session->set_userdata('sales_payments', $payments_data);
 	}
 
+	// Get Payment combo select #28-03-2023
+	public function get_payment_options_select()
+	{
+		if(!$this->CI->session->userdata('payment_options_select'))
+		{
+			$this->set_payment_options_select();
+		}
+
+		return $this->CI->session->userdata('payment_options_select');
+	}
+
+	// Set Payment combo select #28-03-2023
+	public function set_payment_options_select($id_payment=null)
+	{
+		if(!empty($id_payment)) $this->CI->session->set_userdata('payment_options_select', $id_payment);
+		else $this->CI->session->unset_userdata('payment_options_select');
+	}
+
 	// Multiple Payments
 	public function add_payment($payment_id, $payment_amount)
 	{
 		$payments = $this->get_payments();
+		// cek($payment_id);
+		// cek($payments);
+		// die();
 		if(isset($payments[$payment_id]))
 		{
 			//payment_method already exists, add to payment_amount
@@ -394,7 +415,6 @@ class Sale_lib
 
 			$payments += $payment;
 		}
-
 		$this->set_payments($payments);
 	}
 
@@ -428,6 +448,11 @@ class Sale_lib
 		$this->CI->session->unset_userdata('sales_payments');
 	}
 
+	public function clear_saldo()
+	{
+		$this->CI->session->unset_userdata('saldo');
+	}
+
 	// Multiple Payments
 	public function get_payments_total()
 	{
@@ -435,6 +460,7 @@ class Sale_lib
 		$this->reset_cash_flags();
 		foreach($this->get_payments() as $payments)
 		{
+			// cek($payments);
 			$subtotal = bcadd($payments['payment_amount'], $subtotal);
 			if($this->CI->session->userdata('cash_rounding') && $this->CI->lang->line('sales_cash') != $payments['payment_type'])
 			{
@@ -1051,6 +1077,29 @@ class Sale_lib
 		return $this->CI->session->userdata('sale_id');
 	}
 
+	public function update_dana($saldo, $payments, $pos_id){
+		if(array_key_exists('dana', $payments)){
+			// cek($saldo);
+			// cek(floatval($payments['dana']['payment_amount']));
+			// die();
+			$this->CI->load->library('curl');
+			$data = $this->CI->curl->simple_post('http://localhost/dana-assalam/api/v1/saldo/trans',[
+				'id_user'=>$saldo['id_user'],
+				'nominal'=>floatval($payments['dana']['payment_amount']),
+				'ket'=>$pos_id
+			],
+			['USERPWD'=>'assalam:solo2023']);
+			// cek($this->CI->curl->info);
+			// cek($data);
+			// die();
+			$data = json_decode($data,true);
+			if($data['status']) return TRUE;
+			else return FALSE;
+		}
+
+		// die();
+	}
+
 	public function clear_all()
 	{
 		$this->CI->session->set_userdata('sale_id', -1);
@@ -1066,6 +1115,8 @@ class Sale_lib
 		$this->empty_payments();
 		$this->remove_customer();
 		$this->clear_cash_flags();
+		#clear saldo from dana api
+		$this->clear_saldo();
 	}
 
 	public function clear_cash_flags()

@@ -3410,8 +3410,8 @@ label.required {
   text-align: right;
 }
 #register_wrapper {
-  float: left;
-  width: 70%;
+/*  float: left;*/
+/*  width: 70%;*/
   font-size: 13px;
 }
 #add_item_form,
@@ -3455,24 +3455,24 @@ label.required {
   text-align: center;
 }
 #overall_sale {
-  width: 29%;
-  float: left;
-  margin-left: 0.1em;
-  padding-bottom: 1em;
-  padding-top: 1em;
+/*  width: 29%;*/
+/*  float: left;*/
+/*  margin-left: 0.1em;*/
+/*  padding-bottom: 1em;*/
+/*  padding-top: 1em;*/
   font-size: 13px;
   text-align: center;
 }
 #overall_sale .panel-body {
-  padding-top: 0;
-  padding-bottom: 0;
+/*  padding-top: 0;*/
+/*  padding-bottom: 0;*/
 }
 #overall_sale .form-group {
-  margin: 0;
+/*  margin: 0;*/
 }
 #overall_sale .btn {
-  margin-top: 0.5em;
-  margin-bottom: 0.5em;
+/*  margin-top: 0.5em;*/
+/*  margin-bottom: 0.5em;*/
 }
 #buttons_sale,
 #payment_details,

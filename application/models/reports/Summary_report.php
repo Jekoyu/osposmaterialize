@@ -152,13 +152,16 @@ abstract class Summary_report extends Report
 
 	public function getData(array $inputs)
 	{
+		// print_r($inputs);die();
 		$this->_select($inputs);
 
 		$this->_from();
 
 		$this->_where($inputs);
 
-		$this->_group_order();
+		$this->_group_order($inputs);
+		// if(!empty($inputs['order'])) $this->db->order_by($inputs['order']);
+		if(!empty($inputs['limit'])) $this->db->limit($inputs['limit']);
 
 		return $this->db->get()->result_array();
 	}

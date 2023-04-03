@@ -26,10 +26,11 @@ class Summary_sales extends Summary_report
 		');
 	}
 
-	protected function _group_order()
+	protected function _group_order(array $inputs=[])
 	{
+		
 		$this->db->group_by('sale_date');
-		$this->db->order_by('sale_date');
+		if(!empty($inputs['order'])) $this->db->order_by($inputs['order']); else $this->db->order_by('sale_date');
 	}
 }
 ?>

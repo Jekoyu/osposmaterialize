@@ -93,6 +93,16 @@ class Customer extends Person
 		}
 	}
 
+	public function get_saldo($unik)
+	{
+		if(empty($unik)) return false;
+		$this->load->library('curl');
+		$data = $this->curl->simple_get('http://localhost/dana-assalam/api/v1/saldo/data',['unik'=>$unik],['USERPWD'=>'assalam:solo2023']);
+			$data = json_decode($data,true);
+			if(@$data['status']) return $data['results'];
+			else return FALSE;
+	}
+
 	/*
 	Gets stats about a particular customer
 	*/

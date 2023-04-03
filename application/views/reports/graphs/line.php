@@ -37,7 +37,7 @@
 			// offset the labels a bit from the axis to avoid overlaps
 			labelOffset: {
 				x: 0,
-				y: 20
+				y: -70
 			}
 		},
 
@@ -87,7 +87,7 @@
 					axisClass: 'ct-axis-title',
 					offset: {
 						x: -100,
-						y: 100
+						y: 20
 					},
 					textAnchor: 'middle'
 				},

@@ -92,7 +92,24 @@ class Customers extends Persons
 	*/
 	public function suggest()
 	{
-		$suggestions = $this->xss_clean($this->Customer->get_search_suggestions($this->input->get('term'), TRUE));
+		if($this->input->get('payment')=='dana'){
+			$in = $this->input->get();
+			$this->load->library('curl');
+
+			// Information
+			$data = $this->curl->simple_get('http://localhost/dana-assalam/api/v1/ref/users',['term'=>$in['term']],['USERPWD'=>'assalam:solo2023']);
+			$data = json_decode($data);
+			if($data->status == 1){
+				foreach ($data->results as $r) {
+					$suggestions[] = ['value'=>$r->id,'unik'=>$r->unik,'label'=>$r->nama, 'saldo'=>$r->saldo, 'rc'=>'dana'];
+				}
+			}
+
+			// cek($suggestions);die();
+
+		}else{
+			$suggestions = $this->xss_clean($this->Customer->get_search_suggestions($this->input->get('term'), TRUE));
+		}
 
 		echo json_encode($suggestions);
 	}
@@ -459,6 +476,43 @@ class Customers extends Persons
 			{
 				echo json_encode(array('success' => FALSE, 'message' => $this->lang->line('customers_csv_import_nodata_wrongformat')));
 			}
+		}
+	}
+
+	#push data dari api dana:
+	function push_from_dana(){
+		$in = $this->input->get();
+		$this->load->model('general');
+
+		$exist_p = $this->general->datagrabs([
+			'tabel'=>'ospos_people',
+			'where'=>['unik'=>$in['unik']],
+		])->num_rows();
+
+		// cek($in);die();
+
+		if($exist_p == 0){
+			$simpan= ['unik'=>$in['unik'],'first_name'=>$in['nama']];
+			$this->general->save_data('ospos_people',$simpan);
+			$id_p = $this->db->insert_id();
+			#push to customer:
+			$push_cust = $this->general->save_data('ospos_customers',['id_person'=>$id_p,'taxable'=>1,'consent'=>1], 'id_person', $id_p);
+			if(!$push_cust){
+				$push_cust = $this->general->save_data('ospos_customers',['person_id'=>$id_p,'taxable'=>1,'consent'=>1]);
+			}
+
+		}else{
+			$id_p = $this->general->datagrabs([
+				'tabel'=>'ospos_people',
+				'select'=>'person_id',
+				'where'=>['unik'=>$in['unik']],
+			])->row()->person_id;
+		}
+
+		if(!empty($id_p)){
+			die(json_encode(['status'=>true, 'id'=>$id_p]));
+		}else{
+			die(json_encode(['status'=>false, 'msg'=>'Pelanggan gagal disimpan!']));
 		}
 	}
 }

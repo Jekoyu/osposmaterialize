@@ -104,6 +104,8 @@
 		<!-- end minjs template tags -->
 		<script src="<?=base_url();?>js/general.js" type="text/javascript"></script>
 	<?php endif; ?>
+	<!-- accounting js -->
+	<script src="<?=base_url();?>bower_components/accounting/accounting.js"></script>
 
 	<!-- custom css -->
 		<link rel="stylesheet" type="text/css" href="<?=base_url();?>css/custom.css"/>
