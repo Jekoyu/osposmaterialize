@@ -32,17 +32,8 @@
 
 	$(document).on('change click paste', 'input.auto-currency', function() {
 	    $(this).val(function(index, value) {
-	        var sign = value.charAt(0),
-	        $return = 0;
-
-	        $return = accounting.formatMoney(accounting.unformat(value, ","), "", 2, ".", ",");
-
-	        if (sign == '-')
-	        {
-	            $return = '-'+$return;
-	        }
-
-	        return $return;
+	        if(value !== "") return accounting.formatMoney(accounting.unformat(value, ","), "", 2, ".", ",");
+	        else return;
 	    });
 	});
 

@@ -283,6 +283,7 @@ class Sales extends Secure_Controller
 	public function add_payment()
 	{
 		$data = array();
+		$amount_tendered = parse_decimals($this->input->post('amount_tendered'));
 
 		$payment_type = $this->input->post('payment_type');
 		// cek($payment_type);die();
@@ -312,7 +313,7 @@ class Sales extends Secure_Controller
 			if($payment_type == $this->lang->line('sales_giftcard'))
 			{
 				// in case of giftcard payment the register input amount_tendered becomes the giftcard number
-				$giftcard_num = $this->input->post('amount_tendered');
+				$giftcard_num = $amount_tendered;
 
 				$payments = $this->sale_lib->get_payments();
 				$payment_type = $payment_type . ':' . $giftcard_num;
@@ -374,7 +375,7 @@ class Sales extends Secure_Controller
 			}
 			else
 			{
-				$amount_tendered = $this->input->post('amount_tendered');
+				$amount_tendered = $amount_tendered;
 				$this->sale_lib->add_payment($payment_type, $amount_tendered);
 			}
 		}

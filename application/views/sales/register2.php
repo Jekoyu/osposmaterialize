@@ -96,7 +96,8 @@
 														<?php echo form_input(array(
 															'name'=>'amount_tendered', 
 															'id'=>'amount_tendered', 
-															'placeholder'=>'Gift Card', 'disabled' => true,
+															'placeholder'=>'Gift Card',
+															'disabled' => true,
 															'class'=>'form-control input-xl giftcard-input auto-currency',
 															'style'=>'font-weight: 800;font-size: x-large;',
 															'size'=>'5', 'tabindex'=>++$tabindex)); ?>
@@ -635,7 +636,8 @@
 																	<tr>
 																		<td><?php echo anchor($controller_name."/delete_payment/$payment_id", '<span class="glyphicon glyphicon-trash"></span>'); ?></td>
 																		<td><?php echo $payment['payment_type']; ?></td>
-																		<td style="text-align: right;"><?php echo to_currency( $payment['payment_amount'] ); ?></td>
+																		<td style="text-align: right;white-space: nowrap;"><?php 
+																		echo to_currency($payment['payment_amount']); ?></td>
 																	</tr>
 																	<?php
 																}
@@ -1056,8 +1058,9 @@
 											}
 										});
 
-										$("#add_payment_button").click(function()
+										$(document).on('click','#add_payment_button',function(e)
 										{
+											e.preventDefault();
 											$('#add_payment_form').submit();
 										});
 
