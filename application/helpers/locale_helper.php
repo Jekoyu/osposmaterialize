@@ -413,9 +413,8 @@ function parse_decimals($number)
 	{
 		return $number;
 	}
-	// $number = preg_replace("/[^0-9,]/", "", $number);
 	$number = preg_replace("/[.,](?=\d{3,}$)/", "", $number);
-	$number = preg_replace('/[^\d-]+/', '', $number);
+	$number = preg_replace("/[^\d.,-]/", "", $number);
 	$config = get_instance()->config;
 	$fmt = new \NumberFormatter($config->item('number_locale'), \NumberFormatter::DECIMAL);
 
@@ -447,9 +446,8 @@ function parse_decimals2($number,$separator=1)
 		return $number;
 	}
 
-	// $number = preg_replace("/[^0-9,]/", "", $number);
 	$number = preg_replace("/[.,](?=\d{3,}$)/", "", $number);
-	$number = preg_replace('/[^\d-]+/', '', $number);
+	$number = preg_replace("/[^\d.,-]/", "", $number);
 
 	$fmt = new \NumberFormatter('id_ID', \NumberFormatter::DECIMAL);
 	// cek($fmt);
