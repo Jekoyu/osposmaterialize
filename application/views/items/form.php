@@ -159,8 +159,8 @@
 					<?php echo form_input(array(
 							'name'=>'cost_price',
 							'id'=>'cost_price',
-							'class'=>'form-control input-sm',
-							'onkeyup'=>'currencyFormat(this);',
+							'class'=>'form-control input-sm auto-currency',
+							// 'onkeyup'=>'currencyFormat(this);',
 							'value'=>to_currency_no_money($item_info->cost_price))
 							);?>
 					<?php if (currency_side()): ?>
@@ -180,15 +180,38 @@
 					<?php echo form_input(array(
 							'name'=>'unit_price',
 							'id'=>'unit_price',
-							'class'=>'form-control input-sm',
-							'onkeyup'=>'currencyFormat(this);',
+							'class'=>'form-control input-sm auto-currency',
+							// 'onkeyup'=>'currencyFormat(this);',
 							'value'=>to_currency_no_money($item_info->unit_price))
 							);?>
 					<?php if (currency_side()): ?>
 						<span class="input-group-addon input-sm"><b><?php echo $this->config->item('currency_symbol'); ?></b></span>
 					<?php endif; ?>
+				</div>				
+			</div>
+
+			<div class='col-xs-4'>
+				<div class="input-group input-group-sm">
+					<span class="input-group-addon input-sm"><b>%</b></span>
+					<?php echo form_input(array(
+							'name'=>'unit_price_percent',
+							'id'=>'unit_price_percent',
+							'class'=>'form-control input-sm',
+							// 'onkeyup'=>'currencyFormat(this);',
+							'value'=>@$item_info->unit_price_percent ? to_quantity_decimals($item_info->unit_price_percent) : ($item_info->item_id < 0 ? 10 : 0)
+							)
+							);?>
+					<div class="input-group-btn input-sm">
+						<?php echo form_checkbox(array(
+						'name'=>'unit_price_ck',
+						'id'=>'unit_price_ck',
+						'value'=>1,
+						'checked'=>$item_info->item_id < 0 ? 1 : @$item_info->unit_price_ck)
+						);?>
+					</div>
 				</div>
 			</div>
+			
 		</div>
 
 		<?php if(!$use_destination_based_tax) { ?>
@@ -498,6 +521,23 @@ $(document).ready(function()
 		})
 	});
 
+	// checked persent harga jual:
+	$("#unit_price_ck").change(function() {
+	  if ($(this).is(":checked")) {
+	    console.log("Checkbox is checked");
+	    _setUnitPrice(1);
+	  } else {
+	    console.log("Checkbox is unchecked");
+	    $('[name=unit_price]').val(0);
+	    // $('[name=unit_price_percent]').val(0);
+	  }
+	});
+
+	$("[name=cost_price],[name=unit_price_percent]").change(function() {
+	  _setUnitPrice(1);
+	});
+
+
 	$.validator.addMethod('valid_chars', function(value, element) {
 		return value.match(/(\||:)/g) == null;
 	}, "<?php echo $this->lang->line('attributes_attribute_value_invalid_chars'); ?>");
@@ -639,5 +679,16 @@ $(document).ready(function()
 	init_validation();
 
 });
+
+function _setUnitPrice($ck=false){
+	var isCk = $('#unit_price_ck').is(":checked");
+	if(isCk){
+		var _unit_percent = parseFloat($('[name=unit_price_percent]').val());
+		var _cost_price = accounting.unformat($('[name=cost_price]').val(), ",");
+		var _unit_price = _cost_price + ((_cost_price * _unit_percent) / 100);
+
+		$('[name=unit_price]').val(accounting.formatMoney(_unit_price, "", 2, ".", ","));
+	}
+}
 </script>
 

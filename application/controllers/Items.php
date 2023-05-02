@@ -9,6 +9,7 @@ class Items extends Secure_Controller
 		parent::__construct('items');
 
 		$this->load->library('item_lib');
+		$this->load->library('hpp_lib');
 	}
 
 	public function index()
@@ -548,6 +549,7 @@ class Items extends Secure_Controller
 		$default_pack_name = $this->lang->line('items_default_pack_name');
 
 		//Save item data
+		// cek($this->input->post());die();
 		$item_data = array(
 			'name' => $this->input->post('name'),
 			'description' => $this->input->post('description'),
@@ -566,7 +568,9 @@ class Items extends Secure_Controller
 			'pack_name' => $this->input->post('pack_name') == NULL ? $default_pack_name : $this->input->post('pack_name'),
 			'low_sell_item_id' => $this->input->post('low_sell_item_id') == NULL ? $item_id : $this->input->post('low_sell_item_id'),
 			'deleted' => $this->input->post('is_deleted') != NULL,
-			'hsn_code' => $this->input->post('hsn_code') == NULL ? '' : $this->input->post('hsn_code')
+			'hsn_code' => $this->input->post('hsn_code') == NULL ? '' : $this->input->post('hsn_code'),
+			'unit_price_ck' => (!empty($this->input->post('unit_price_ck')) ? 1 : 0),
+			'unit_price_percent' => parse_decimals($this->input->post('unit_price_percent')),
 		);
 
 		if($item_data['item_type'] == ITEM_TEMP)
@@ -888,7 +892,7 @@ class Items extends Secure_Controller
 				{
 					$invalidated	= FALSE;
 					$line 			= array_combine($keys,$this->xss_clean($line_array[$i]));	//Build a XSS-cleaned associative array with the row to use to assign values
-
+					// cek($line);die();
 					if(!empty($line))
 					{
 						$item_data = array(
@@ -902,7 +906,7 @@ class Items extends Secure_Controller
 							'allow_alt_description'	=> $line['Allow Alt Description'] != '' ? '1' : '0',
 							'is_serialized'			=> $line['Item has Serial Number'] != '' ? '1' : '0',
 							'hsn_code'				=> $line['HSN'],
-							'pic_filename'			=> $line['item_image']
+							'pic_filename'			=> @$line['item_image']
 						);
 
 						$item_number 				= $line['Barcode'];
@@ -986,10 +990,10 @@ class Items extends Secure_Controller
 		$check_for_numeric_values = array(
 			$item_data['cost_price'],
 			$item_data['unit_price'],
-			$item_data['reorder_level'],
+			@$item_data['reorder_level'],
 			$item_data['supplier_id'],
-			$line['Tax 1 Percent'],
-			$line['Tax 2 Percent']
+			@$line['Tax 1 Percent'],
+			@$line['Tax 2 Percent']
 		);
 
 		//Add in Stock Location values to check for numeric

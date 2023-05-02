@@ -247,8 +247,14 @@ class Receiving_lib
 				'allow_alt_description' => $item_info->allow_alt_description,
 				'is_serialized' => $item_info->is_serialized,
 				'quantity' => $quantity,
+
 				'discount' => $discount,
 				'discount_type' => $discount_type,
+
+				// default setting harga jual
+				'unit_price' => $item_info->unit_price,
+				'unit_price_type' => 1,
+
 				'in_stock' => $this->CI->Item_quantity->get_item_quantity($item_id, $item_location)->quantity,
 				'price' => $price,
 				'receiving_quantity' => $receiving_quantity,
@@ -274,23 +280,69 @@ class Receiving_lib
 		return TRUE;
 	}
 
-	public function edit_item($line, $description, $serialnumber, $quantity, $discount, $discount_type, $price, $receiving_quantity)
+	public function edit_item($line, $description, $serialnumber, $quantity, $discount, $discount_type, $price, $receiving_quantity, $unit_price=0, $unit_price_type=null)
 	{
 		$items = $this->get_cart();
 		if(isset($items[$line]))
 		{
+
 			$line = &$items[$line];
+
+			// cek($line);
+			$cur_item_info = $this->CI->Item->get_info($line['item_id'],$line['item_location']);
+			// cek($cur_item_info);
+			// die();
 			$line['description'] = $description;
 			$line['serialnumber'] = $serialnumber;
 			$line['quantity'] = $quantity;
 			$line['receiving_quantity'] = $receiving_quantity;
+			
 			$line['discount'] = $discount;
 			if(!is_null($discount_type))
 			{
 				$line['discount_type'] = $discount_type;
 			}
+
+			$line['unit_price'] = $unit_price;
+			// cek($unit_price_type);die();
+			if(!is_null($unit_price_type)) //tipe rupiah
+			{
+				$line['unit_price_type'] = $unit_price_type;
+			}
+
+			if($cur_item_info->cost_price != $price && $this->CI->config->item('receiving_calculate_average_price') != FALSE)
+			{
+				$items_received = $receiving_quantity != 0 ? $quantity * $receiving_quantity : $quantity;
+				
+				$cost_avg_price = $this->CI->Item->get_cost_price_average($line['item_id'], $items_received, $price, $cur_item_info->cost_price);
+
+				// cek($cur_item_info);
+				// cek($cur_item_info->cost_price);
+				// cek($price);
+				// cek($cost_avg_price);
+				// die();
+				$line['cost_avg_price']  = $cost_avg_price;
+			}else{
+				$line['cost_avg_price'] = null;
+			}
+			// cek(intval($unit_price_type));die();
+
+			
+			if($line['unit_price_type'] < 1){ //persen
+				$cost_price = $price;
+				if($line['cost_avg_price'] > 0) $cost_price = $line['cost_avg_price'];
+				// cek($unit_price);
+				// cek($cost_price);
+				
+				$unit_price_percent_nom = $this->CI->Item->get_unit_price_percent_nom($line['item_id'], $cost_price, $unit_price, $line['unit_price_type']);
+				$line['unit_price_percent_nom']  = $unit_price_percent_nom;
+			}else{
+				$line['unit_price_percent_nom'] = null;
+			}
+			
 			$line['price'] = $price;
 			$line['total'] = $this->get_item_total($quantity, $price, $discount, $discount_type, $receiving_quantity);
+			// cek($line);die();
 			$this->set_cart($items);
 		}
 

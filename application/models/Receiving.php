@@ -75,6 +75,8 @@ class Receiving extends CI_Model
 			'reference' => $reference
 		);
 
+		// cek($this->config->item('receiving_calculate_average_price'));die();
+
 		//Run these queries as a transaction, we want to make sure we do all or nothing
 		$this->db->trans_start();
 
@@ -105,9 +107,20 @@ class Receiving extends CI_Model
 			$items_received = $item['receiving_quantity'] != 0 ? $item['quantity'] * $item['receiving_quantity'] : $item['quantity'];
 
 			// update cost price, if changed AND is set in config as wanted
+			
+			// cek($line);
+			// cek($this->config->item('receiving_calculate_average_price'));die();
 			if($cur_item_info->cost_price != $item['price'] && $this->config->item('receiving_calculate_average_price') != FALSE)
 			{
 				$this->Item->change_cost_price($item['item_id'], $items_received, $item['price'], $cur_item_info->cost_price);
+			}
+			// update harga jual:
+			if($cur_item_info->unit_price != $item['unit_price'])
+			{
+				$cost_price = $item['price'];
+				if($item['cost_avg_price'] > 0) $cost_price = $item['cost_avg_price'];
+
+				$this->Item->change_unit_price($item['item_id'],$cost_price,$item['unit_price'], $item['unit_price_type']);
 			}
 
 			//Update stock quantity

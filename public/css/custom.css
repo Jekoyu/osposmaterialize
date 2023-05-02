@@ -196,7 +196,7 @@ input[type="text"]#customer {
 
 
 @media all and (max-width:480px) {
-   .btn-responsive, .btn-group  { width: 100% !important; display:block !important; }
+   .btn-responsive, .btn-group  { width: 100% !important; display:inline-block !important; }
 } 
 
 /*custom  */

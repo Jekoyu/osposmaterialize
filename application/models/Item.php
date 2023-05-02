@@ -412,7 +412,7 @@ class Item extends CI_Model
 			if($this->db->insert('items', $item_data))
 			{
 				$item_data['item_id'] = $this->db->insert_id();
-				if($item_data['low_sell_item_id'] == -1)
+				if(@$item_data['low_sell_item_id'] == -1)
 				{
 					$this->db->where('item_id', $item_data['item_id']);
 					$this->db->update('items', array('low_sell_item_id'=>$item_data['item_id']));
@@ -979,6 +979,73 @@ class Item extends CI_Model
 		$data = array('cost_price' => $average_price);
 
 		return $this->save($data, $item_id);
+	}
+
+	public function get_cost_price_average($item_id, $items_received, $new_price, $old_price = NULL)
+	{
+		if($old_price === NULL)
+		{
+			$item_info = $this->get_info($item_id);
+			$old_price = $item_info->cost_price;
+		}
+
+		$this->db->from('item_quantities');
+		$this->db->select_sum('quantity');
+		$this->db->where('item_id', $item_id);
+		$this->db->join('stock_locations', 'stock_locations.location_id=item_quantities.location_id');
+		$this->db->where('stock_locations.deleted', 0);
+		$old_total_quantity = $this->db->get()->row()->quantity;
+
+		$total_quantity = $old_total_quantity + $items_received;
+		$average_price = bcdiv(bcadd(bcmul($items_received, $new_price), bcmul($old_total_quantity, $old_price)), $total_quantity);
+
+		return $average_price;
+	}
+
+	public function change_unit_price($item_id, $price, $unit_price, $unit_price_type)
+	{
+		
+		$unit_price_percent = null;
+		if($unit_price_type < 1){
+			$total_value = $price;
+			$scale = 2;
+			$nominal_percentage = bcmul($unit_price, bcdiv($total_value, '100', $scale), $scale);
+			$nominal = $price + $nominal_percentage;
+
+			$unit_price_percent = $unit_price;
+
+		}else{
+			$nominal = $unit_price;
+		}
+
+		$data = array(
+			'unit_price' => $nominal
+		);
+
+		if(!empty($unit_price_percent)) $data['unit_price_percent'] = $unit_price_percent;
+
+		return $this->save($data, $item_id);
+	}
+
+	public function get_unit_price_percent_nom($item_id, $price, $unit_price, $unit_price_type)
+	{
+		
+		if($unit_price_type < 1){
+			$total_value = $price;
+			$scale = 2;
+			$nominal_percentage = bcmul($unit_price, bcdiv($total_value, '100', $scale), $scale);
+			$nominal = $price + $nominal_percentage;
+
+			// cek($total_value);
+			// cek($unit_price);
+			// cek($unit_price_percent);
+			// die();
+
+		}else{
+			$nominal = $unit_price;
+		}
+
+		return $nominal;
 	}
 
 	public function update_item_number($item_id, $item_number)

@@ -128,7 +128,7 @@
 
 									<?php echo form_open($controller_name."/change_mode", array('id'=>'mode_form', 'class'=>'form-horizontal panel panel-default')); ?>
 									<div class="panel-body form-group">
-										<div>
+										<!-- <div> -->
 											<?php echo form_dropdown('mode', $modes, $mode, array('onchange'=>"$('#mode_form').submit();", 'class'=>'selectpicker show-menu-arrow', 'data-style'=>'btn-default btn-xl btn-responsive mb-5', 'data-width'=>'fit')); ?>
 											<?php
 											if($this->config->item('dinner_table_enable') == TRUE)
@@ -146,19 +146,22 @@
 												<?php
 											}
 											if($this->Employee->has_grant('reports_sales', $this->session->userdata('person_id')))
-											{
-												?>
-													<?php echo anchor($controller_name."/manage", '<span class="glyphicon glyphicon-list-alt">&nbsp</span>' . $this->lang->line('sales_takings'),
-													array('class'=>'btn btn-primary btn-xl btn-responsive mb-5', 'id'=>'sales_takings_button', 'title'=>$this->lang->line('sales_takings'))); ?>
-												<?php
-											}
-											?>
+											{ ?>
+												<?=anchor($controller_name."/manage",
+													'<span class="glyphicon glyphicon-list-alt">&nbsp</span>' . $this->lang->line('sales_takings'),
+													[
+													'class'=>'btn btn-primary btn-xl btn-responsive mb-5',
+													'id'=>'sales_takings_button', 'title'=>$this->lang->line('sales_takings')
+													]
+												); ?>
+												
+											<?php } ?>
 
 											<button class='btn btn-default btn-xl btn-responsive mb-5 modal-dlg' id='show_suspended_sales_button' data-href="<?php echo site_url($controller_name."/suspended"); ?>"
 													title="<?php echo $this->lang->line('sales_suspended_sales'); ?>">
 												<span class="glyphicon glyphicon-align-justify">&nbsp</span><?php echo $this->lang->line('sales_suspended_sales'); ?>
 											</button>
-										</div>
+										<!-- </div> -->
 									</div>
 									<?php echo form_close(); ?>
 

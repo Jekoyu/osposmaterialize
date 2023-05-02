@@ -93,6 +93,7 @@ class Receivings extends Secure_Controller
 		$this->barcode_lib->parse_barcode_fields($quantity, $item_id_or_number_or_item_kit_or_receipt);
 		$quantity = ($mode == 'receive' || $mode == 'requisition') ? $quantity : -$quantity;
 		$item_location = $this->receiving_lib->get_stock_source();
+
 		$discount = $this->config->item('default_receivings_discount');
 		$discount_type = $this->config->item('default_receivings_discount_type');
 
@@ -124,14 +125,20 @@ class Receivings extends Secure_Controller
 		$serialnumber = $this->input->post('serialnumber');
 		$price = parse_decimals($this->input->post('price'));
 		$quantity = parse_decimals($this->input->post('quantity'));
+		
 		$discount = parse_decimals($this->input->post('discount'));
 		$discount_type = parse_decimals($this->input->post('discount_type'));
+		
+		$unit_price = parse_decimals($this->input->post('unit_price')); //harga_jual
+		$unit_price_type = parse_decimals($this->input->post('unit_price_type')); //harga_jual
+
+
 		$item_location = $this->input->post('location');
 		$receiving_quantity = $this->input->post('receiving_quantity');
 
 		if($this->form_validation->run() != FALSE)
 		{
-			$this->receiving_lib->edit_item($item_id, $description, $serialnumber, $quantity, $discount, $discount_type, $price, $receiving_quantity);
+			$this->receiving_lib->edit_item($item_id, $description, $serialnumber, $quantity, $discount, $discount_type, $price, $receiving_quantity,$unit_price,$unit_price_type);
 		}
 		else
 		{
@@ -240,6 +247,8 @@ class Receivings extends Secure_Controller
 		}
 
 		//SAVE receiving to database
+		// cek($data['cart']);die();
+		// cek($this->config->item('receiving_calculate_average_price'));die();
 		$data['receiving_id'] = 'RECV ' . $this->Receiving->save($data['cart'], $supplier_id, $employee_id, $data['comment'], $data['reference'], $data['payment_type'], $data['stock_location']);
 
 		$data = $this->xss_clean($data);
@@ -364,6 +373,8 @@ class Receivings extends Secure_Controller
 				$data['supplier_location'] = '';
 			}
 		}
+
+		// cek($data);
 		
 		$data['print_after_sale'] = $this->receiving_lib->is_print_after_sale();
 

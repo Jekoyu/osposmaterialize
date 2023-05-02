@@ -135,6 +135,9 @@
 												<th style="width:15%;"><?php echo $this->lang->line('sales_item_number'); ?></th>
 												<th style="width:23%;min-width: 165px;"><?php echo $this->lang->line('receivings_item_name'); ?></th>
 												<th style="width:10%;min-width: 80px;"><?php echo $this->lang->line('receivings_cost'); ?></th>
+												
+												<th style="width:10%;min-width: 80px;">Harga Jual</th>
+												
 												<th style="width:8%;min-width: 35px;"><?php echo $this->lang->line('receivings_quantity'); ?></th>
 												<th style="width:10%;"><?php echo $this->lang->line('receivings_ship_pack'); ?></th>
 												<th style="width:14%;min-width: 100px;"><?php echo $this->lang->line('receivings_discount'); ?></th>
@@ -177,7 +180,10 @@
 																	'name'=>'price', 
 																	'class'=>'form-control input-sm p-3', 
 																	'onkeyup'=>'currencyFormat(this);',
-																	'value'=>to_currency_no_money($item['price'])));?></td>
+																	'value'=>to_currency_no_money($item['price'])));?>
+																	<?php echo @$item['cost_avg_price'] ? 'Avg. '.to_currency($item['cost_avg_price']) : null;?>
+																		
+																</td>
 															<?php
 															}
 															else
@@ -186,10 +192,30 @@
 																<td>
 																	<?php echo $item['price']; ?>
 																	<?php echo form_hidden('price', to_currency_no_money($item['price'])); ?>
+																	<?php echo @$item['cost_avg_price'] ? 'Avg. '.to_currency($item['cost_avg_price']) : null;?>
 																</td>
 															<?php
 															}
 															?>
+
+															<!-- harga jual -->
+															<td>
+																<div class="input-group">
+																	<?php echo form_input(array(
+																		'name'=>'unit_price',
+																		'class'=>'form-control input-sm p-3',
+																		'value'=>to_decimals($item['unit_price'], 0),
+																		'onClick'=>'this.select();',
+																		'style'=>'width:65px;'
+																	)); ?>
+																	<span class="input-group-btn">
+																		<?php echo form_checkbox(array('id'=>'unit_price_toggle', 'name'=>'unit_price_toggle', 'value'=>1, 'data-toggle'=>"toggle",'data-size'=>'small', 'data-onstyle'=>'success', 'data-on'=>'<b>'.$this->config->item('currency_symbol').'</b>', 'data-off'=>'<b>%</b>', 'data-line'=>$line, 'checked'=>$item['unit_price_type'])); ?>
+																	</span>
+																</div>
+
+																<?php echo @$item['unit_price_percent_nom'] ? to_currency($item['unit_price_percent_nom']) : null;?>
+															</td>
+															<!-- ./harga jual -->
 															
 															<td><?php echo form_input(array('name'=>'quantity', 'class'=>'form-control input-sm p-3', 'value'=>to_quantity_decimals($item['quantity']))); ?></td>
 															<td><?php echo form_dropdown('receiving_quantity', $item['receiving_quantity_choices'], $item['receiving_quantity'], array('class'=>'form-control input-sm p-3'));?></td>
@@ -250,7 +276,7 @@
 																}
 																?>
 															</td>
-															<td colspan='7'></td>
+															<td colspan='8'></td>
 														</tr>
 													<?php echo form_close(); ?>
 											<?php
@@ -556,6 +582,13 @@
 
 								$('[name="discount_toggle"]').change(function() {
 									var input = $("<input>").attr("type", "hidden").attr("name", "discount_type").val(($(this).prop('checked'))?1:0);
+									$('#cart_'+ $(this).attr('data-line')).append($(input));
+									$('#cart_'+ $(this).attr('data-line')).submit();
+								});
+
+								// kolom harga jual;
+								$('[name="unit_price_toggle"]').change(function() {
+									var input = $("<input>").attr("type", "hidden").attr("name", "unit_price_type").val(($(this).prop('checked'))?1:0);
 									$('#cart_'+ $(this).attr('data-line')).append($(input));
 									$('#cart_'+ $(this).attr('data-line')).submit();
 								});
