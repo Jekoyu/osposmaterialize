@@ -114,9 +114,9 @@
 									<tr>
 										<th>Tanggal</th>
 										<th>Jumlah</th>
-										<th>Subtotal</th>
-										<th>Pajak</th>
-										<th>Total</th>
+										<th>TOTAL</th>
+										<th>GROSIR</th>
+										<th>LABA/KEUTUNGAN</th>
 									</tr>
 								</thead>
 								<tbody>
