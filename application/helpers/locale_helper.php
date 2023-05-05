@@ -241,34 +241,38 @@ function get_payment_options()
 
 	$payments = array();
 
-	// $payments['dana'] = 'DANA ASSALAM';
 	if($config->item('payment_options_order') == 'debitcreditcash')
 	{
 		$payments[$lang->line('sales_debit')] = $lang->line('sales_debit');
+		$payments['dana'] = 'DANA ASSALAM';
 		$payments[$lang->line('sales_credit')] = $lang->line('sales_credit');
 		$payments[$lang->line('sales_cash')] = $lang->line('sales_cash');
 	}
 	elseif($config->item('payment_options_order') == 'debitcashcredit')
 	{
 		$payments[$lang->line('sales_debit')] = $lang->line('sales_debit');
+		$payments['dana'] = 'DANA ASSALAM';
 		$payments[$lang->line('sales_cash')] = $lang->line('sales_cash');
 		$payments[$lang->line('sales_credit')] = $lang->line('sales_credit');
 	}
 	elseif($config->item('payment_options_order') == 'creditdebitcash')
 	{
 		$payments[$lang->line('sales_credit')] = $lang->line('sales_credit');
+		$payments['dana'] = 'DANA ASSALAM';
 		$payments[$lang->line('sales_debit')] = $lang->line('sales_debit');
 		$payments[$lang->line('sales_cash')] = $lang->line('sales_cash');
 	}
 	elseif($config->item('payment_options_order') == 'creditcashdebit')
 	{
 		$payments[$lang->line('sales_credit')] = $lang->line('sales_credit');
+		$payments['dana'] = 'DANA ASSALAM';
 		$payments[$lang->line('sales_cash')] = $lang->line('sales_cash');
 		$payments[$lang->line('sales_debit')] = $lang->line('sales_debit');
 	}
 	else // default: if($config->item('payment_options_order') == 'cashdebitcredit')
 	{
 		$payments[$lang->line('sales_cash')] = $lang->line('sales_cash');
+		$payments['dana'] = 'DANA ASSALAM';
 		$payments[$lang->line('sales_debit')] = $lang->line('sales_debit');
 		$payments[$lang->line('sales_credit')] = $lang->line('sales_credit');
 	}
@@ -413,8 +417,12 @@ function parse_decimals($number)
 	{
 		return $number;
 	}
-	$number = preg_replace("/[.,](?=\d{3,}$)/", "", $number);
+	// cek($number);
+	// $number = "- Rp142.000,45";
+	$number = preg_replace("/[.,](?=\d{4,}$)/", "", $number);
 	$number = preg_replace("/[^\d.,-]/", "", $number);
+	// cek($number);
+	// die();
 	$config = get_instance()->config;
 	$fmt = new \NumberFormatter($config->item('number_locale'), \NumberFormatter::DECIMAL);
 
@@ -424,8 +432,6 @@ function parse_decimals($number)
 	{
 		$fmt->setAttribute(\NumberFormatter::GROUPING_SEPARATOR_SYMBOL, '');
 	}
-
-	// cek($fmt->parse($number));die();
 
 	try
 	{
@@ -446,7 +452,7 @@ function parse_decimals2($number,$separator=1)
 		return $number;
 	}
 
-	$number = preg_replace("/[.,](?=\d{3,}$)/", "", $number);
+	$number = preg_replace("/[.,](?=\d{4,}$)/", "", $number);
 	$number = preg_replace("/[^\d.,-]/", "", $number);
 
 	$fmt = new \NumberFormatter('id_ID', \NumberFormatter::DECIMAL);

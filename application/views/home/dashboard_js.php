@@ -78,9 +78,9 @@
 	    				var _html = `<tr>
 										<td>`+x.sale_date+`</td>
 										<td>`+x.quantity+`</td>
-										<td>`+x.subtotal+`</td>
-										<td>`+x.tax+`</td>
 										<td>`+x.total+`</td>
+										<td>`+x.cost+`</td>
+										<td>`+x.profit+`</td>
 									</tr>`;
 						$('#table-last-trans tbody').append(_html)
 	    			})

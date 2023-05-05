@@ -189,6 +189,7 @@ class Home extends Secure_Controller
 		$results = [];
 		foreach ($data as $r) {
 			// cek($r['total']);
+			// cek($r['total']);
 			// cek(parse_decimals2($r['total']));
 			$results[] = ['unit'=>$r['category'],'value'=>parse_decimals2($r['total'])];
 		}
