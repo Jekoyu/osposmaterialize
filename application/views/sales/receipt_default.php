@@ -43,12 +43,11 @@ $total_items = 0;
 		?>
 
 		<div id="company_address"><?php echo nl2br($this->config->item('address')); ?></div>
-		<!-- <div id="company_phone"><?php echo $this->config->item('phone'); ?></div> -->
 	</div>
 
 	<table id="receipt_items">
 		<tr>
-			<th style="width:40%;vertical-align: bottom;"><span style="font-weight: 400;"><?php echo $transaction_time ?></span> <?php echo $sale_id; ?></th>
+			<th style="width:40%;vertical-align: bottom;"><span style="font-weight: 400;font-size: 8pt;"><?php echo $transaction_time ?> <b><?php echo $sale_id; ?></b></span></th>
 			<th style="width:20%;text-align:right;vertical-align: bottom;"><?php echo $employee; ?></th>
 		</tr>
 		<tr>
@@ -230,15 +229,15 @@ $total_items = 0;
 	</table>
 	
 	<div id="footnote">
-		<p>Jumlah Item : <?php echo $total_items; ?></p>
+		<p>TOTAL ITEM : <?php echo $total_items; ?></p>
 	</div>
-	<div id="sale_return_policy">
+	<div id="sale_return_policy" style="font-size: 6pt;">
 		<?php echo nl2br($this->config->item('return_policy')); ?>
 	</div>
 	
 		
-	<!-- <div id="barcode">
+	<div id="barcode">
 		<img src='data:image/png;base64,<?php echo $barcode; ?>' /><br>
 		<?php echo $sale_id; ?>
-	</div> -->
+	</div>
 </div>

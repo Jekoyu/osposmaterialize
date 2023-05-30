@@ -255,9 +255,9 @@
 	<script src="<?=base_url();?>themes/plugins/jquery-jvectormap/jquery-jvectormap-world-mill-en.js"></script>
 	<script src="<?=base_url();?>themes/plugins/bootstrap-datepicker/js/bootstrap-datepicker.js"></script>
 
-	<script src="https://cdn.amcharts.com/lib/5/index.js"></script>
-	<script src="https://cdn.amcharts.com/lib/5/xy.js"></script>
-	<script src="https://cdn.amcharts.com/lib/5/themes/Animated.js"></script>
+	<script src="<?=base_url();?>bower_components/amcharts5/index.js"></script>
+	<script src="<?=base_url();?>bower_components/amcharts5/xy.js"></script>
+	<script src="<?=base_url();?>bower_components/amcharts5/themes/Animated.js"></script>
 
 	<?php $this->load->view('home/dashboard_js');?>
 	<script type="text/javascript">

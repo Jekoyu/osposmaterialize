@@ -29,3 +29,7 @@ SET FOREIGN_KEY_CHECKS = 1;
 
 'receiving_calculate_average_price' => jikja ini dicentang pada pengaturan umum, maka harga pokok akan diupdate berdasar rata2 harga pokok;
 
+tambahan:
++nota penjualan kasih barcode;
++tulisan catatan diperkecil;
+
