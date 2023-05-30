@@ -4,3 +4,28 @@ BERANDA:
 
 
 OFFICE:
+
+clear items:
+SET FOREIGN_KEY_CHECKS = 0; 
+
+TRUNCATE table `ospos_items`; 
+TRUNCATE table `ospos_item_quantities`;
+TRUNCATE table `ospos_item_kits`;
+TRUNCATE table `ospos_item_kit_items`;
+TRUNCATE table `ospos_items_taxes`; 
+
+TRUNCATE table `ospos_receivings`; 
+TRUNCATE table `ospos_receivings_items`; 
+
+TRUNCATE table `ospos_sales`; 
+TRUNCATE table `ospos_sales_items`; 
+TRUNCATE table `ospos_sales_items_taxes`; 
+TRUNCATE table `ospos_sales_payments`; 
+TRUNCATE table `ospos_sales_reward_points`; 
+TRUNCATE table `ospos_sales_taxes`; 
+
+
+SET FOREIGN_KEY_CHECKS = 1;
+
+'receiving_calculate_average_price' => jikja ini dicentang pada pengaturan umum, maka harga pokok akan diupdate berdasar rata2 harga pokok;
+
