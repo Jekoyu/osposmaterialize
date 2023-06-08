@@ -77,7 +77,7 @@
 		.toko {
 			right: 12px;
 		    position: absolute;
-		    bottom: 27px;
+		    bottom: 22px;
 		    font-size: 12pt;
 		    font-weight: 400;
 		}
@@ -95,6 +95,44 @@
 
 		.m-t-28 {
 			margin-top: 28px !important;
+		}
+		.m-t-27 {
+			margin-top: 27px !important;
+		}
+		.m-t-26 {
+			margin-top: 26px !important;
+		}
+		.m-t-25 {
+			margin-top: 25px !important;
+		}
+		.m-t-24 {
+			margin-top: 24px !important;
+		}
+
+		.m-t-23 {
+			margin-top: 23px !important;
+		}
+
+		.m-t-22 {
+			margin-top: 22px !important;
+		}
+
+		.m-t-21 {
+			margin-top: 21px !important;
+		}
+		.m-t-20 {
+			margin-top: 20px !important;
+		}
+		
+		.m-t-10 {
+			margin-top: 10px !important;
+		}
+
+		.m-t-12 {
+			margin-top: 12px !important;
+		}
+		.m-t-15 {
+			margin-top: 15px !important;
 		}
 
 		.m-t-35 {
@@ -114,24 +152,12 @@
 
 		.label-top {
 			width: 100%;
-		    height: 22px;
+		    height: 34px;
 		    /* white-space: nowrap; */
 		    overflow: hidden;
 		    text-overflow: ellipsis;
-		    font-size: 9pt !important;
-		    margin: 5px 0px 0px 0px !important;
-		    padding-top: 3px;
-		    line-height: 0.9;
-		}
-
-		.label-top {
-			width: 100%;
-		    height: 22px;
-		    /* white-space: nowrap; */
-		    overflow: hidden;
-		    text-overflow: ellipsis;
-		    font-size: 9pt !important;
-		    margin: 5px 0px 0px 0px !important;
+		    font-size: 13pt !important;
+		    margin: 2px 0px 0px 0px !important;
 		    padding-top: 3px;
 		    line-height: 0.9;
 		}
@@ -164,21 +190,21 @@
 				}
 
 				$first = $item[$pricetag_config['pricetag_first_row']];
-				if(in_array($pricetag_config['pricetag_first_row'],['cost_price','unit_price'])) $first = '<span style="font-size:10pt;font-weight:400;vertical-align:top!important;top:-12px;position:relative;">Rp</span> '.to_currency_no_money($item[$pricetag_config['pricetag_first_row']]);
+				if(in_array($pricetag_config['pricetag_first_row'],['cost_price','unit_price'])) $first = '<span style="font-size:14pt;font-weight:800;vertical-align:top!important;top:-12px;position:relative;margin-right:-13px;">Rp.</span> '.to_currency_no_money($item[$pricetag_config['pricetag_first_row']]);
 				$second = $item[$pricetag_config['pricetag_second_row']];
-				if(in_array($pricetag_config['pricetag_second_row'],['cost_price','unit_price'])) $second = '<span style="font-size:10pt;font-weight:400;vertical-align:top!important;top:-12px;position:relative;">Rp</span> '.to_currency_no_money($item[$pricetag_config['pricetag_second_row']]);
+				if(in_array($pricetag_config['pricetag_second_row'],['cost_price','unit_price'])) $second = '<span style="font-size:14pt;font-weight:800;vertical-align:top!important;top:-12px;position:relative;margin-right:-13px;">Rp.</span> '.to_currency_no_money($item[$pricetag_config['pricetag_second_row']]);
 				$third = $item[$pricetag_config['pricetag_third_row']];
-				if(in_array($pricetag_config['pricetag_third_row'],['cost_price','unit_price'])) $third = '<span style="font-size:10pt;font-weight:400;vertical-align:top!important;top:-12px;position:relative;">Rp</span> '.to_currency_no_money($item[$pricetag_config['pricetag_third_row']]);
+				if(in_array($pricetag_config['pricetag_third_row'],['cost_price','unit_price'])) $third = '<span style="font-size:14pt;font-weight:800;vertical-align:top!important;top:-12px;position:relative;margin-right:-13px;">Rp.</span> '.to_currency_no_money($item[$pricetag_config['pricetag_third_row']]);
 				?>
 				<td>
-					<div class="tag border-1-grey m-b-3" style="width: <?=$pricetag_config['pricetag_width'];?>px;height: <?=$pricetag_config['pricetag_height'];?>px;">
+					<div class="tag border-1-grey m-b-3" style="width: <?=$pricetag_config['pricetag_width'];?>mm;height: <?=$pricetag_config['pricetag_height'];?>mm;">
 						<h4 class="label-top"><?=$second;?></h4>
-						<p class="label-second">#<?=$third;?> | <?=$item['category'];?></p>
-						<h3 class="m-t-28"><?=$first;?></h3>
-						<div class="barcode-tag">
+						<h3 class="m-t-15"><?=$first;?></h3>
+						<div class="barcode-tag" style="text-align: center;">
+							<b style="font-size: 10pt;"><?=$item['item_number'];?></b>
 							<?=$this->barcode_lib->display_barcode($item, $barcode_config) ;?>
 						</div>
-						<span class="toko">SATRIO MART</span>
+						<span class="toko"><?=$this->config->item('company');?></span>
 						<p class="tgl"><?=date('d/m/Y');?></p>
 					</div>
 					

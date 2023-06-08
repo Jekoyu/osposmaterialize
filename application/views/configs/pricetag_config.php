@@ -4,15 +4,13 @@
 			<div id="required_fields_message"><?php echo $this->lang->line('common_fields_required_message'); ?></div>
 			<ul id="pricetag_error_message_box" class="error_message_box"></ul>
 
-		
-
 			<div class="form-group form-group-sm">
-				<?php echo form_label('Lebar Tag Harga', 'pricetag_width', array('class' => 'control-label col-xs-2 required')); ?>
+				<?php echo form_label('Lebar Tag Harga (mm)', 'pricetag_width', array('class' => 'control-label col-xs-2 required')); ?>
 				<div class='col-xs-2'>
 					<?php echo form_input(array(
-						'step' => '5',
-						'max' => '380',
-						'min' => '60',
+						'step' => '1',
+						'max' => 100,
+						'min' => 1,
 						'type' => 'number',
 						'name' => 'pricetag_width',
 						'id' => 'pricetag_width',
@@ -22,12 +20,12 @@
 			</div>
 
 			<div class="form-group form-group-sm">
-				<?php echo form_label('Tinggi Tag Harga', 'pricetag_height', array('class' => 'control-label col-xs-2 required')); ?>
+				<?php echo form_label('Tinggi Tag Harga (mm)', 'pricetag_height', array('class' => 'control-label col-xs-2 required')); ?>
 				<div class='col-xs-2'>
 					<?php echo form_input(array(
 						'type' => 'number',
-						'min' => 10,
-						'max' => 180,
+						'min' => 1,
+						'max' => 50,
 						'name' => 'pricetag_height',
 						'id' => 'pricetag_height',
 						'class' => 'form-control input-sm required',
