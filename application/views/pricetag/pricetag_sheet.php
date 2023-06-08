@@ -75,11 +75,16 @@
 		}
 
 		.toko {
-			right: 12px;
+			text-align: right;
+			right: 13px;
 		    position: absolute;
+		    width: 42mm;
 		    bottom: 22px;
-		    font-size: 12pt;
+		    font-size: 6pt;
 		    font-weight: 400;
+		    white-space: nowrap;
+/*		    overflow: hidden;*/
+		    text-overflow: ellipsis;
 		}
 
 		.tgl {
