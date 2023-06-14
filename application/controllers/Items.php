@@ -344,6 +344,162 @@ class Items extends Secure_Controller
 		$this->load->view('items/form', $data);
 	}
 
+	public function view_simple($item_id = -1)
+	{
+		if($item_id == -1)
+		{
+			$data = array();
+		}
+
+		// allow_temp_items is set in the index function of items.php or sales.php
+		$data['allow_temp_item'] = $this->session->userdata('allow_temp_items');
+		$data['item_tax_info'] = $this->xss_clean($this->Item_taxes->get_info($item_id));
+		$data['default_tax_1_rate'] = '';
+		$data['default_tax_2_rate'] = '';
+		$data['item_kit_disabled'] = !$this->Employee->has_grant('item_kits', $this->Employee->get_logged_in_employee_info()->person_id);
+		$data['definition_values'] = $this->Attribute->get_attributes_by_item($item_id);
+		$data['definition_names'] = $this->Attribute->get_definition_names();
+
+		foreach($data['definition_values'] as $definition_id => $definition)
+		{
+			unset($data['definition_names'][$definition_id]);
+		}
+
+		$item_info = $this->Item->get_info($item_id);
+
+		foreach(get_object_vars($item_info) as $property => $value)
+		{
+			$item_info->$property = $this->xss_clean($value);
+		}
+
+		if($data['allow_temp_item'] == 1)
+		{
+			if($item_id != -1)
+			{
+				if($item_info->item_type != ITEM_TEMP)
+				{
+					$data['allow_temp_item'] = 0;
+				}
+			}
+		}
+		else
+		{
+			if($item_info->item_type == ITEM_TEMP)
+			{
+				$data['allow_temp_item'] = 1;
+			}
+		}
+
+		$use_destination_based_tax = (boolean)$this->config->item('use_destination_based_tax');
+		$data['include_hsn'] = $this->config->item('include_hsn') == '1';
+
+		if($item_id == -1)
+		{
+			$data['default_tax_1_rate'] = $this->config->item('default_tax_1_rate');
+			$data['default_tax_2_rate'] = $this->config->item('default_tax_2_rate');
+
+			$item_info->receiving_quantity = 1;
+			$item_info->reorder_level = 1;
+			$item_info->item_type = ITEM; // standard
+			$item_info->item_id = $item_id;
+			$item_info->stock_type = HAS_STOCK;
+			$item_info->tax_category_id = NULL;
+			$item_info->qty_per_pack = 1;
+			$item_info->pack_name = $this->lang->line('items_default_pack_name');
+			$data['hsn_code'] = '';
+			if($use_destination_based_tax)
+			{
+				$item_info->tax_category_id = $this->config->item('default_tax_category');
+			}
+		}
+
+		$data['standard_item_locked'] = ($data['item_kit_disabled'] && $item_info->item_type == ITEM_KIT
+										&& !$data['allow_temp_item']
+										&& !($this->config->item('derive_sale_quantity') == '1'));
+
+		$data['item_info'] = $item_info;
+
+		$suppliers = array('' => $this->lang->line('items_none'));
+		foreach($this->Supplier->get_all()->result_array() as $row)
+		{
+			$suppliers[$this->xss_clean($row['person_id'])] = $this->xss_clean($row['company_name']);
+		}
+		$data['suppliers'] = $suppliers;
+		$data['selected_supplier'] = $item_info->supplier_id;
+
+		if($data['include_hsn'])
+		{
+			$data['hsn_code'] = $item_info->hsn_code;
+		}
+		else
+		{
+			$data['hsn_code'] = '';
+		}
+
+		if($use_destination_based_tax)
+		{
+			$data['use_destination_based_tax'] = TRUE;
+			$tax_categories = array();
+			foreach($this->Tax_category->get_all()->result_array() as $row)
+			{
+				$tax_categories[$this->xss_clean($row['tax_category_id'])] = $this->xss_clean($row['tax_category']);
+			}
+			$tax_category = "";
+			if ($item_info->tax_category_id != NULL)
+			{
+				$tax_category_info=$this->Tax_category->get_info($item_info->tax_category_id);
+				$tax_category= $tax_category_info->tax_category;
+			}
+			$data['tax_categories'] = $tax_categories;
+			$data['tax_category'] = $tax_category;
+			$data['tax_category_id'] = $item_info->tax_category_id;
+		}
+		else
+		{
+			$data['use_destination_based_tax'] = FALSE;
+			$data['tax_categories'] = array();
+			$data['tax_category'] = '';
+		}
+
+		$data['logo_exists'] = $item_info->pic_filename != '';
+		$ext = pathinfo($item_info->pic_filename, PATHINFO_EXTENSION);
+		if($ext == '')
+		{
+			// if file extension is not found guess it (legacy)
+			$images = glob('./uploads/item_pics/' . $item_info->pic_filename . '.*');
+		}
+		else
+		{
+			// else just pick that file
+			$images = glob('./uploads/item_pics/' . $item_info->pic_filename);
+		}
+		$data['image_path'] = sizeof($images) > 0 ? base_url($images[0]) : '';
+		$stock_locations = $this->Stock_location->get_undeleted_all()->result_array();
+		foreach($stock_locations as $location)
+		{
+			$location = $this->xss_clean($location);
+
+			$quantity = $this->xss_clean($this->Item_quantity->get_item_quantity($item_id, $location['location_id'])->quantity);
+			$quantity = ($item_id == -1) ? 0 : $quantity;
+			$location_array[$location['location_id']] = array('location_name' => $location['location_name'], 'quantity' => $quantity);
+			$data['stock_locations'] = $location_array;
+		}
+
+		$data['selected_low_sell_item_id'] = $item_info->low_sell_item_id;
+
+		if($item_id != -1 && $item_info->item_id != $item_info->low_sell_item_id)
+		{
+			$low_sell_item_info = $this->Item->get_info($item_info->low_sell_item_id);
+			$data['selected_low_sell_item'] = implode(NAME_SEPARATOR, array($low_sell_item_info->name, $low_sell_item_info->pack_name));
+		}
+		else
+		{
+			$data['selected_low_sell_item'] = '';
+		}
+
+		$this->load->view('items/form_simple', $data);
+	}
+
 	public function inventory($item_id = -1)
 	{
 		$item_info = $this->Item->get_info($item_id);
