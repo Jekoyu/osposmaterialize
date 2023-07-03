@@ -407,6 +407,7 @@ class Item extends CI_Model
 	*/
 	public function save(&$item_data, $item_id = FALSE)
 	{
+		// cek($item_data);die();
 		if(!$item_id || !$this->exists($item_id, TRUE))
 		{
 			if($this->db->insert('items', $item_data))

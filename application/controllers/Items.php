@@ -1072,18 +1072,22 @@ class Items extends Secure_Controller
 							$item_data['item_number'] = $item_number;
 							$invalidated = $this->Item->item_number_exists($item_number);
 						}
+						// cek($invalidated);die();
 
 						//Sanity check of data
 						if(!$invalidated)
 						{
 							$invalidated = $this->data_error_check($line, $item_data);
 						}
+
+						// cek($invalidated);die();
 					}
 					else
 					{
 						$invalidated = TRUE;
 					}
-
+					// cek($invalidated);die();
+					// cek($this->Item->save($item_data));die();
 					//Save to database
 					if(!$invalidated && $this->Item->save($item_data))
 					{
@@ -1095,14 +1099,18 @@ class Items extends Secure_Controller
 					{
 						$failed_row = $i+1;
 						$failCodes[] = $failed_row;
+						// cek($item_data);die();
 						log_message("ERROR","CSV Item import failed on line ". $failed_row .". This item was not imported.");
 					}
 				}
 
+				// cek($failCodes);die();
+
 				if(count($failCodes) > 0)
 				{
 					$message = $this->lang->line('items_csv_import_partially_failed', count($failCodes), implode(', ', $failCodes));
-					$this->db->trans_rollback();
+					// $this->db->trans_rollback();
+					$this->db->trans_commit();
 					echo json_encode(array('success' => FALSE, 'message' => $message));
 				}
 				else
@@ -1278,7 +1286,7 @@ class Items extends Secure_Controller
 			else
 			{
 				$item_quantity_data['quantity'] = 0;
-				$this->Item_quantity->save($item_quantity_data, $item_data['item_id'], $line[$col]);
+				$this->Item_quantity->save($item_quantity_data, $item_data['item_id'], $location_id);
 
 				$csv_data['trans_inventory'] = 0;
 				$this->Inventory->insert($csv_data);
