@@ -116,6 +116,7 @@
 											<?php 
 											show_report('', 'reports_inventory_low');
 											show_report('', 'reports_inventory_summary');
+											show_report('', 'reports_inventory_opname');
 											?>
 											</div>
 										</div>

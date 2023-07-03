@@ -51,7 +51,7 @@ function transform_headers($array, $readonly = FALSE, $editable = TRUE)
 			'switchable' => isset($element['switchable']) ? $element['switchable'] : !preg_match('(^$|&nbsp)', current($element)),
 			'sortable' => isset($element['sortable']) ? $element['sortable'] : current($element) != '',
 			'checkbox' => isset($element['checkbox']) ? $element['checkbox'] : FALSE,
-			'class' => isset($element['checkbox']) || preg_match('(^$|&nbsp)', current($element)) ? 'print_hide' : '',
+			'class' => isset($element['checkbox']) || preg_match('(^$|&nbsp)', current($element)) ? 'print_hide' : (@$element['class'] ? $element['class'] : ''),
 			'sorter' => isset($element['sorter']) ? $element ['sorter'] : '');
 	}
 

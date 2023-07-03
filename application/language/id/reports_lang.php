@@ -55,6 +55,10 @@ $lang["reports_inventory_low_report"] = "Laporan Persediaan Rendah";
 $lang["reports_inventory_reports"] = "Laporan Persediaan";
 $lang["reports_inventory_summary"] = "Laporan Ringkasan Persediaan";
 $lang["reports_inventory_summary_report"] = "Laporan Ringkasan Persediaan";
+
+$lang["reports_inventory_opname"] = "Laporan Stok Opname";
+$lang["reports_inventory_opname_report"] = "Laporan Stok Opname";
+
 $lang["reports_item"] = "Produk/Item";
 $lang["reports_item_count"] = "Filter Jumlah Item";
 $lang["reports_item_name"] = "Nama Barang";

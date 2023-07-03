@@ -1619,6 +1619,66 @@ class Reports extends Secure_Controller
 		$this->load->view('reports/tabular2', $data);
 	}
 
+	public function inventory_opname_input()
+	{
+		$this->load->model('reports/Inventory_opname');
+		$model = $this->Inventory_opname;
+
+		$data = array();
+		$data['item_count'] = $model->getItemCountDropdownArray();
+		$data['category'] = $model->getCategoryDropdownArray();
+
+		$stock_locations = $this->xss_clean($this->Stock_location->get_allowed_locations());
+		$stock_locations['all'] = $this->lang->line('reports_all');
+		$data['stock_locations'] = array_reverse($stock_locations, TRUE);
+
+		$this->load->view('reports/inventory_opname_input', $data);
+	}
+
+	public function inventory_opname($location_id = 'all', $item_count = 'all', $category= 'all')
+	{
+		// cek($category);die();
+		$inputs = array('location_id' => $location_id, 'item_count' => $item_count, 'category' => $category);
+
+		$this->load->model('reports/Inventory_opname');
+		$model = $this->Inventory_opname;
+
+		$report_data = $model->getData($inputs);
+
+		$tabular_data = array();
+		foreach($report_data as $row)
+		{
+			$tabular_data[] = $this->xss_clean(array(
+				'item_name' => $row['name'],
+				'item_number' => $row['item_number'],
+				'category' => $row['category'],
+				'quantity' => to_quantity_decimals($row['quantity']),
+				// 'low_sell_quantity' => to_quantity_decimals($row['low_sell_quantity']),
+				// 'reorder_level' => to_quantity_decimals($row['reorder_level']),
+				'location_name' => $row['location_name'],
+				'cost_price' => to_currency($row['cost_price']),
+				'unit_price' => to_currency($row['unit_price']),
+				'subtotal' => to_currency($row['sub_total_value']),
+				'before_so' => to_quantity_decimals($row['before_so']),
+				'after_so' => to_quantity_decimals($row['after_so']),
+				'qty_selisih' => to_quantity_decimals($row['qty_selisih']),
+				'nilai_before' => to_currency($row['nilai_before']),
+				'nilai_after' => to_currency($row['nilai_after']),
+				'nilai_selisih' => to_currency($row['nilai_selisih'])
+			));
+		}
+
+		$data = array(
+			'title' => $this->lang->line('reports_inventory_opname_report'),
+			'subtitle' => '',
+			'headers' => $this->xss_clean($model->getDataColumns()),
+			'data' => $tabular_data,
+			'summary_data' => $this->xss_clean($model->getSummaryData($report_data))
+		);
+
+		$this->load->view('reports/tabular2', $data);
+	}
+
 	//	Returns subtitle for the reports
 	private function _get_subtitle_report($inputs)
 	{

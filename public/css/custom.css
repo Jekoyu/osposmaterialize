@@ -220,3 +220,324 @@ input[type="text"]#customer {
 .p-3 {
   padding: 3px !important;
 }
+
+
+/* bg color */
+.bg-primary,
+.bg-blue { background-color: #348fe2 !important; }
+.bg-blue-transparent-9 { background-color: rgba(52, 143, 226, 0.9) !important; }
+.bg-blue-transparent-8 { background-color: rgba(52, 143, 226, 0.8) !important; }
+.bg-blue-transparent-7 { background-color: rgba(52, 143, 226, 0.7) !important; }
+.bg-blue-transparent-6 { background-color: rgba(52, 143, 226, 0.6) !important; }
+.bg-blue-transparent-5 { background-color: rgba(52, 143, 226, 0.5) !important; }
+.bg-blue-transparent-4 { background-color: rgba(52, 143, 226, 0.4) !important; }
+.bg-blue-transparent-3 { background-color: rgba(52, 143, 226, 0.3) !important; }
+.bg-blue-transparent-2 { background-color: rgba(52, 143, 226, 0.2) !important; }
+.bg-blue-transparent-1 { background-color: rgba(52, 143, 226, 0.1) !important; }
+.bg-blue-darker { background-color: #2a72b5 !important; }
+.bg-blue-lighter { background-color: #5da5e8 !important; }
+.bg-gradient-blue {
+    background: rgb(81,136,218);
+    background: -moz-linear-gradient(-45deg, rgba(81,136,218,1) 0%, rgba(52,135,226,1) 100%) !important;
+    background: -webkit-linear-gradient(-45deg, rgba(81,136,218,1) 0%,rgba(52,135,226,1) 100%) !important;
+    background: linear-gradient(135deg, rgba(81,136,218,1) 0%,rgba(52,135,226,1) 100%) !important;
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#5188da', endColorstr='#3487e2',GradientType=1 ) !important;
+}
+.bg-info,
+.bg-aqua { background-color: #49b6d6 !important; }
+.bg-aqua-transparent-9 { background-color: rgba(73, 182, 214, 0.9) !important; }
+.bg-aqua-transparent-8 { background-color: rgba(73, 182, 214, 0.8) !important; }
+.bg-aqua-transparent-7 { background-color: rgba(73, 182, 214, 0.7) !important; }
+.bg-aqua-transparent-6 { background-color: rgba(73, 182, 214, 0.6) !important; }
+.bg-aqua-transparent-5 { background-color: rgba(73, 182, 214, 0.5) !important; }
+.bg-aqua-transparent-4 { background-color: rgba(73, 182, 214, 0.4) !important; }
+.bg-aqua-transparent-3 { background-color: rgba(73, 182, 214, 0.3) !important; }
+.bg-aqua-transparent-2 { background-color: rgba(73, 182, 214, 0.2) !important; }
+.bg-aqua-transparent-1 { background-color: rgba(73, 182, 214, 0.1) !important; }
+.bg-aqua-darker { background-color: #3a92ab !important; }
+.bg-aqua-lighter { background-color: #6dc5de !important; }
+.bg-gradient-aqua {
+    background: rgb(109,197,222) !important;
+    background: -moz-linear-gradient(top, rgba(109,197,222,1) 0%, rgba(73,182,214,1) 100%) !important;
+    background: -webkit-linear-gradient(top, rgba(109,197,222,1) 0%,rgba(73,182,214,1) 100%) !important;
+    background: linear-gradient(to bottom, rgba(109,197,222,1) 0%,rgba(73,182,214,1) 100%) !important;
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#6dc5de', endColorstr='#49b6d6',GradientType=0 ) !important;
+}
+.bg-success,
+.bg-teal { background-color: #00acac !important; }
+.bg-teal-transparent-9 { background-color: rgba(0, 172, 172, 0.9) !important; }
+.bg-teal-transparent-8 { background-color: rgba(0, 172, 172, 0.8) !important; }
+.bg-teal-transparent-7 { background-color: rgba(0, 172, 172, 0.7) !important; }
+.bg-teal-transparent-6 { background-color: rgba(0, 172, 172, 0.6) !important; }
+.bg-teal-transparent-5 { background-color: rgba(0, 172, 172, 0.5) !important; }
+.bg-teal-transparent-4 { background-color: rgba(0, 172, 172, 0.4) !important; }
+.bg-teal-transparent-3 { background-color: rgba(0, 172, 172, 0.3) !important; }
+.bg-teal-transparent-2 { background-color: rgba(0, 172, 172, 0.2) !important; }
+.bg-teal-transparent-1 { background-color: rgba(0, 172, 172, 0.1) !important; }
+.bg-teal-darker { background-color: #008a8a !important; }
+.bg-teal-lighter { background-color: #33bdbd !important; }
+.bg-gradient-teal {
+    background: rgb(52,186,187) !important;
+    background: -moz-linear-gradient(-45deg, rgba(52,186,187,1) 0%, rgba(0,172,172,1) 100%) !important;
+    background: -webkit-linear-gradient(-45deg, rgba(52,186,187,1) 0%,rgba(0,172,172,1) 100%) !important;
+    background: linear-gradient(135deg, rgba(52,186,187,1) 0%,rgba(0,172,172,1) 100%) !important;
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#34babb', endColorstr='#00acac',GradientType=1 ) !important;
+}
+.bg-danger, 
+.bg-red { background-color: #ff5b57 !important; }
+.bg-red-transparent-9 { background-color: rgba(255, 91, 87, 0.9) !important; }
+.bg-red-transparent-8 { background-color: rgba(255, 91, 87, 0.8) !important; }
+.bg-red-transparent-7 { background-color: rgba(255, 91, 87, 0.7) !important; }
+.bg-red-transparent-6 { background-color: rgba(255, 91, 87, 0.6) !important; }
+.bg-red-transparent-5 { background-color: rgba(255, 91, 87, 0.5) !important; }
+.bg-red-transparent-4 { background-color: rgba(255, 91, 87, 0.4) !important; }
+.bg-red-transparent-3 { background-color: rgba(255, 91, 87, 0.3) !important; }
+.bg-red-transparent-2 { background-color: rgba(255, 91, 87, 0.2) !important; }
+.bg-red-transparent-1 { background-color: rgba(255, 91, 87, 0.1) !important; }
+.bg-red-darker { background-color: #cc4946 !important; }
+.bg-red-lighter { background-color: #ff7c79 !important; }
+.bg-gradient-red {
+    background: rgb(255,124,121) !important;
+    background: -moz-linear-gradient(top, rgba(255,124,121,1) 0%, rgba(255,91,87,1) 100%) !important;
+    background: -webkit-linear-gradient(top, rgba(255,124,121,1) 0%,rgba(255,91,87,1) 100%) !important;
+    background: linear-gradient(to bottom, rgba(255,124,121,1) 0%,rgba(255,91,87,1) 100%) !important;
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ff7c79', endColorstr='#ff5b57',GradientType=0 ) !important;
+}
+.bg-warning, 
+.bg-orange { background-color: #f59c1a !important; }
+.bg-orange-transparent-9 { background-color: rgba(245, 156, 26, 0.9) !important; }
+.bg-orange-transparent-8 { background-color: rgba(245, 156, 26, 0.8) !important; }
+.bg-orange-transparent-7 { background-color: rgba(245, 156, 26, 0.7) !important; }
+.bg-orange-transparent-6 { background-color: rgba(245, 156, 26, 0.6) !important; }
+.bg-orange-transparent-5 { background-color: rgba(245, 156, 26, 0.5) !important; }
+.bg-orange-transparent-4 { background-color: rgba(245, 156, 26, 0.4) !important; }
+.bg-orange-transparent-3 { background-color: rgba(245, 156, 26, 0.3) !important; }
+.bg-orange-transparent-2 { background-color: rgba(245, 156, 26, 0.2) !important; }
+.bg-orange-transparent-1 { background-color: rgba(245, 156, 26, 0.1) !important; }
+.bg-orange-darker { background-color: #c47d15 !important; }
+.bg-orange-lighter { background-color: #f7b048 !important; }
+.bg-gradient-orange {
+    background: rgb(247,176,72) !important;
+    background: -moz-linear-gradient(top, rgba(247,176,72,1) 0%, rgba(245,156,26,1) 100%) !important;
+    background: -webkit-linear-gradient(top, rgba(247,176,72,1) 0%,rgba(245,156,26,1) 100%) !important;
+    background: linear-gradient(to bottom, rgba(247,176,72,1) 0%,rgba(245,156,26,1) 100%) !important;
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f7b048', endColorstr='#f59c1a',GradientType=0 ) !important;
+}
+.bg-inverse, 
+.bg-black { background-color: #2d353c !important; }
+.bg-black-transparent-9 { background-color: rgba(45, 53, 60, 0.9) !important; }
+.bg-black-transparent-8 { background-color: rgba(45, 53, 60, 0.8) !important; }
+.bg-black-transparent-7 { background-color: rgba(45, 53, 60, 0.7) !important; }
+.bg-black-transparent-6 { background-color: rgba(45, 53, 60, 0.6) !important; }
+.bg-black-transparent-5 { background-color: rgba(45, 53, 60, 0.5) !important; }
+.bg-black-transparent-4 { background-color: rgba(45, 53, 60, 0.4) !important; }
+.bg-black-transparent-3 { background-color: rgba(45, 53, 60, 0.3) !important; }
+.bg-black-transparent-2 { background-color: rgba(45, 53, 60, 0.2) !important; }
+.bg-black-transparent-1 { background-color: rgba(45, 53, 60, 0.1) !important; }
+.bg-black-darker { background-color: #242a30 !important; }
+.bg-black-lighter { background-color: #575d63 !important; }
+.bg-gradient-black {
+    background: rgb(88,97,105) !important;
+    background: -moz-linear-gradient(-45deg, rgba(88,97,105,1) 0%, rgba(45,53,60,1) 100%) !important;
+    background: -webkit-linear-gradient(-45deg, rgba(88,97,105,1) 0%,rgba(45,53,60,1) 100%) !important;
+    background: linear-gradient(135deg, rgba(88,97,105,1) 0%,rgba(45,53,60,1) 100%) !important;
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#586169', endColorstr='#2d353c',GradientType=1 ) !important;
+}
+.bg-yellow { background-color: #ffd900 !important; }
+.bg-yellow-transparent-9 { background-color: rgba(255, 217, 0, 0.9) !important; }
+.bg-yellow-transparent-8 { background-color: rgba(255, 217, 0, 0.8) !important; }
+.bg-yellow-transparent-7 { background-color: rgba(255, 217, 0, 0.7) !important; }
+.bg-yellow-transparent-6 { background-color: rgba(255, 217, 0, 0.6) !important; }
+.bg-yellow-transparent-5 { background-color: rgba(255, 217, 0, 0.5) !important; }
+.bg-yellow-transparent-4 { background-color: rgba(255, 217, 0, 0.4) !important; }
+.bg-yellow-transparent-3 { background-color: rgba(255, 217, 0, 0.3) !important; }
+.bg-yellow-transparent-2 { background-color: rgba(255, 217, 0, 0.2) !important; }
+.bg-yellow-transparent-1 { background-color: rgba(255, 217, 0, 0.1) !important; }
+.bg-yellow-darker { background-color: #bfa300 !important; }
+.bg-yellow-lighter { background-color: #fde248 !important; }
+.bg-gradient-yellow {
+    background: rgb(253,226,72) !important;
+    background: -moz-linear-gradient(top, rgba(253,226,72,1) 0%, rgba(255,217,0,1) 100%) !important;
+    background: -webkit-linear-gradient(top, rgba(253,226,72,1) 0%,rgba(255,217,0,1) 100%) !important;
+    background: linear-gradient(to bottom, rgba(253,226,72,1) 0%,rgba(255,217,0,1) 100%) !important;
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#fde248', endColorstr='#ffd900',GradientType=0 ) !important;
+}
+.bg-silver { background-color: #f0f3f4 !important; }
+.bg-silver-transparent-9 { background-color: rgba(240, 243, 244, 0.9) !important; }
+.bg-silver-transparent-8 { background-color: rgba(240, 243, 244, 0.8) !important; }
+.bg-silver-transparent-7 { background-color: rgba(240, 243, 244, 0.7) !important; }
+.bg-silver-transparent-6 { background-color: rgba(240, 243, 244, 0.6) !important; }
+.bg-silver-transparent-5 { background-color: rgba(240, 243, 244, 0.5) !important; }
+.bg-silver-transparent-4 { background-color: rgba(240, 243, 244, 0.4) !important; }
+.bg-silver-transparent-3 { background-color: rgba(240, 243, 244, 0.3) !important; }
+.bg-silver-transparent-2 { background-color: rgba(240, 243, 244, 0.2) !important; }
+.bg-silver-transparent-1 { background-color: rgba(240, 243, 244, 0.1) !important; }
+.bg-silver-lighter { background-color: #f4f6f7 !important; }
+.bg-silver-darker { background-color: #b4b6b7 !important; }
+.bg-gradient-silver {
+    background: rgb(244,246,247) !important;
+    background: -moz-linear-gradient(top, rgba(244,246,247,1) 0%, rgba(240,243,244,1) 100%) !important;
+    background: -webkit-linear-gradient(top, rgba(244,246,247,1) 0%,rgba(240,243,244,1) 100%) !important;
+    background: linear-gradient(to bottom, rgba(244,246,247,1) 0%,rgba(240,243,244,1) 100%) !important;
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f4f6f7', endColorstr='#f0f3f4',GradientType=0 ) !important;
+}
+.bg-grey { background-color: #b6c2c9 !important; }
+.bg-grey-transparent-9 { background-color: rgba(182, 194, 201, 0.9) !important; }
+.bg-grey-transparent-8 { background-color: rgba(182, 194, 201, 0.8) !important; }
+.bg-grey-transparent-7 { background-color: rgba(182, 194, 201, 0.7) !important; }
+.bg-grey-transparent-6 { background-color: rgba(182, 194, 201, 0.6) !important; }
+.bg-grey-transparent-5 { background-color: rgba(182, 194, 201, 0.5) !important; }
+.bg-grey-transparent-4 { background-color: rgba(182, 194, 201, 0.4) !important; }
+.bg-grey-transparent-3 { background-color: rgba(182, 194, 201, 0.3) !important; }
+.bg-grey-transparent-2 { background-color: rgba(182, 194, 201, 0.2) !important; }
+.bg-grey-transparent-1 { background-color: rgba(182, 194, 201, 0.1) !important; }
+.bg-grey-darker { background-color: #929ba1 !important; }
+.bg-grey-lighter { background-color: #c5ced4 !important; }
+.bg-gradient-grey {
+    background: rgb(197,206,212) !important;
+    background: -moz-linear-gradient(top, rgba(197,206,212,1) 0%, rgba(182,194,201,1) 100%) !important;
+    background: -webkit-linear-gradient(top, rgba(197,206,212,1) 0%,rgba(182,194,201,1) 100%) !important;
+    background: linear-gradient(to bottom, rgba(197,206,212,1) 0%,rgba(182,194,201,1) 100%) !important;
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#c5ced4', endColorstr='#b6c2c9',GradientType=0 ) !important;
+}
+.bg-purple { background-color: #727cb6 !important; }
+.bg-purple-transparent-9 { background-color: rgba(114, 124, 182, 0.9) !important; }
+.bg-purple-transparent-8 { background-color: rgba(114, 124, 182, 0.8) !important; }
+.bg-purple-transparent-7 { background-color: rgba(114, 124, 182, 0.7) !important; }
+.bg-purple-transparent-6 { background-color: rgba(114, 124, 182, 0.6) !important; }
+.bg-purple-transparent-5 { background-color: rgba(114, 124, 182, 0.5) !important; }
+.bg-purple-transparent-4 { background-color: rgba(114, 124, 182, 0.4) !important; }
+.bg-purple-transparent-3 { background-color: rgba(114, 124, 182, 0.3) !important; }
+.bg-purple-transparent-2 { background-color: rgba(114, 124, 182, 0.2) !important; }
+.bg-purple-transparent-1 { background-color: rgba(114, 124, 182, 0.1) !important; }
+.bg-purple-darker { background-color: #5b6392 !important; }
+.bg-purple-lighter { background-color: #8e96c5 !important; }
+.bg-gradient-purple {
+    background: rgb(132,87,243) !important;
+    background: -moz-linear-gradient(-45deg, rgba(132,87,243,1) 0%, rgba(114,124,182,1) 100%) !important;
+    background: -webkit-linear-gradient(-45deg, rgba(132,87,243,1) 0%,rgba(114,124,182,1) 100%) !important;
+    background: linear-gradient(135deg, rgba(132,87,243,1) 0%,rgba(114,124,182,1) 100%) !important;
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#8457f3', endColorstr='#727cb6',GradientType=1 ) !important;
+}
+.bg-lime { background-color: #90ca4b !important; }
+.bg-lime-transparent-9 { background-color: rgba(144, 202, 75, 0.9) !important; }
+.bg-lime-transparent-8 { background-color: rgba(144, 202, 75, 0.8) !important; }
+.bg-lime-transparent-7 { background-color: rgba(144, 202, 75, 0.7) !important; }
+.bg-lime-transparent-6 { background-color: rgba(144, 202, 75, 0.6) !important; }
+.bg-lime-transparent-5 { background-color: rgba(144, 202, 75, 0.5) !important; }
+.bg-lime-transparent-4 { background-color: rgba(144, 202, 75, 0.4) !important; }
+.bg-lime-transparent-3 { background-color: rgba(144, 202, 75, 0.3) !important; }
+.bg-lime-transparent-2 { background-color: rgba(144, 202, 75, 0.2) !important; }
+.bg-lime-transparent-1 { background-color: rgba(144, 202, 75, 0.1) !important; }
+.bg-lime-darker { background-color: #6c9738 !important; }
+.bg-lime-lighter { background-color: #acd778 !important; }
+.bg-gradient-lime {
+    background: rgb(172,215,120) !important;
+    background: -moz-linear-gradient(top, rgba(172,215,120,1) 0%, rgba(144,202,75,1) 100%) !important;
+    background: -webkit-linear-gradient(top, rgba(172,215,120,1) 0%,rgba(144,202,75,1) 100%) !important;
+    background: linear-gradient(to bottom, rgba(172,215,120,1) 0%,rgba(144,202,75,1) 100%) !important;
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#acd778', endColorstr='#90ca4b',GradientType=0 ) !important;
+}
+.bg-indigo { background-color: #8753de !important; }
+.bg-indigo-transparent-9 { background-color: rgba(135, 83, 222, 0.9) !important; }
+.bg-indigo-transparent-8 { background-color: rgba(135, 83, 222, 0.8) !important; }
+.bg-indigo-transparent-7 { background-color: rgba(135, 83, 222, 0.7) !important; }
+.bg-indigo-transparent-6 { background-color: rgba(135, 83, 222, 0.6) !important; }
+.bg-indigo-transparent-5 { background-color: rgba(135, 83, 222, 0.5) !important; }
+.bg-indigo-transparent-4 { background-color: rgba(135, 83, 222, 0.4) !important; }
+.bg-indigo-transparent-3 { background-color: rgba(135, 83, 222, 0.3) !important; }
+.bg-indigo-transparent-2 { background-color: rgba(135, 83, 222, 0.2) !important; }
+.bg-indigo-transparent-1 { background-color: rgba(135, 83, 222, 0.1) !important; }
+.bg-indigo-darker { background-color: #6c42b2 !important; }
+.bg-indigo-lighter { background-color: #9f75e5 !important; }
+.bg-gradient-indigo {
+    background: rgb(159,117,229) !important;
+    background: -moz-linear-gradient(top, rgba(159,117,229,1) 0%, rgba(108,66,178,1) 100%) !important;
+    background: -webkit-linear-gradient(top, rgba(159,117,229,1) 0%,rgba(108,66,178,1) 100%) !important;
+    background: linear-gradient(to bottom, rgba(159,117,229,1) 0%,rgba(108,66,178,1) 100%) !important;
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#9f75e5', endColorstr='#6c42b2',GradientType=0 ) !important;
+}
+.bg-pink { background-color: #fb5597 !important; }
+.bg-pink-transparent-9 { background-color: rgba(251, 85, 151, 0.9) !important; }
+.bg-pink-transparent-8 { background-color: rgba(251, 85, 151, 0.8) !important; }
+.bg-pink-transparent-7 { background-color: rgba(251, 85, 151, 0.7) !important; }
+.bg-pink-transparent-6 { background-color: rgba(251, 85, 151, 0.6) !important; }
+.bg-pink-transparent-5 { background-color: rgba(251, 85, 151, 0.5) !important; }
+.bg-pink-transparent-4 { background-color: rgba(251, 85, 151, 0.4) !important; }
+.bg-pink-transparent-3 { background-color: rgba(251, 85, 151, 0.3) !important; }
+.bg-pink-transparent-2 { background-color: rgba(251, 85, 151, 0.2) !important; }
+.bg-pink-transparent-1 { background-color: rgba(251, 85, 151, 0.1) !important; }
+.bg-pink-darker { background-color: #c94479 !important; }
+.bg-pink-lighter { background-color: #fc77ac !important; }
+.bg-gradient-pink {
+    background: rgb(252,119,172) !important;
+    background: -moz-linear-gradient(top, rgba(252,119,172,1) 0%, rgba(201,68,121,1) 100%) !important;
+    background: -webkit-linear-gradient(top, rgba(252,119,172,1) 0%,rgba(201,68,121,1) 100%) !important;
+    background: linear-gradient(to bottom, rgba(252,119,172,1) 0%,rgba(201,68,121,1) 100%) !important;
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#fc77ac', endColorstr='#c94479',GradientType=0 ) !important;
+}
+.bg-green { background-color: #32a932 !important; }
+.bg-green-transparent-9 { background-color: rgba(50, 169, 50, 0.9) !important; }
+.bg-green-transparent-8 { background-color: rgba(50, 169, 50, 0.8) !important; }
+.bg-green-transparent-7 { background-color: rgba(50, 169, 50, 0.7) !important; }
+.bg-green-transparent-6 { background-color: rgba(50, 169, 50, 0.6) !important; }
+.bg-green-transparent-5 { background-color: rgba(50, 169, 50, 0.5) !important; }
+.bg-green-transparent-4 { background-color: rgba(50, 169, 50, 0.4) !important; }
+.bg-green-transparent-3 { background-color: rgba(50, 169, 50, 0.3) !important; }
+.bg-green-transparent-2 { background-color: rgba(50, 169, 50, 0.2) !important; }
+.bg-green-transparent-1 { background-color: rgba(50, 169, 50, 0.1) !important; }
+.bg-green-darker { background-color: #288728 !important; }
+.bg-green-lighter { background-color: #5bba5b !important; }
+.bg-gradient-green {
+    background: rgb(91,186,91) !important;
+    background: -moz-linear-gradient(top, rgba(91,186,91,1) 0%, rgba(40,135,40,1) 100%) !important;
+    background: -webkit-linear-gradient(top, rgba(91,186,91,1) 0%,rgba(40,135,40,1) 100%) !important;
+    background: linear-gradient(to bottom, rgba(91,186,91,1) 0%,rgba(40,135,40,1) 100%) !important;
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#5bba5b', endColorstr='#288728',GradientType=0 ) !important;
+}
+.bg-white { background-color: #ffffff !important; }
+.bg-white-transparent-9 { background-color: rgba(255, 255, 255, 0.9) !important; }
+.bg-white-transparent-8 { background-color: rgba(255, 255, 255, 0.8) !important; }
+.bg-white-transparent-7 { background-color: rgba(255, 255, 255, 0.7) !important; }
+.bg-white-transparent-6 { background-color: rgba(255, 255, 255, 0.6) !important; }
+.bg-white-transparent-5 { background-color: rgba(255, 255, 255, 0.5) !important; }
+.bg-white-transparent-4 { background-color: rgba(255, 255, 255, 0.4) !important; }
+.bg-white-transparent-3 { background-color: rgba(255, 255, 255, 0.3) !important; }
+.bg-white-transparent-2 { background-color: rgba(255, 255, 255, 0.2) !important; }
+.bg-white-transparent-1 { background-color: rgba(255, 255, 255, 0.1) !important; }
+/* ./bg color */
+
+/* font size */
+.f-s-0 { font-size: 0px !important; }
+.f-s-1 { font-size: 1px !important; }
+.f-s-2 { font-size: 2px !important; }
+.f-s-3 { font-size: 3px !important; }
+.f-s-4 { font-size: 4px !important; }
+.f-s-5 { font-size: 5px !important; }
+.f-s-6 { font-size: 6px !important; }
+.f-s-7 { font-size: 7px !important; }
+.f-s-8 { font-size: 8px !important; }
+.f-s-9 { font-size: 9px !important; }
+.f-s-10 { font-size: 10px !important; }
+.f-s-11 { font-size: 11px !important; }
+.f-s-12 { font-size: 12px !important; }
+.f-s-13 { font-size: 13px !important; }
+.f-s-14 { font-size: 14px !important; }
+.f-s-15 { font-size: 15px !important; }
+.f-s-16 { font-size: 16px !important; }
+.f-s-17 { font-size: 17px !important; }
+.f-s-18 { font-size: 18px !important; }
+.f-s-19 { font-size: 19px !important; }
+.f-s-20 { font-size: 20px !important; }
+/* ./font size */
+
+/* font-weight */
+.f-w-100 { font-weight: 100 !important; }
+.f-w-200 { font-weight: 200 !important; }
+.f-w-300 { font-weight: 300 !important; }
+.f-w-400 { font-weight: 400 !important; }
+.f-w-500 { font-weight: 500 !important; }
+.f-w-600, .semi-bold { font-weight: 600 !important; }
+.f-w-700 { font-weight: 700 !important; }
+.text-nowrap {white-space: nowrap !important;}
+/* ./font-weight */
