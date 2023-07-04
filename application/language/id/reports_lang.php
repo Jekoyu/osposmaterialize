@@ -56,6 +56,9 @@ $lang["reports_inventory_reports"] = "Laporan Persediaan";
 $lang["reports_inventory_summary"] = "Laporan Ringkasan Persediaan";
 $lang["reports_inventory_summary_report"] = "Laporan Ringkasan Persediaan";
 
+$lang["reports_qty_selisih"] = "Total Selisih Jumlah";
+$lang["reports_nilai_selisih"] = "Total Selisih Persediaan";
+
 $lang["reports_inventory_opname"] = "Laporan Stok Opname";
 $lang["reports_inventory_opname_report"] = "Laporan Stok Opname";
 
