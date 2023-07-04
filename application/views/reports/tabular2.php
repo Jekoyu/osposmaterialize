@@ -53,6 +53,12 @@
 											<div class="summary_row"><?php echo $this->lang->line('reports_'.$name) . ': ' .$value; ?></div>
 											<?php
 										}
+										elseif($name == "qty_selisih")
+										{
+											?>
+											<div class="summary_row"><?php echo $this->lang->line('reports_'.$name) . ': ' .$value; ?></div>
+											<?php
+										}
 										else
 										{
 											?>
