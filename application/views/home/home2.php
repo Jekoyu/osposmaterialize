@@ -1,9 +1,10 @@
 <?php $this->load->view("themes/header"); ?>
+
 <body>
 	<!-- ================== BEGIN PAGE LEVEL STYLE ================== -->
-	<link href="<?=base_url();?>themes/plugins/jquery-jvectormap/jquery-jvectormap.css" rel="stylesheet" />
-	<link href="<?=base_url();?>themes/plugins/bootstrap-datepicker/css/bootstrap-datepicker.css" rel="stylesheet" />
-	<link href="<?=base_url();?>themes/plugins/gritter/css/jquery.gritter.css" rel="stylesheet" />
+	<link href="<?= base_url(); ?>themes/plugins/jquery-jvectormap/jquery-jvectormap.css" rel="stylesheet" />
+	<link href="<?= base_url(); ?>themes/plugins/bootstrap-datepicker/css/bootstrap-datepicker.css" rel="stylesheet" />
+	<link href="<?= base_url(); ?>themes/plugins/gritter/css/jquery.gritter.css" rel="stylesheet" />
 	<!-- ================== END PAGE LEVEL STYLE ================== -->
 
 	<!-- ================== END BASE JS ================== -->
@@ -18,12 +19,15 @@
 
 	<!-- begin #page-container -->
 	<div id="page-container" class="page-container fade page-sidebar-fixed page-header-fixed">
-		<?php $this->load->view('themes/topbar');?>
-		<?php $this->load->view('themes/sidebar');?>
-				
+		<?php $this->load->view('themes/topbar'); ?>
+		<?php $this->load->view('themes/sidebar'); ?>
+
 		<!-- begin #content -->
 		<!-- begin #content -->
 		<div id="content" class="content">
+			<script type="text/javascript">
+				dialog_support.init("a.modal-dlg");
+			</script>
 			<!-- begin breadcrumb -->
 			<ol class="breadcrumb pull-right">
 				<li><a href="javascript:;">Home</a></li>
@@ -33,7 +37,7 @@
 			<!-- begin page-header -->
 			<h1 class="page-header">Dashboard <small>Selamat Datang!</small></h1>
 			<!-- end page-header -->
-			
+
 			<!-- begin row -->
 			<div class="row">
 				<!-- begin col-3 -->
@@ -42,10 +46,10 @@
 						<div class="stats-icon"><i class="fa fa-cube"></i></div>
 						<div class="stats-info">
 							<h4>TOTAL ITEM KATEGORI</h4>
-							<p id="total-item-kategori">0</p>	
+							<p id="total-item-kategori">0</p>
 						</div>
 						<div class="stats-link">
-							<a href="<?=site_url();?>items">Lihat Detail <i class="fa fa-arrow-circle-o-right"></i></a>
+							<a href="<?= site_url(); ?>items">Lihat Detail <i class="fa fa-arrow-circle-o-right"></i></a>
 						</div>
 					</div>
 				</div>
@@ -56,10 +60,10 @@
 						<div class="stats-icon"><i class="fa fa-cube"></i></div>
 						<div class="stats-info">
 							<h4>TOTAL ITEM PRODUK</h4>
-							<p id="total-item-produk">0</p>	
+							<p id="total-item-produk">0</p>
 						</div>
 						<div class="stats-link">
-							<a href="<?=site_url();?>items">Lihat Detail <i class="fa fa-arrow-circle-o-right"></i></a>
+							<a href="<?= site_url(); ?>items">Lihat Detail <i class="fa fa-arrow-circle-o-right"></i></a>
 						</div>
 					</div>
 				</div>
@@ -70,10 +74,10 @@
 						<div class="stats-icon"><i class="fa fa-users"></i></div>
 						<div class="stats-info">
 							<h4>TOTAL PEMASOK</h4>
-							<p id="total-pemasok">0</p>	
+							<p id="total-pemasok">0</p>
 						</div>
 						<div class="stats-link">
-							<a href="<?=site_url();?>suppliers">Lihat Detail <i class="fa fa-arrow-circle-o-right"></i></a>
+							<a href="<?= site_url(); ?>suppliers">Lihat Detail <i class="fa fa-arrow-circle-o-right"></i></a>
 						</div>
 					</div>
 				</div>
@@ -84,10 +88,10 @@
 						<div class="stats-icon"><i class="fa fa-users"></i></div>
 						<div class="stats-info">
 							<h4>TOTAL PELANGGAN</h4>
-							<p id="total-pelanggan">0</p>	
+							<p id="total-pelanggan">0</p>
 						</div>
 						<div class="stats-link">
-							<a href="<?=site_url();?>customers">Lihat Detail <i class="fa fa-arrow-circle-o-right"></i></a>
+							<a href="<?= site_url(); ?>customers">Lihat Detail <i class="fa fa-arrow-circle-o-right"></i></a>
 						</div>
 					</div>
 				</div>
@@ -120,12 +124,12 @@
 									</tr>
 								</thead>
 								<tbody>
-									
+
 								</tbody>
 							</table>
 						</div>
 					</div>
-					
+
 				</div>
 				<!-- end col-8 -->
 				<!-- begin col-4 -->
@@ -143,7 +147,7 @@
 						<div class="panel-body p-t-0">
 							<table class="table table-valign-middle m-b-0">
 								<thead>
-									<tr>	
+									<tr>
 										<th>Rentang Waktu</th>
 										<th>Total</th>
 									</tr>
@@ -189,7 +193,7 @@
 							<div id="bar-sales-bybulan" class="height-sm"></div>
 						</div>
 					</div>
-					
+
 				</div>
 				<!-- end col-8 -->
 				<!-- begin col-4 -->
@@ -208,7 +212,7 @@
 							<div id="bar-sales-bykategori" class="height-sm"></div>
 						</div>
 					</div>
-					
+
 				</div>
 				<!-- end col-4 -->
 
@@ -226,10 +230,10 @@
 						</div>
 						<div class="panel-body p-t-0">
 							<div id="line-sales-bybulan" class="height-sm"></div>
-							
+
 						</div>
 					</div>
-					
+
 				</div>
 				<!-- end col-4 -->
 			</div>
@@ -237,32 +241,29 @@
 		</div>
 		<!-- end #content -->
 		<!-- end #content -->
-		
+
 		<!-- begin scroll to top btn -->
 		<a href="javascript:;" class="btn btn-icon btn-circle btn-success btn-scroll-to-top fade" data-click="scroll-top"><i class="fa fa-angle-up"></i></a>
 		<!-- end scroll to top btn -->
 	</div>
 	<!-- end page container -->
-				
-	<?php $this->load->view('themes/footer');?>
-	<script src="<?=base_url();?>themes/plugins/gritter/js/jquery.gritter.js"></script>
-	<!-- <script src="<?=base_url();?>themes/plugins/flot/jquery.flot.min.js"></script>
-	<script src="<?=base_url();?>themes/plugins/flot/jquery.flot.time.min.js"></script>
-	<script src="<?=base_url();?>themes/plugins/flot/jquery.flot.resize.min.js"></script>
-	<script src="<?=base_url();?>themes/plugins/flot/jquery.flot.pie.min.js"></script> -->
-	<script src="<?=base_url();?>themes/plugins/sparkline/jquery.sparkline.js"></script>
-	<script src="<?=base_url();?>themes/plugins/jquery-jvectormap/jquery-jvectormap.min.js"></script>
-	<script src="<?=base_url();?>themes/plugins/jquery-jvectormap/jquery-jvectormap-world-mill-en.js"></script>
-	<script src="<?=base_url();?>themes/plugins/bootstrap-datepicker/js/bootstrap-datepicker.js"></script>
 
-	<script src="<?=base_url();?>bower_components/amcharts5/index.js"></script>
-	<script src="<?=base_url();?>bower_components/amcharts5/xy.js"></script>
-	<script src="<?=base_url();?>bower_components/amcharts5/themes/Animated.js"></script>
+	<?php $this->load->view('themes/footer'); ?>
 
-	<?php $this->load->view('home/dashboard_js');?>
+	<script src="<?= base_url(); ?>themes/plugins/gritter/js/jquery.gritter.js"></script>
+
+	<script src="<?= base_url(); ?>themes/plugins/sparkline/jquery.sparkline.js"></script>
+	<script src="<?= base_url(); ?>themes/plugins/jquery-jvectormap/jquery-jvectormap.min.js"></script>
+	<script src="<?= base_url(); ?>themes/plugins/jquery-jvectormap/jquery-jvectormap-world-mill-en.js"></script>
+	<script src="<?= base_url(); ?>themes/plugins/bootstrap-datepicker/js/bootstrap-datepicker.js"></script>
+
+	<script src="<?= base_url(); ?>bower_components/amcharts5/index.js"></script>
+	<script src="<?= base_url(); ?>bower_components/amcharts5/xy.js"></script>
+	<script src="<?= base_url(); ?>bower_components/amcharts5/themes/Animated.js"></script>
+
+	<?php $this->load->view('home/dashboard_js'); ?>
 	<script type="text/javascript">
 		$(document).ready(function() {
-				Dashboard.init();
-			});
+			Dashboard.init();
+		});
 	</script>
-
