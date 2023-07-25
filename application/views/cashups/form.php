@@ -105,8 +105,8 @@
 					<?php echo form_input(array(
 							'name'=>'closed_amount_cash',
 							'id'=>'closed_amount_cash',
-							'class'=>'form-control input-sm',
-							'onkeyup'=>'currencyFormat(this);',
+							'class'=>'form-control input-sm auto-currency',
+							// 'onkeyup'=>'currencyFormat(this);',
 							'value'=>to_currency_no_money($cash_ups_info->closed_amount_cash))
 							);?>
 					<?php if (currency_side()): ?>
@@ -138,8 +138,8 @@
 					<?php echo form_input(array(
 							'name'=>'closed_amount_due',
 							'id'=>'closed_amount_due',
-							'class'=>'form-control input-sm',
-							'onkeyup'=>'currencyFormat(this);',
+							'class'=>'form-control input-sm auto-currency',
+							// 'onkeyup'=>'currencyFormat(this);',
 							'value'=>to_currency_no_money($cash_ups_info->closed_amount_due))
 							);?>
 					<?php if (currency_side()): ?>
@@ -159,8 +159,8 @@
 					<?php echo form_input(array(
 							'name'=>'closed_amount_card',
 							'id'=>'closed_amount_card',
-							'class'=>'form-control input-sm',
-							'onkeyup'=>'currencyFormat(this);',
+							'class'=>'form-control input-sm auto-currency',
+							// 'onkeyup'=>'currencyFormat(this);',
 							'value'=>to_currency_no_money($cash_ups_info->closed_amount_card))
 							);?>
 					<?php if (currency_side()): ?>
@@ -180,8 +180,8 @@
 					<?php echo form_input(array(
 							'name'=>'closed_amount_check',
 							'id'=>'closed_amount_check',
-							'class'=>'form-control input-sm',
-							'onkeyup'=>'currencyFormat(this);',
+							'class'=>'form-control input-sm auto-currency',
+							// 'onkeyup'=>'currencyFormat(this);',
 							'value'=>to_currency_no_money($cash_ups_info->closed_amount_check))
 							);?>
 					<?php if (currency_side()): ?>
@@ -202,8 +202,8 @@
 							'name'=>'closed_amount_total',
 							'id'=>'closed_amount_total',
 							'readonly'=>'true',
-							'class'=>'form-control input-sm',
-							'onkeyup'=>'currencyFormat(this);',
+							'class'=>'form-control input-sm auto-currency',
+							// 'onkeyup'=>'currencyFormat(this);',
 							'value'=>to_currency_no_money($cash_ups_info->closed_amount_total)
 							));?>
 					<?php if (currency_side()): ?>
@@ -304,6 +304,32 @@ $(document).ready(function()
 		todayHighlight: true,
 		bootcssVer: 3,
 		language: '<?php echo current_language_code(); ?>'
+	});
+
+	$('#open_date, #close_date, #open_amount_cash, #transfer_amount_cash').change(function() {
+		$.post("<?php echo site_url($controller_name . '/get_change')?>", {
+				'open_date': $('#open_date').val(),
+				'close_date': $('#close_date').val(),
+				'open_amount_cash': $('#open_amount_cash').val(),
+				'transfer_amount_cash': $('#transfer_amount_cash').val(),
+			},
+			function(response) {
+				// $('#closed_amount_cash').val(response.total);
+				// console.log(response)
+				if(response.status){
+				console.log(response.result);
+				const {result} = response;
+				$('#open_amount_cash').val(result.open_amount_cash);
+				$('#transfer_amount_cash').val(result.transfer_amount_cash);
+				$('#closed_amount_cash').val(result.closed_amount_cash);
+				$('#closed_amount_due').val(result.closed_amount_due);
+				$('#closed_amount_check').val(result.closed_amount_check);
+				$('#closed_amount_card').val(result.closed_amount_card);
+				$('#closed_amount_total').val(result.closed_amount_total);
+				}
+			},
+			'json'
+		);
 	});
 
 	$('#open_amount_cash, #transfer_amount_cash, #closed_amount_cash, #closed_amount_due, #closed_amount_card, #closed_amount_check').keyup(function() {

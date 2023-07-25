@@ -432,7 +432,7 @@ class Reports extends Secure_Controller
 
 		$report_data = $model->getData($inputs);
 		$summary = $this->xss_clean($model->getSummaryData($inputs));
-
+		// cek($summary);
 		$tabular_data = array();
 		foreach($report_data as $row)
 		{
@@ -476,6 +476,8 @@ class Reports extends Secure_Controller
 			'grants_labarugi' => $this->xss_clean($this->Employee->get_employee_grants_labarugi($this->session->userdata('person_id'))) > 0
 
 		);
+
+		// cek($data);
 
 		$this->load->view('reports/tabular2', $data);
 	}
