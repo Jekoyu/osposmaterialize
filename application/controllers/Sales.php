@@ -698,6 +698,7 @@ class Sales extends Secure_Controller
 
 				// The PHP file name is the same as the invoice_type key
 				$invoice_view = $this->config->item('invoice_type');
+				// cek($invoice_view);
 
 				// Save the data to the sales table
 				$data['sale_id_num'] = $this->Sale->save($sale_id, $data['sale_status'], $data['cart'], $customer_id, $employee_id, $data['comments'], $invoice_number, $work_order_number, $quote_number, $sale_type, $data['payments'], $data['dinner_table'], $tax_details);
