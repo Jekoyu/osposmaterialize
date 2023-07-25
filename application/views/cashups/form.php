@@ -41,8 +41,8 @@
 					<?php echo form_input(array(
 							'name'=>'open_amount_cash',
 							'id'=>'open_amount_cash',
-							'class'=>'form-control input-sm',
-							'onkeyup'=>'currencyFormat(this);',
+							'class'=>'form-control input-sm auto-currency',
+							// 'onkeyup'=>'currencyFormat(this);',
 							'value'=>to_currency_no_money($cash_ups_info->open_amount_cash))
 							);?>
 					<?php if (currency_side()): ?>
@@ -62,8 +62,8 @@
 					<?php echo form_input(array(
 							'name'=>'transfer_amount_cash',
 							'id'=>'transfer_amount_cash',
-							'class'=>'form-control input-sm',
-							'onkeyup'=>'currencyFormat(this);',
+							'class'=>'form-control input-sm auto-currency',
+							// 'onkeyup'=>'currencyFormat(this);',
 							'value'=>to_currency_no_money($cash_ups_info->transfer_amount_cash))
 							);?>
 					<?php if (currency_side()): ?>
