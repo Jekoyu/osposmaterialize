@@ -95,7 +95,6 @@
 		<script type="text/javascript" src="<?=base_url();?>js/nominatim.autocomplete.js"></script>
 		<!-- end js template tags -->
 	<?php else : ?>
-	
 		<link rel="stylesheet" type="text/css" href="<?=base_url();?>themes/css/opensourcepos.css?rel=397f582d3d"/>
 		<!-- end mincss template tags -->
 		

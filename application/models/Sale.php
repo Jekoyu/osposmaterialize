@@ -814,7 +814,8 @@ class Sale extends CI_Model
 
 		$query = $this->db->get();
 
-		return $query->result_array();
+		if($query->num_rows() > 0) return $query->result_array();
+		else return [];
 	}
 
 	/**

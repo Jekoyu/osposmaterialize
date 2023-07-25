@@ -6,6 +6,17 @@
 
 class Appconfig extends CI_Model
 {
+
+	function __construct()
+	{
+		parent::__construct();
+		$this->disableOnlyFullGroupByMode();
+	}
+	public function disableOnlyFullGroupByMode() {
+        $sql = "SET SESSION sql_mode=(SELECT REPLACE(@@sql_mode,'ONLY_FULL_GROUP_BY',''))";
+        $this->db->query($sql);
+    }
+	
 	public function exists($key)
 	{
 		$this->db->from('app_config');

@@ -1,4 +1,11 @@
+<script src="<?=base_url();?>bower_components/moment-2.29.1/moment.min.js"></script>
+<script src="<?=base_url();?>bower_components/moment-timezone-0.5.33/moment-timezone-with-data.min.js"></script>
 <script type="text/javascript">
+
+const date = moment();
+
+// Set the timezone using the .tz() method
+const dateWithTimezone = date.tz('Asia/Seoul');
 	// live clock
 	var clock_tick = function clock_tick() {
 		setInterval('update_clock();', 1000);
@@ -8,7 +15,7 @@
 	clock_tick();
 
 	var update_clock = function update_clock() {
-		document.getElementById('liveclock').innerHTML = moment().format("<?php echo dateformat_momentjs($this->config->item('dateformat').' '.$this->config->item('timeformat'))?>");
+		document.getElementById('liveclock').innerHTML = moment().tz('<?=$this->config->item('timezone');?>').format("<?php echo dateformat_momentjs($this->config->item('dateformat').' '.$this->config->item('timeformat'))?>");
 	}
 
 	$.notifyDefaults({ placement: {
