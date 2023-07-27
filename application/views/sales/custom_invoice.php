@@ -85,38 +85,69 @@
 
 							<div id="page-wrap">
 								<div id="header"><?php echo $this->lang->line('sales_invoice'); ?></div>
-								<div id="block1">
-									<div id="customer-title">
-										<?php
-										if (isset($customer)) {
-										?>
-											<div id="customer"><?php echo nl2br($customer_info) ?></div>
-										<?php
-										}
-										?>
-									</div>
 
-									<div id="logo">
-										<?php
-										if ($this->Appconfig->get('company_logo') != '') {
-										?>
-											<img id="image" src="<?php echo base_url('uploads/' . $this->Appconfig->get('company_logo')); ?>" alt="company_logo" />
-										<?php
-										}
-										?>
-										<div>&nbsp</div>
-										<?php
-										if ($this->Appconfig->get('receipt_show_company_name')) {
-										?>
-											<div id="company_name"><?php echo $this->config->item('company'); ?></div>
-										<?php
-										}
-										?>
-									</div>
+
+								<div id="block1">
+									<table class="no-border" style="width:540px;float:left;">
+										<tr>
+											<td style="width: 90px;">
+												<?php
+												if ($this->Appconfig->get('company_logo') != '') {
+												?>
+													<img id="image" src="<?php echo base_url('uploads/' . $this->Appconfig->get('company_logo')); ?>" alt="company_logo" style="width:80px;height:auto;" />
+												<?php
+												}
+												?>
+											</td>
+											<td>
+												<?php
+												if ($this->Appconfig->get('receipt_show_company_name')) {
+												?>
+													<div id="company_name"><?php echo $this->config->item('company'); ?></div>
+												<?php
+												}
+												?>
+												<div id="company-title"><?php echo nl2br($company_info) ?></div>
+											</td>
+										</tr>
+
+									</table>
 								</div>
 
 								<div id="block2">
-									<div id="company-title"><?php echo nl2br($company_info) ?></div>
+
+									<!-- customer -->
+									<table class="no-border" style="width:340px;float:left;">
+										<tr>
+											<td>
+												<div id="receipt_general_info">
+													<?php
+													if (isset($customer)) {
+													?>
+														<div id="customer"><?php echo $this->lang->line('customers_customer') . ": " . $customer; ?></div>
+													<?php
+													}
+													?>
+
+													<div id="sale_id"><?php echo $this->lang->line('sales_id') . ": " . $sale_id; ?></div>
+
+													<?php
+													if (!empty($invoice_number)) {
+													?>
+														<div id="invoice_number"><?php echo $this->lang->line('sales_invoice_number') . ": " . $invoice_number; ?></div>
+													<?php
+													}
+													?>
+
+													<div id="employee"><?php echo $this->lang->line('employees_employee') . ": " . $employee; ?></div>
+												</div>
+											</td>
+
+										</tr>
+
+									</table>
+									<!-- ./customer -->
+
 									<table id="meta">
 										<tr>
 											<td class="meta-head"><?php echo $this->lang->line('sales_invoice_number'); ?> </td>

@@ -6,6 +6,8 @@ BERANDA:
 OFFICE:
 
 clear items:
+
+
 SET FOREIGN_KEY_CHECKS = 0; 
 
 TRUNCATE table `ospos_items`; 
@@ -24,6 +26,9 @@ TRUNCATE table `ospos_sales_payments`;
 TRUNCATE table `ospos_sales_reward_points`; 
 TRUNCATE table `ospos_sales_taxes`; 
 
+TRUNCATE table `ospos_suppliers`; 
+DELETE FROM `ospos_people` WHERE person_id NOT IN (1,2);
+DELETE FROM `ospos_employees` WHERE person_id NOT IN (1,2);
 
 SET FOREIGN_KEY_CHECKS = 1;
 
