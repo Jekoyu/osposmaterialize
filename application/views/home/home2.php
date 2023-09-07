@@ -1,4 +1,4 @@
-<?php $this->load->view("themes/header"); ?>
+<?php $this->load->view("themes/header") ?>
 
 <body>
 	<!-- ================== BEGIN PAGE LEVEL STYLE ================== -->
@@ -95,6 +95,25 @@
 						</div>
 					</div>
 				</div>
+				<!-- 
+
+				<div class="col-sm-6 col-lg-3">
+					<div class="card card-border-shadow-primary h-100">
+						<div class="card-body">
+							<div class="d-flex align-items-center mb-2 pb-1">
+								<div class="avatar me-2">
+									<span class="avatar-initial rounded bg-label-primary"><i class="mdi mdi-bus-school mdi-20px"></i></span>
+								</div>
+								<h4 class="ms-1 mb-0 display-6">42</h4>
+							</div>
+							<p class="mb-0 text-heading">On route vehicles</p>
+							<p class="mb-0">
+								<span class="me-1">+18.2%</span>
+								<small class="text-muted">than last week</small>
+							</p>
+						</div>
+					</div>
+				</div> -->
 				<!-- end col-3 -->
 			</div>
 			<!-- end row -->
