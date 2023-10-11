@@ -2008,3 +2008,60 @@ DEBUG - 2023-09-07 15:45:27 --> Global POST, GET and COOKIE data sanitized
 DEBUG - 2023-09-07 15:45:28 --> Encryption: Auto-configured driver 'openssl'.
 DEBUG - 2023-09-07 15:45:28 --> Session class already loaded. Second attempt ignored.
 DEBUG - 2023-09-07 17:45:28 --> Total execution time: 0.1293
+DEBUG - 2023-09-07 20:09:05 --> UTF-8 Support Enabled
+DEBUG - 2023-09-07 20:09:05 --> Global POST, GET and COOKIE data sanitized
+DEBUG - 2023-09-07 20:09:06 --> Encryption: Auto-configured driver 'openssl'.
+ERROR - 2023-09-07 20:09:06 --> Severity: Core Warning --> Module 'mbstring' already loaded Unknown 0
+DEBUG - 2023-09-07 20:09:06 --> UTF-8 Support Enabled
+DEBUG - 2023-09-07 20:09:06 --> Global POST, GET and COOKIE data sanitized
+DEBUG - 2023-09-07 20:09:06 --> Encryption: Auto-configured driver 'openssl'.
+DEBUG - 2023-09-07 22:09:06 --> Migration class already loaded. Second attempt ignored.
+DEBUG - 2023-09-07 22:09:06 --> Total execution time: 0.1005
+DEBUG - 2023-09-07 20:09:12 --> UTF-8 Support Enabled
+DEBUG - 2023-09-07 20:09:12 --> Global POST, GET and COOKIE data sanitized
+DEBUG - 2023-09-07 20:09:12 --> Encryption: Auto-configured driver 'openssl'.
+DEBUG - 2023-09-07 22:09:12 --> Migration class already loaded. Second attempt ignored.
+ERROR - 2023-09-07 22:09:13 --> Severity: Core Warning --> Module 'mbstring' already loaded Unknown 0
+DEBUG - 2023-09-07 20:09:13 --> UTF-8 Support Enabled
+DEBUG - 2023-09-07 20:09:13 --> Global POST, GET and COOKIE data sanitized
+DEBUG - 2023-09-07 20:09:13 --> Encryption: Auto-configured driver 'openssl'.
+DEBUG - 2023-09-07 20:09:13 --> Session class already loaded. Second attempt ignored.
+DEBUG - 2023-09-07 22:09:13 --> Total execution time: 0.1096
+DEBUG - 2023-09-07 20:09:14 --> UTF-8 Support Enabled
+DEBUG - 2023-09-07 20:09:14 --> Global POST, GET and COOKIE data sanitized
+DEBUG - 2023-09-07 20:09:14 --> UTF-8 Support Enabled
+DEBUG - 2023-09-07 20:09:14 --> UTF-8 Support Enabled
+DEBUG - 2023-09-07 20:09:14 --> Global POST, GET and COOKIE data sanitized
+DEBUG - 2023-09-07 20:09:14 --> UTF-8 Support Enabled
+DEBUG - 2023-09-07 20:09:14 --> Global POST, GET and COOKIE data sanitized
+DEBUG - 2023-09-07 20:09:14 --> UTF-8 Support Enabled
+DEBUG - 2023-09-07 20:09:14 --> Global POST, GET and COOKIE data sanitized
+DEBUG - 2023-09-07 20:09:14 --> UTF-8 Support Enabled
+DEBUG - 2023-09-07 20:09:14 --> Global POST, GET and COOKIE data sanitized
+DEBUG - 2023-09-07 20:09:14 --> Global POST, GET and COOKIE data sanitized
+DEBUG - 2023-09-07 20:09:14 --> Encryption: Auto-configured driver 'openssl'.
+DEBUG - 2023-09-07 20:09:14 --> Session class already loaded. Second attempt ignored.
+DEBUG - 2023-09-07 20:09:14 --> Encryption: Auto-configured driver 'openssl'.
+DEBUG - 2023-09-07 20:09:14 --> Session class already loaded. Second attempt ignored.
+ERROR - 2023-09-07 22:09:15 --> Severity: Core Warning --> Module 'mbstring' already loaded Unknown 0
+DEBUG - 2023-09-07 20:09:15 --> Encryption: Auto-configured driver 'openssl'.
+DEBUG - 2023-09-07 20:09:15 --> Session class already loaded. Second attempt ignored.
+DEBUG - 2023-09-07 20:09:15 --> Encryption: Auto-configured driver 'openssl'.
+DEBUG - 2023-09-07 20:09:15 --> Session class already loaded. Second attempt ignored.
+ERROR - 2023-09-07 22:09:16 --> Severity: Core Warning --> Module 'mbstring' already loaded Unknown 0
+DEBUG - 2023-09-07 20:09:16 --> Encryption: Auto-configured driver 'openssl'.
+DEBUG - 2023-09-07 20:09:16 --> Session class already loaded. Second attempt ignored.
+DEBUG - 2023-09-07 20:09:17 --> UTF-8 Support Enabled
+DEBUG - 2023-09-07 20:09:17 --> Global POST, GET and COOKIE data sanitized
+ERROR - 2023-09-07 22:09:18 --> Severity: Core Warning --> Module 'mbstring' already loaded Unknown 0
+DEBUG - 2023-09-07 20:09:18 --> Encryption: Auto-configured driver 'openssl'.
+DEBUG - 2023-09-07 20:09:18 --> Session class already loaded. Second attempt ignored.
+ERROR - 2023-09-07 22:09:21 --> Severity: Core Warning --> Module 'mbstring' already loaded Unknown 0
+DEBUG - 2023-09-07 20:09:21 --> Encryption: Auto-configured driver 'openssl'.
+DEBUG - 2023-09-07 20:09:21 --> Session class already loaded. Second attempt ignored.
+DEBUG - 2023-09-07 22:09:21 --> Total execution time: 4.1661
+DEBUG - 2023-09-07 20:09:22 --> UTF-8 Support Enabled
+DEBUG - 2023-09-07 20:09:22 --> Global POST, GET and COOKIE data sanitized
+DEBUG - 2023-09-07 20:09:23 --> Encryption: Auto-configured driver 'openssl'.
+DEBUG - 2023-09-07 20:09:23 --> Session class already loaded. Second attempt ignored.
+DEBUG - 2023-09-07 22:09:23 --> Total execution time: 0.1525
